@@ -2,6 +2,8 @@
   "cSpell.words": [
     "anglais",
     "Apprendre",
+    "Connectez",
+    "Davinci",
     "français",
     "joue",
     "mathématiques",
@@ -10,6 +12,7 @@
     "s’amusant",
     "S’inscrire",
     "svgs",
+    "votre",
     "xcodeproj"
   ],
   "files.exclude": {
@@ -18,6 +21,8 @@
     "**/.metadata": true,
     "**pubspec.lock": true,
     "**README.md": true,
-    "**/test": true
+    "**/test": true,
+    "**.flutter-plugins": true,
+    "**.flutter-plugins-dependencies": true
   }
 }

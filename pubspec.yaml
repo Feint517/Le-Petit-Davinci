@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # utility
   get: ^4.7.2
   intl: ^0.20.2
   cached_network_image: ^3.4.1
@@ -18,7 +19,7 @@ dependencies:
   device_info_plus: ^11.4.0
   flutter_cache_manager: ^3.4.1
 
-
+  # UI
   gap: ^3.0.1
   shimmer: ^3.0.0
   lottie: ^3.3.1

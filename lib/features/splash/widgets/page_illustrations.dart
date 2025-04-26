@@ -19,13 +19,6 @@ class PageIllustrations extends StatelessWidget {
               Align(
                 alignment: AlignmentDirectional(0, 0),
                 child: SvgPicture.asset(
-                  SvgAssets.illustration,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: SvgPicture.asset(
                   SvgAssets.logo,
                   fit: BoxFit.cover,
                 ),
