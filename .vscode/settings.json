@@ -1,11 +1,11 @@
 {
-  "cSpell.words": ["pbxproj", "xcodeproj"],
+  "cSpell.words": ["pbxproj", "svgs", "xcodeproj"],
   "files.exclude": {
     "**/.dart_tool": true,
     "**/.idea": true,
     "**/.metadata": true,
     "**pubspec.lock": true,
     "**README.md": true,
-    "**/test": true,
+    "**/test": true
   }
 }
