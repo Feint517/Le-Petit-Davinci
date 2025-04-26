@@ -1,5 +1,17 @@
 {
-  "cSpell.words": ["pbxproj", "svgs", "xcodeproj"],
+  "cSpell.words": [
+    "anglais",
+    "Apprendre",
+    "français",
+    "joue",
+    "mathématiques",
+    "pbxproj",
+    "progresse",
+    "s’amusant",
+    "S’inscrire",
+    "svgs",
+    "xcodeproj"
+  ],
   "files.exclude": {
     "**/.dart_tool": true,
     "**/.idea": true,

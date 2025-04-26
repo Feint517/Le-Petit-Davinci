@@ -20,6 +20,8 @@ class ImageAssets {
 
 class SvgAssets {
   static const String illustration = '$SVG_PATH/illustration.svg'; 
+  static const String logo = '$SVG_PATH/logo.svg';
+  static const String splashIllustration = '$SVG_PATH/splash_illustration.svg';
 }
 
 class LottieAssets {}
