@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:kids_learning_app/features/authentication/screens/login/login.dart';
+import 'package:kids_learning_app/features/authentication/screens/signup/register_parent.dart';
 import 'package:kids_learning_app/features/splash/widgets/page_illustrations.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
@@ -48,7 +51,9 @@ class SplashScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             ElevatedButton.icon(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.to(() => LoginScreen());
+                              },
                               label: Text(
                                 'Se connecter',
                                 style: TextStyle(color: Color(0xff272727)),
@@ -61,7 +66,7 @@ class SplashScreen extends StatelessWidget {
                             ),
                             Gap(HelperFunctions.screenWidth() * 0.05),
                             ElevatedButton.icon(
-                              onPressed: () {},
+                              onPressed: () {Get.to(() => RegisterParentScreen());},
                               label: Text(
                                 'S’inscrire',
                                 style: TextStyle(color: Color(0xff272727)),

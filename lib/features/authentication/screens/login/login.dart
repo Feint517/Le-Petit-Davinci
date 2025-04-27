@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/text_fields/custom_text_field.dart';
 import 'package:kids_learning_app/features/authentication/controllers/login/login_controller.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -21,13 +24,13 @@ class LoginScreen extends StatelessWidget {
               right: 0,
               bottom: 0,
               child: Image.asset(
-                'assets/images/giraffe.png',
+                ImageAssets.giraffe,
                 fit: BoxFit.cover,
                 height: MediaQuery.of(context).size.height,
               ),
             ),
 
-            // Main login content
+            //* Main login content
             SafeArea(
               child: SingleChildScrollView(
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
@@ -35,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SvgPicture.asset(
-                      'assets/icons/Logo.svg',
+                      SvgAssets.logo,
                       width: 158,
                       height: 35,
                       fit: BoxFit.cover,
@@ -48,7 +51,7 @@ class LoginScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const Gap(8),
                     Row(
                       children: [
                         Text("Nouveau ici ? "),
@@ -67,21 +70,17 @@ class LoginScreen extends StatelessWidget {
                     CustomTextField(
                       controller: controller.emailController,
                       hintText: "E-mail",
-                      icon: SvgPicture.asset(
-                        "assets/icons/solar_letter-linear.svg",
-                      ),
+                      icon: SvgPicture.asset(SvgAssets.solar_letter_linear),
                     ),
                     const SizedBox(height: 16),
                     CustomTextField(
                       controller: controller.passwordController,
                       hintText: "Mot de passe",
                       icon: SvgPicture.asset(
-                        "assets/icons/solar_lock-password-linear.svg",
+                        SvgAssets.solar_lock_password_linear,
                       ),
                       obscureText: true,
-                      right_icon: SvgPicture.asset(
-                        "assets/icons/solar_eye-linear.svg",
-                      ),
+                      right_icon: SvgPicture.asset(SvgAssets.solar_eye_linear),
                     ),
                     const SizedBox(height: 16),
 
@@ -164,8 +163,7 @@ class LoginScreen extends StatelessWidget {
 
                           const SizedBox(height: 16),
                           ElevatedButton(
-                            onPressed: () {
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
                               backgroundColor: Color(0xffFC715A),

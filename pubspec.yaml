@@ -18,6 +18,10 @@ dependencies:
   connectivity_plus: ^6.1.4
   device_info_plus: ^11.4.0
   flutter_cache_manager: ^3.4.1
+  dio: ^5.8.0+1
+  json_serializable: ^6.9.5
+  json_annotation: ^4.9.0
+  pretty_dio_logger: ^1.4.0
 
   # UI
   gap: ^3.0.1
@@ -25,6 +29,7 @@ dependencies:
   lottie: ^3.3.1
   flutter_svg: ^2.1.0
   cupertino_icons: ^1.0.8
+  pin_code_fields: ^8.0.1
 
 dev_dependencies:
   flutter_test:
