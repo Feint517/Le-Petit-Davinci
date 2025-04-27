@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class StatCard extends StatelessWidget {
   final String title;
@@ -41,10 +41,13 @@ class StatCard extends StatelessWidget {
                 color: actionColor,
                 fontSize: 10,
                 fontWeight: FontWeight.w500,
-                
               ),
             ),
-             SvgPicture.asset("assets/icons/solar_arrow-right-up-linear.svg",color: actionColor ,height: 15),
+            SvgPicture.asset(
+              SvgAssets.solar_arrow_right_up_linear,
+              color: actionColor,
+              height: 15,
+            ),
           ],
         ),
       ],

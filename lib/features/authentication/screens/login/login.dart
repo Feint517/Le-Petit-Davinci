@@ -4,6 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/text_fields/custom_text_field.dart';
 import 'package:kids_learning_app/features/authentication/controllers/login/login_controller.dart';
+import 'package:kids_learning_app/features/authentication/screens/signup/register_parent.dart';
+import 'package:kids_learning_app/features/home/home_page.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -59,6 +61,9 @@ class LoginScreen extends StatelessWidget {
                           // onTap: () {
                           //   context.push('/register-parent');
                           // },
+                          onTap: () {
+                            Get.to(() => RegisterParentScreen());
+                          },
                           child: Text(
                             "S’inscrire",
                             style: TextStyle(color: Colors.red),
@@ -91,7 +96,9 @@ class LoginScreen extends StatelessWidget {
                           width: 120,
                           height: 36,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(() => ChildHomeScreen());
+                            },
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
                               backgroundColor: Colors.deepPurpleAccent,

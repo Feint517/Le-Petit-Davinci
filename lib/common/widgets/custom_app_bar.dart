@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kids_learning_app/common/widgets/custom_progress_bar.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -10,7 +11,7 @@ class CustomAppBar extends StatelessWidget {
     return Row(
       children: [
         const CircleAvatar(
-          backgroundImage: AssetImage('assets/icons/avatar.png'),
+          backgroundImage: AssetImage(IconAssets.avatar),
           radius: 24,
         ),
         const SizedBox(width: 12),
@@ -39,7 +40,7 @@ class CustomAppBar extends StatelessWidget {
                               Row(
                                 children: [
                                   SvgPicture.asset(
-                                    "assets/icons/stars.svg",
+                                    SvgAssets.star_filled,
                                     height: 10,
                                     width: 11,
                                   ),
@@ -84,7 +85,7 @@ class CustomAppBar extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [SvgPicture.asset("assets/icons/notification.svg")],
+                children: [SvgPicture.asset(SvgAssets.notification)],
               ),
             ),
           ],

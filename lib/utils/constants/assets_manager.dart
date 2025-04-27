@@ -2,6 +2,7 @@
 
 const String IMAGE_PATH = 'assets/images';
 const String SVG_PATH = 'assets/svgs';
+const String ICONS_PATH = 'assets/icons';
 const String LOTTIE_PATH = 'assets/lottie';
 const String ICON_PATH = 'assets/icons';
 const String JSON_PATH = 'assets/json';
@@ -17,6 +18,7 @@ class ImageAssets {
   static const String avatar7 = '$IMAGE_PATH/avatars/Avatar-6.png';
   static const String avatar8 = '$IMAGE_PATH/avatars/Avatar-7.png';
   static const String giraffe = '$IMAGE_PATH/misc/giraffe.png';
+  static const String chat_character = '$IMAGE_PATH/misc/chat_character.png';
   
 }
 
@@ -29,11 +31,20 @@ class SvgAssets {
   static const String solar_eye_linear = '$SVG_PATH/solar_eye-linear.svg';
   static const String solar_user_linear = '$SVG_PATH/solar_user-linear.svg';
   static const String solar_add_circle_linear = '$SVG_PATH/solar_add-circle-linear.svg';
+  static const String solar_notebook_bookmark_linear = '$SVG_PATH/solar_notebook-bookmark-linear.svg';
+  static const String solar_arrow_right_up_linear = '$SVG_PATH/solar_arrow-right-up-linear.svg';
+  static const String abc = '$SVG_PATH/abc.svg';
+  static const String star = '$SVG_PATH/star.svg';
+  static const String star_filled = '$SVG_PATH/star_filled.svg';
+  static const String notification = '$SVG_PATH/notification.svg';
 }
 
 class LottieAssets {}
 
-class IconAssets {}
+class IconAssets {
+  
+  static const String avatar = '$ICONS_PATH/avatar.png';
+}
 
 class JsonAssets {}
 

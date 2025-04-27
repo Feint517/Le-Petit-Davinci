@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/common/widgets/custom_app_bar.dart';
 import 'package:kids_learning_app/common/widgets/show_all_button.dart';
 import 'package:kids_learning_app/common/widgets/statCard.dart';
 import 'package:kids_learning_app/common/widgets/subject_card.dart';
 import 'package:kids_learning_app/features/home/home_page2.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class ChildHomeScreen extends StatefulWidget {
   const ChildHomeScreen({super.key});
@@ -27,21 +29,21 @@ class _ChildHomeScreenState extends State<ChildHomeScreen> {
     {
       "title": "Mathématiques",
       "total": "15 matériaux au total",
-      "image": "assets/icons/abc.png",
+      "image": SvgAssets.abc,
       "progress": 0.7,
       "color": Color(0xFFBBA1FF),
     },
     {
       "title": "Français",
       "total": "10 matériaux au total",
-      "image": "assets/icons/abc.png",
+      "image": SvgAssets.abc,
       "progress": 0.5,
       "color": Color(0xFFFFA7EC),
     },
     {
       "title": "Anglais",
       "total": "10 matériaux au total",
-      "image": "assets/icons/abc.png",
+      "image": SvgAssets.abc,
       "progress": 0.3,
       "color": Color(0xFFFFB89E),
     },
@@ -95,7 +97,7 @@ class _ChildHomeScreenState extends State<ChildHomeScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 5),
+                          const Gap(5),
                           const Text(
                             'Content de te revoir',
                             style: TextStyle(
@@ -104,12 +106,12 @@ class _ChildHomeScreenState extends State<ChildHomeScreen> {
                               color: Colors.black87,
                             ),
                           ),
-                          const SizedBox(height: 20),
+                          const Gap(20),
 
                           // Cards Row
                           Row(
                             children: [
-                              // Leçon
+                              //* Leçon
                               Expanded(
                                 child: StatCard(
                                   title: 'Leçon',
@@ -136,7 +138,7 @@ class _ChildHomeScreenState extends State<ChildHomeScreen> {
                                     ),
                                   ),
                                   icon:
-                                      'assets/icons/solar_notebook-bookmark-linear.svg',
+                                      SvgAssets.solar_notebook_bookmark_linear,
                                   actionLabel: 'Continuer à apprendre',
                                   actionColor: Color(0xFF9281FF),
                                 ),
@@ -170,7 +172,7 @@ class _ChildHomeScreenState extends State<ChildHomeScreen> {
                                       ],
                                     ),
                                   ),
-                                  icon: 'assets/icons/star.svg',
+                                  icon: SvgAssets.star,
                                   actionLabel: 'Obtenez des points',
                                   actionColor: Color(0xFFFF725E),
                                 ),
@@ -180,7 +182,7 @@ class _ChildHomeScreenState extends State<ChildHomeScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 24),
+                    const Gap(24),
 
                     // Featured Lesson Card
                     Container(
@@ -298,7 +300,7 @@ class _ChildHomeScreenState extends State<ChildHomeScreen> {
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 10.0),
                                 child: Image.asset(
-                                  'assets/images/chat_character.png',
+                                  ImageAssets.chat_character,
 
                                   fit: BoxFit.contain,
                                 ),
@@ -312,7 +314,7 @@ class _ChildHomeScreenState extends State<ChildHomeScreen> {
                 ),
               ),
 
-              SizedBox(height: 24),
+              const Gap(24),
 
               // Matières
               Row(

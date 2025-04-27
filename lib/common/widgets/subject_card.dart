@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SubjectCard extends StatelessWidget {
   final String title;
@@ -32,7 +33,7 @@ class SubjectCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image
-            Image.asset(imagePath, height: 40),
+            SvgPicture.asset(imagePath, height: 40),
             const SizedBox(height: 12),
             Text(title, style: TextStyle(fontWeight: FontWeight.w500)),
             const SizedBox(height: 4),
