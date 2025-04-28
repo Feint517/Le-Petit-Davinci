@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/text_fields/custom_text_field.dart';
 import 'package:kids_learning_app/features/authentication/controllers/login/login_controller.dart';
 import 'package:kids_learning_app/features/authentication/screens/signup/register_parent.dart';
 import 'package:kids_learning_app/features/home/home_page.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -15,189 +15,305 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
+    
     return Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Stack(
-          children: [
-            // Giraffe/Illustration on the right
-            Positioned(
-              top: 50,
-              right: 0,
-              bottom: 0,
-              child: Image.asset(
-                ImageAssets.giraffe,
-                fit: BoxFit.cover,
-                height: MediaQuery.of(context).size.height,
-              ),
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          // Giraffe illustration on the right
+          Positioned(
+            top: 100,
+            right: 0,
+            bottom: 0,
+            child: Image.asset(
+              ImageAssets.giraffe,
+              fit: BoxFit.contain,
             ),
-
-            //* Main login content
-            SafeArea(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SvgPicture.asset(
+          ),
+          
+          // Main content
+          SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Logo
+                  const SizedBox(height: 32),
+                  Center(
+                    child: SvgPicture.asset(
                       SvgAssets.logo,
                       width: 158,
                       height: 35,
-                      fit: BoxFit.cover,
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      "Connectez-vous\nau Petit Davinci",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                  ),
+                  
+                  // Login heading
+                  const SizedBox(height: 48),
+                  const Text(
+                    "Connectez-vous\nau Petit Davinci",
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w500,
+                      color: Color(0xFF272727),
+                      height: 1.2,
+                    ),
+                  ),
+                  
+                  // Register link
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      const Text(
+                        "Nouveau ici ? ",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF494949),
+                        ),
                       ),
-                    ),
-                    const Gap(8),
-                    Row(
-                      children: [
-                        Text("Nouveau ici ? "),
-                        GestureDetector(
-                          // onTap: () {
-                          //   context.push('/register-parent');
-                          // },
-                          onTap: () {
-                            Get.to(() => RegisterParentScreen());
-                          },
-                          child: Text(
-                            "S’inscrire",
-                            style: TextStyle(color: Colors.red),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => const RegisterParentScreen());
+                        },
+                        child: Text(
+                          "S'inscrire",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: AppColors.secondary,
                           ),
                         ),
-                      ],
+                      ),
+                    ],
+                  ),
+                  
+                  // Input fields
+                  const SizedBox(height: 32),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF9FAFB),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    const SizedBox(height: 24),
-                    CustomTextField(
+                    child: TextField(
                       controller: controller.emailController,
-                      hintText: "E-mail",
-                      icon: SvgPicture.asset(SvgAssets.solar_letter_linear),
-                    ),
-                    const SizedBox(height: 16),
-                    CustomTextField(
-                      controller: controller.passwordController,
-                      hintText: "Mot de passe",
-                      icon: SvgPicture.asset(
-                        SvgAssets.solar_lock_password_linear,
-                      ),
-                      obscureText: true,
-                      right_icon: SvgPicture.asset(SvgAssets.solar_eye_linear),
-                    ),
-                    const SizedBox(height: 16),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 120,
-                          height: 36,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Get.to(() => ChildHomeScreen());
-                            },
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              backgroundColor: Colors.deepPurpleAccent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            ),
-                            child: Text(
-                              "Se connecter",
-                              style: TextStyle(fontSize: 11),
+                      decoration: InputDecoration(
+                        hintText: "E-mail",
+                        hintStyle: const TextStyle(
+                          color: Color(0xFFC4C4C4),
+                          fontSize: 14,
+                        ),
+                        border: InputBorder.none,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SvgPicture.asset(
+                            SvgAssets.solar_letter_linear,
+                            width: 20,
+                            height: 20,
+                            colorFilter: const ColorFilter.mode(
+                              Color(0xFFC4C4C4),
+                              BlendMode.srcIn,
                             ),
                           ),
                         ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Mot de passe oublié?",
-                            style: TextStyle(fontSize: 12),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 18),
+                      ),
+                    ),
+                  ),
+                  
+                  const SizedBox(height: 16),
+                  
+                  Container(
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF9FAFB),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: TextField(
+                      controller: controller.passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: "Mot de passe",
+                        hintStyle: const TextStyle(
+                          color: Color(0xFFC4C4C4),
+                          fontSize: 14,
+                        ),
+                        border: InputBorder.none,
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SvgPicture.asset(
+                            SvgAssets.solar_lock_password_linear,
+                            width: 20,
+                            height: 20,
+                            colorFilter: const ColorFilter.mode(
+                              Color(0xFFC4C4C4),
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SvgPicture.asset(
+                            SvgAssets.solar_eye_linear,
+                            width: 20,
+                            height: 20,
+                            colorFilter: const ColorFilter.mode(
+                              Color(0xFFC4C4C4),
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 18),
+                      ),
+                    ),
+                  ),
+                  
+                  // Login button and forgot password
+                  const SizedBox(height: 24),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Get.to(() => ChildHomeScreen());
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: const Text(
+                          "Se connecter",
+                          style: TextStyle(
+                            color: Color(0xFF272727),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Mot de passe oublié?",
+                          style: TextStyle(
+                            color: Color(0xFF272727),
+                            fontSize: 10,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  
+                  // PIN login section
+                  const SizedBox(height: 48),
+                  Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.08),
+                          blurRadius: 34,
+                          offset: const Offset(12, 20),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            text: "Ou connectez vous avec\nvotre ",
+                            style: const TextStyle(
+                              fontFamily: 'BricolageGrotesque',
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFF272727),
+                              height: 1.4,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: "code PIN",
+                                style: TextStyle(
+                                  color: AppColors.secondary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        
+                        const SizedBox(height: 28),
+                        
+                        PinCodeTextField(
+                          appContext: context,
+                          length: 4,
+                          onChanged: (value) {},
+                          pinTheme: PinTheme(
+                            shape: PinCodeFieldShape.box,
+                            borderRadius: BorderRadius.circular(14),
+                            fieldHeight: 56,
+                            fieldWidth: 56,
+                            activeFillColor: Colors.white,
+                            inactiveFillColor: Colors.white,
+                            selectedFillColor: Colors.white,
+                            activeColor: const Color(0xFFC4C4C4),
+                            selectedColor: AppColors.primary,
+                            inactiveColor: const Color(0xFFC4C4C4),
+                          ),
+                          enableActiveFill: true,
+                        ),
+                        
+                        const SizedBox(height: 28),
+                        
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.secondary,
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              elevation: 0,
+                            ),
+                            child: const Text(
+                              "Connexion avec code PIN",
+                              style: TextStyle(
+                                color: Color(0xFF272727),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ),
+                        
+                        const SizedBox(height: 12),
+                        Center(
+                          child: TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              "Vous avez oublié votre code PIN?",
+                              style: TextStyle(
+                                color: Color(0xFF272727),
+                                fontSize: 10,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 24),
-                    Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade100,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Column(
-                        children: [
-                          Text.rich(
-                            TextSpan(
-                              text: "Ou connectez vous avec\nvotre ",
-                              children: [
-                                TextSpan(
-                                  text: "code PIN",
-                                  style: TextStyle(color: Colors.red),
-                                ),
-                              ],
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 16),
-
-                          PinCodeTextField(
-                            keyboardType: TextInputType.number,
-                            appContext: context,
-                            length: 4,
-                            onChanged: (value) {},
-                            pinTheme: PinTheme(
-                              shape: PinCodeFieldShape.box,
-                              borderRadius: BorderRadius.circular(8),
-                              fieldHeight: 55,
-                              fieldWidth: 55,
-                              activeFillColor: Colors.grey[100]!,
-                              inactiveFillColor: Colors.grey[100]!,
-                              selectedFillColor: Colors.white,
-                              activeColor: Colors.deepPurple,
-                              selectedColor: Colors.deepPurple,
-                              inactiveColor: Color(0xffC3C3C3),
-                            ),
-                            enableActiveFill: true,
-                          ),
-
-                          const SizedBox(height: 16),
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              backgroundColor: Color(0xffFC715A),
-                              padding: EdgeInsets.symmetric(vertical: 16),
-                              minimumSize: Size(double.infinity, 50),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                            ),
-                            child: Text("Connexion avec code PIN"),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Vous avez oublié votre code PIN?",
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                  
+                  const SizedBox(height: 24),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

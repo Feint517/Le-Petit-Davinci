@@ -37,6 +37,7 @@ class SvgAssets {
   static const String star = '$SVG_PATH/star.svg';
   static const String star_filled = '$SVG_PATH/star_filled.svg';
   static const String notification = '$SVG_PATH/notification.svg';
+  static const String banner_illustration = '$SVG_PATH/BannerIllustration.svg';
 }
 
 class LottieAssets {}
