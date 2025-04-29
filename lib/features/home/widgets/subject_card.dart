@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class SubjectCard extends StatelessWidget {
   final String title;
@@ -32,7 +34,7 @@ class SubjectCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image
+            //* Image
             SvgPicture.asset(imagePath, height: 40),
             const SizedBox(height: 12),
             Text(title, style: TextStyle(fontWeight: FontWeight.w500)),
@@ -41,13 +43,13 @@ class SubjectCard extends StatelessWidget {
               total,
               style: TextStyle(color: Color(0xff494949), fontSize: 10),
             ),
-            const SizedBox(height: 12),
-            // Progress Bar
+            const Gap(12),
+            //* Progress Bar
             ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: LinearProgressIndicator(
                 value: progress,
-                backgroundColor: Color(0xffFFFFFF),
+                backgroundColor: AppColors.white,
                 valueColor: AlwaysStoppedAnimation<Color>(Color(0xffFDCFFE)),
                 minHeight: 8,
               ),
@@ -62,7 +64,7 @@ class SubjectCard extends StatelessWidget {
                     //context.push("/subject-details");
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff9281FF),
+                    backgroundColor: AppColors.primaryDeep,
                     shape: StadiumBorder(),
                   ),
                   child: Text("Sélectionner", style: TextStyle(fontSize: 10)),

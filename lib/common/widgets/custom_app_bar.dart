@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/custom_progress_bar.dart';
+import 'package:kids_learning_app/features/personalization/screens/profile/profile_screen.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/device/device_utility.dart';
 
@@ -12,9 +14,12 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
-          backgroundImage: AssetImage(IconAssets.avatar),
-          radius: 24,
+        GestureDetector(
+          onTap: () => Get.to(() => const ProfileScreen()),
+          child: const CircleAvatar(
+            backgroundImage: AssetImage(IconAssets.avatar),
+            radius: 24,
+          ),
         ),
         const SizedBox(width: 12),
         Expanded(

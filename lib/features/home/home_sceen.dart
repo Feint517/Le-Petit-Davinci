@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:kids_learning_app/common/widgets/custom_app_bar.dart';
-import 'package:kids_learning_app/common/widgets/show_all_button.dart';
-import 'package:kids_learning_app/features/home/widgets/game_card.dart';
 import 'package:kids_learning_app/features/home/widgets/games_section.dart';
-import 'package:kids_learning_app/features/home/widgets/material_card.dart';
 import 'package:kids_learning_app/features/home/widgets/materials_section.dart';
 import 'package:kids_learning_app/features/home/widgets/primary_section.dart';
 import 'package:kids_learning_app/features/home/widgets/subjects_section.dart';
-import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
-class ChildHomeScreen extends StatefulWidget {
+class ChildHomeScreen extends StatelessWidget {
   const ChildHomeScreen({super.key});
 
-  @override
-  State<ChildHomeScreen> createState() => _ChildHomeScreenState();
-}
-
-class _ChildHomeScreenState extends State<ChildHomeScreen> {
-  String selectedSubject = 'Français';
+  final String selectedSubject = 'Français';
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +39,7 @@ class _ChildHomeScreenState extends State<ChildHomeScreen> {
               const Gap(30),
 
               //* Matériaux
-              const MaterialsSection(),
+              //const MaterialsSection(),
             ],
           ),
         ),
