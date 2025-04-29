@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class CustomDeviceUtils {
+class DeviceUtils {
   static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
   }
@@ -28,8 +28,7 @@ class CustomDeviceUtils {
 
   static void setFuLLScreen(bool enable) {
     SystemChrome.setEnabledSystemUIMode(
-      enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge,
-    );
+        enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
   }
 
   static double getScreenHeight() {
@@ -78,8 +77,7 @@ class CustomDeviceUtils {
   }
 
   static Future<void> setPreferredOrientations(
-    List<DeviceOrientation> orientations,
-  ) async {
+      List<DeviceOrientation> orientations) async {
     await SystemChrome.setPreferredOrientations(orientations);
   }
 
@@ -88,15 +86,13 @@ class CustomDeviceUtils {
   }
 
   static void showStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: SystemUiOverlay.values,
-    );
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
   }
 
-  static haslnternetConnection() async {
+  static hasInternetConnection() async {
     try {
-      final result = await InternetAddress.lookup('exampte.com');
+      final result = await InternetAddress.lookup('example.com');
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     } on SocketException catch (_) {
       return false;
@@ -110,7 +106,6 @@ class CustomDeviceUtils {
   static bool isAndroid() {
     return Platform.isAndroid;
   }
-
   /*
     static void launchUrl(String url) async {
       if (await canLaunchUrlString(url)) {

@@ -4,16 +4,16 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/authentication/screens/login/login.dart';
 import 'package:kids_learning_app/features/authentication/screens/signup/register_parent.dart';
+import 'package:kids_learning_app/features/authentication/screens/welcome/widgets/logo_header.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:kids_learning_app/utils/device/device_utility.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -21,47 +21,28 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Banner and Logo with tight positioning
-              Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  // Banner as base
-                  SvgPicture.asset(
-                    SvgAssets.banner_illustration,
-                    width: screenWidth,
-                    fit: BoxFit.fitWidth,
-                  ),
-                  
-                  // Logo positioned on top of banner
-                  Positioned(
-                    top: 56, // Position to match Figma design
-                    child: SvgPicture.asset(
-                      SvgAssets.logo,
-                      width: 158,
-                      height: 35,
-                    ),
-                  ),
-                ],
-              ),
-              
-              // Main illustration
+              //* Banner and Logo with tight positioning
+              LogoHeader(),
+
+              //* Main illustration
               SvgPicture.asset(
                 SvgAssets.splashIllustration,
-                width: screenWidth,
+                width: DeviceUtils.getScreenWidth(context),
                 fit: BoxFit.fitWidth,
               ),
-              
-              // Content Section
+
+              //* Content Section
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Main Heading
+                    //* Main Heading
                     Text(
                       'Le Petit Da Vinci,\nApprendre en s\'amusant !',
                       style: TextStyle(
-                        fontSize: screenWidth > 600 ? 30 : 26,
+                        fontSize:
+                            DeviceUtils.getScreenWidth(context) > 600 ? 30 : 26,
                         fontWeight: FontWeight.w500,
                         letterSpacing: -0.06,
                         color: const Color(0xFF272727),
@@ -69,8 +50,8 @@ class SplashScreen extends StatelessWidget {
                       ),
                     ),
                     const Gap(10),
-                    
-                    // Subheading
+
+                    //* Subheading
                     Text(
                       'Explore, joue et progresse en français, anglais et en mathématiques !',
                       style: const TextStyle(
@@ -79,10 +60,10 @@ class SplashScreen extends StatelessWidget {
                         color: Color(0xFF494949),
                       ),
                     ),
-                    
+
                     const Gap(24),
-                    
-                    // Buttons Row
+
+                    //* Buttons Row
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -92,7 +73,7 @@ class SplashScreen extends StatelessWidget {
                             Get.to(() => const LoginScreen());
                           },
                           icon: const Icon(
-                            Icons.arrow_outward_sharp, 
+                            Icons.arrow_outward_sharp,
                             size: 14,
                             color: Color(0xFF272727),
                           ),
@@ -106,15 +87,18 @@ class SplashScreen extends StatelessWidget {
                           ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.buttonPrimary,
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 8,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
                         ),
-                        
+
                         const Gap(16),
-                        
+
                         // Register Button
                         ElevatedButton.icon(
                           onPressed: () {
@@ -135,7 +119,10 @@ class SplashScreen extends StatelessWidget {
                           ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.buttonSecondary,
-                            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 8,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
@@ -153,3 +140,5 @@ class SplashScreen extends StatelessWidget {
     );
   }
 }
+
+

@@ -1,15 +1,15 @@
 class CustomTexts {
   //* on boarding text
-  static const String onBoardingTitle1 = "Welcome to 'codeName-prject-med'";
-  static const String onBoardingTitle2 = "Hassle-free experience";
-  static const String onBoardingTitle3 = "Never miss you medication time";
+  static const String onBoardingTitle1 = "Ton apprentissage s’adapte à toi";
+  static const String onBoardingTitle2 = "Des jeux et défis interactifs";
+  static const String onBoardingTitle3 = "Célèbre chaque victoire";
 
   static const String onBoardingSubTitle1 =
-      "Manage your medication, and check for any potential interactions witha a click of a button. ";
+      "Choisis ton niveau et tes thèmes préférés (français, anglais, mathématiques) : chaque leçon évolue selon tes progrès et tes centres d’intérêt.";
   static const String onBoardingSubTitle2 =
-      "Get detailed review of any medical interaction.";
+      "Mets tes nouvelles compétences à l’épreuve avec des mini-jeux, des quiz et des puzzles ludiques : gagner n’a jamais été aussi motivant !";
   static const String onBoardingSubTitle3 =
-      "Store your medications list to your profile to never forget about it.";
+      "Collecte des étoiles et des badges à chaque objectif atteint, visualise ta courbe de progression et partage tes succès avec ta famille ou tes amis.";
 
   //* authentication Forum text
   static const String firstName = "First Name";
@@ -24,7 +24,7 @@ class CustomTexts {
   static const String activity = "Activity";
   static const String phoneNumber = "Phone Number";
   static const String rememberMe = "Remember Me";
-  static const String forgetPassword = "Forget Passwrod?";
+  static const String forgetPassword = "Forget Password?";
   static const String signIn = "Sign In";
   static const String createAccount = "Create Account";
   static const String orSignInWith = "Or Sign In With";
@@ -38,7 +38,7 @@ class CustomTexts {
   //* authentication heading text
   static const String loginTitle = "Welcome!";
   static const String loginSubtitle = "jump back to your account";
-  static const String signUpTitile = "Let's create your account";
+  static const String signUpTitle = "Let's create your account";
 
   //* forgot password screen
   static const String forgetPasswordTitle = "Forgot your password?";
@@ -46,7 +46,7 @@ class CustomTexts {
       "Write your email down so we can send you a reset link";
   static const String submit = "Submit";
 
-  static const String changeYourPasswordTitle = "Passwrod reset email sent!";
+  static const String changeYourPasswordTitle = "Password reset email sent!";
   static const String changeYourPasswordSubTitle =
       "i honestly have nothing to say here";
   static const String sayDone = "Done";

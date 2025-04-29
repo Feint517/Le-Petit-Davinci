@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/common/widgets/text_fields/custom_text_field.dart';
 import 'package:kids_learning_app/features/authentication/controllers/login/login_controller.dart';
 import 'package:kids_learning_app/features/authentication/screens/signup/register_parent.dart';
-import 'package:kids_learning_app/features/home/home_page.dart';
+import 'package:kids_learning_app/features/home/home_sceen.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -15,30 +14,27 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(LoginController());
-    
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-          // Giraffe illustration on the right
+          //*  Giraffe illustration on the right
           Positioned(
             top: 100,
             right: 0,
             bottom: 0,
-            child: Image.asset(
-              ImageAssets.giraffe,
-              fit: BoxFit.contain,
-            ),
+            child: Image.asset(ImageAssets.giraffe, fit: BoxFit.contain),
           ),
-          
-          // Main content
+
+          //* Main content
           SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Logo
+                  //* Logo
                   const SizedBox(height: 32),
                   Center(
                     child: SvgPicture.asset(
@@ -47,8 +43,8 @@ class LoginScreen extends StatelessWidget {
                       height: 35,
                     ),
                   ),
-                  
-                  // Login heading
+
+                  //* Login heading
                   const SizedBox(height: 48),
                   const Text(
                     "Connectez-vous\nau Petit Davinci",
@@ -59,8 +55,8 @@ class LoginScreen extends StatelessWidget {
                       height: 1.2,
                     ),
                   ),
-                  
-                  // Register link
+
+                  //* Register link
                   const SizedBox(height: 8),
                   Row(
                     children: [
@@ -85,8 +81,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
-                  // Input fields
+
+                  //* Input fields
                   const SizedBox(height: 32),
                   Container(
                     decoration: BoxDecoration(
@@ -114,13 +110,15 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 18),
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 18,
+                        ),
                       ),
                     ),
                   ),
-                  
+
                   const SizedBox(height: 16),
-                  
+
                   Container(
                     decoration: BoxDecoration(
                       color: const Color(0xFFF9FAFB),
@@ -160,12 +158,14 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 18),
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 18,
+                        ),
                       ),
                     ),
                   ),
-                  
-                  // Login button and forgot password
+
+                  //* Login button and forgot password
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -176,7 +176,10 @@ class LoginScreen extends StatelessWidget {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 8,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
@@ -204,8 +207,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  
-                  // PIN login section
+
+                  //* PIN login section
                   const SizedBox(height: 48),
                   Container(
                     padding: const EdgeInsets.all(24),
@@ -214,7 +217,7 @@ class LoginScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.08),
+                          color: AppColors.black.withValues(alpha: 0.08),
                           blurRadius: 34,
                           offset: const Offset(12, 20),
                         ),
@@ -236,16 +239,14 @@ class LoginScreen extends StatelessWidget {
                             children: [
                               TextSpan(
                                 text: "code PIN",
-                                style: TextStyle(
-                                  color: AppColors.secondary,
-                                ),
+                                style: TextStyle(color: AppColors.secondary),
                               ),
                             ],
                           ),
                         ),
-                        
+
                         const SizedBox(height: 28),
-                        
+
                         PinCodeTextField(
                           appContext: context,
                           length: 4,
@@ -264,9 +265,9 @@ class LoginScreen extends StatelessWidget {
                           ),
                           enableActiveFill: true,
                         ),
-                        
+
                         const SizedBox(height: 28),
-                        
+
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -289,7 +290,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        
+
                         const SizedBox(height: 12),
                         Center(
                           child: TextButton(
@@ -307,7 +308,7 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  
+
                   const SizedBox(height: 24),
                 ],
               ),

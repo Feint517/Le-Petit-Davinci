@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/common/widgets/custom_progress_bar.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:kids_learning_app/utils/device/device_utility.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -61,21 +63,21 @@ class CustomAppBar extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width - 200,
+                        width: DeviceUtils.getScreenWidth(context) - 200,
                         child: CustomProgressBar(progress: 0.5),
                       ),
                     ],
                   ),
                 ],
               ),
-              const SizedBox(height: 6),
+              const Gap(6),
             ],
           ),
         ),
-        const SizedBox(width: 12),
+        const Gap(12),
         Column(
           children: [
-            SizedBox(height: 4),
+            const Gap(4),
             Container(
               height: 36,
               width: 36,

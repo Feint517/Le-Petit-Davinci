@@ -19,32 +19,51 @@ class ImageAssets {
   static const String avatar8 = '$IMAGE_PATH/avatars/Avatar-7.png';
   static const String giraffe = '$IMAGE_PATH/misc/giraffe.png';
   static const String chat_character = '$IMAGE_PATH/misc/chat_character.png';
-  
+  static const String onBoarding1 =
+      '$IMAGE_PATH/illustrations/onBoarding_giraffe1.png';
+  static const String onBoarding2 =
+      '$IMAGE_PATH/illustrations/onBoarding_giraffe2.png';
+  static const String onBoarding3 =
+      '$IMAGE_PATH/illustrations/onBoarding_giraffe3.png';
 }
 
 class SvgAssets {
-  //static const String illustration = '$SVG_PATH/illustration.svg'; 
   static const String logo = '$SVG_PATH/logo.svg';
   static const String splashIllustration = '$SVG_PATH/splash_illustration.svg';
   static const String solar_letter_linear = '$SVG_PATH/solar_letter-linear.svg';
-  static const String solar_lock_password_linear = '$SVG_PATH/solar_lock-password-linear.svg';
+  static const String solar_lock_password_linear =
+      '$SVG_PATH/solar_lock-password-linear.svg';
   static const String solar_eye_linear = '$SVG_PATH/solar_eye-linear.svg';
   static const String solar_user_linear = '$SVG_PATH/solar_user-linear.svg';
-  static const String solar_add_circle_linear = '$SVG_PATH/solar_add-circle-linear.svg';
-  static const String solar_notebook_bookmark_linear = '$SVG_PATH/solar_notebook-bookmark-linear.svg';
-  static const String solar_arrow_right_up_linear = '$SVG_PATH/solar_arrow-right-up-linear.svg';
+  static const String solar_add_circle_linear =
+      '$SVG_PATH/solar_add-circle-linear.svg';
+  static const String solar_notebook_bookmark_linear =
+      '$SVG_PATH/solar_notebook-bookmark-linear.svg';
+  static const String solar_arrow_right_up_linear =
+      '$SVG_PATH/solar_arrow-right-up-linear.svg';
   static const String abc = '$SVG_PATH/abc.svg';
   static const String star = '$SVG_PATH/star.svg';
   static const String star_filled = '$SVG_PATH/star_filled.svg';
   static const String notification = '$SVG_PATH/notification.svg';
   static const String banner_illustration = '$SVG_PATH/BannerIllustration.svg';
+  static const String onBoarding1 = '$SVG_PATH/onBoarding_giraffe1.svg';
+  static const String onBoarding2 = '$SVG_PATH/onBoarding_giraffe2.svg';
+  static const String onBoarding3 = '$SVG_PATH/onBoarding_giraffe3.svg';
 }
 
 class LottieAssets {}
 
 class IconAssets {
-  
   static const String avatar = '$ICONS_PATH/avatar.png';
+  static const String echecs = '$ICONS_PATH/echecs.png';
+  static const String ticTacToe = '$ICONS_PATH/tic-tac-toe.png';
+  static const String echles = '$ICONS_PATH/echles.png';
+  static const String utilisation_des_temps =
+      '$ICONS_PATH/utilisation_des_temps.png';
+  static const String vocabulaire_thematique =
+      '$ICONS_PATH/vocabulaire_thematique.png';
+  static const String addition_et_soustraction =
+      '$ICONS_PATH/addition_et_soustraction.png';
 }
 
 class JsonAssets {}
