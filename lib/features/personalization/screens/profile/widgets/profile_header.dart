@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+  ProfileHeader({super.key, required this.activeIcon});
+
+  bool activeIcon = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,10 @@ class ProfileHeader extends StatelessWidget {
             ],
           ),
         ),
-        const Icon(Icons.logout, color: Color(0xFF494949), size: 24),
+        if (activeIcon)
+          const Icon(Icons.logout, color: Color(0xFF494949), size: 24)
+        else
+          const SizedBox.shrink(),
       ],
     );
   }

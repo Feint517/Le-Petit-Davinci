@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/common/widgets/list_tiles/profile_menu_tile.dart';
-import 'package:kids_learning_app/features/profile/language_screen.dart';
+import 'package:kids_learning_app/common/widgets/list_tiles/menu_tile.dart';
+import 'package:kids_learning_app/features/personalization/screens/language_selection/language_screen.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class LearningSettingsContainer extends StatefulWidget {
@@ -33,11 +33,12 @@ class _LearningSettingsContainerState extends State<LearningSettingsContainer> {
         mainAxisSize: MainAxisSize.min,
         children: [
           //* Language settings - more compact
-          ProfileMenuTile(
+          MenuTile(
             icon: Icons.language,
             iconColor: AppColors.primaryDeep,
             iconBackgroundColor: Color(0xFF9F83F9),
             title: "Langue d'apprentissage",
+            activeSubtitle: false,
             trailingType: 'texted',
             trailingText: "Français",
             onTap: () {
@@ -48,9 +49,10 @@ class _LearningSettingsContainerState extends State<LearningSettingsContainer> {
           const Divider(height: 1, thickness: 1, color: Color(0xFFEDF2F7)),
 
           //* Sound and Music - more compact
-          ProfileMenuTile(
+          MenuTile(
             icon: Icons.music_note,
             title: 'Son et musique',
+            activeSubtitle: false,
             iconColor: Color(0xFFFC715A),
             iconBackgroundColor: Color(0xFFFF7E5F),
             trailingType: 'switch',

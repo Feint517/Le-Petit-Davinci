@@ -4,13 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
-class ProfileMenuTile extends StatefulWidget {
-  ProfileMenuTile({
+class MenuTile extends StatefulWidget {
+  MenuTile({
     super.key,
     required this.icon,
     required this.iconColor,
     required this.iconBackgroundColor,
     required this.title,
+    required this.activeSubtitle,
+    this.subtitle,
     this.onTap,
     required this.trailingType,
     this.trailingText,
@@ -20,15 +22,17 @@ class ProfileMenuTile extends StatefulWidget {
   final Color iconColor;
   final Color iconBackgroundColor;
   final String title;
+  bool activeSubtitle = false;
+  String? subtitle = '';
   final VoidCallback? onTap;
   String trailingType = 'normal';
   final String? trailingText;
 
   @override
-  State<ProfileMenuTile> createState() => _ProfileMenuTileState();
+  State<MenuTile> createState() => _ProfileMenuTileState();
 }
 
-class _ProfileMenuTileState extends State<ProfileMenuTile> {
+class _ProfileMenuTileState extends State<MenuTile> {
   bool soundAndMusicEnabled = true;
   @override
   Widget build(BuildContext context) {
@@ -48,12 +52,20 @@ class _ProfileMenuTileState extends State<ProfileMenuTile> {
       title: Text(
         widget.title,
         style: TextStyle(
-          //fontFamily: 'Bricolage Grotesque',
           fontSize: 13.6,
           fontWeight: FontWeight.w500,
           color: Color(0xFF1A202C),
         ),
       ),
+      subtitle: widget.activeSubtitle
+          ? Text(
+              widget.subtitle!,
+              style: TextStyle(
+                fontSize: 12,
+                color: Color(0xFF718096),
+              ),
+            )
+          : null,
       trailing: switch (widget.trailingType) {
         'texted' => Row(
           mainAxisSize: MainAxisSize.min,

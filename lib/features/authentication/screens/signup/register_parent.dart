@@ -32,7 +32,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Logo
+              //* Logo
               SvgPicture.asset(
                 SvgAssets.logo,
                 width: 158,

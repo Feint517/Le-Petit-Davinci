@@ -32,7 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //* Header with back button and logout
-              ProfileHeader(),
+              ProfileHeader(activeIcon: true),
               const Gap(16),
 
               //* Profile container - using a fixed height
