@@ -30,6 +30,9 @@ dependencies:
   flutter_svg: ^2.1.0
   cupertino_icons: ^1.0.8
   pin_code_fields: ^8.0.1
+  dropdown_button2: ^2.3.9
+  audioplayers: ^6.4.0
+  gif: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +48,8 @@ flutter:
     - assets/images/avatars/
     - assets/images/logos/
     - assets/images/misc/
+    - assets/images/tictactoe/
+    - assets/sfx/
     - assets/icons/
     - assets/lottie/
     - assets/svgs/

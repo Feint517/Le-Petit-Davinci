@@ -20,10 +20,13 @@ class AppColors {
   static const Color textWhite = Colors.white;
 
   //* background colors
-  static const Color light = Color(0xFFF6F6F6);
+  static const Color light = Color(0xFFF9ECFF); 
   static const Color dark = Color(0xFF272727);
   static const Color primaryBackground = Color(0xFFF3F5FF);
-
+ 
+  static const Color purple = Color(0xFF9D8CFF); 
+  static const Color softPurple = Color(0xFFDAD0FF); 
+  static const Color orange = Color(0xFFFF725E);
   //* background containers color
   //static const Color lightContainer = Color(0xFF4B68FF);
   //static Color darkContainer = TColors.white.withOpacity;
@@ -36,4 +39,18 @@ class AppColors {
   //* border colors
   static const Color borderPrimary = Color(0xFFd9d9d9);
   static const Color borderSecondary = Color(0xFFe6e6e6);
+
+  //* tic tac toe colors
+static  final kScoreBoardBox = Color(0xFFA7ACEB);
+static final kBackground = Color(0xFF132332);
+static final kBoxColor = Color(0xFF091621);
+
+static final kNumberColor = Colors.black;
+static final kTextColor = Color(0xDD1b1b1c);
+
+static  final kAmber = Color(0xFFFFC107);
+static  final kBlue = Color(0xFF2196F3);
+static  final kWhite = Color(0xFFFFFFFF);
+static  final kDarkBlue = Color(0xFF101D2A);
+
 }

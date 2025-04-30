@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kids_learning_app/features/games/snake/snake.dart';
+import 'package:kids_learning_app/features/games/tic-tac-toe/tic_tac_toe.dart';
 
 class ChildHomeScreen2 extends StatefulWidget {
   const ChildHomeScreen2({super.key});
@@ -24,18 +26,31 @@ class _ChildHomeScreen2State extends State<ChildHomeScreen2> {
             "Échecs",
             "Développez votre meilleure stratégie",
             Color(0xFF9C84F9),
+            () {},
           ),
           _buildGameCard(
             "echles",
             "Tic-Tac-Toe",
             "Développez votre meilleure stratégie",
             Color(0xFFFF6A4D),
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TicTacToe()),
+              );
+            },
           ),
           _buildGameCard(
             "ti-tac",
             "Serpents et échelles",
             "Développez votre meilleure stratégie",
             Color(0xFF17BF8A),
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) =>  SnakeGame()),
+              );
+            },
           ),
 
           const SizedBox(height: 30),
@@ -78,11 +93,10 @@ class _ChildHomeScreen2State extends State<ChildHomeScreen2> {
     String title,
     String subtitle,
     Color color,
+    void Function()? onTap,
   ) {
     return GestureDetector(
-      onTap: () {
-        //context.push("/game-details");
-      },
+      onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
