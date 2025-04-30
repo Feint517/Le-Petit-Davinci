@@ -5,9 +5,15 @@ import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
-    super.key, required this.avatarPath, required this.name, required this.age, required this.level, required this.progress, required this.xp, required this.xpGoal,
+    super.key,
+    required this.avatarPath,
+    required this.name,
+    required this.age,
+    required this.level,
+    required this.progress,
+    required this.xp,
+    required this.xpGoal,
   });
-
 
   final String avatarPath;
   final String name;
@@ -48,10 +54,10 @@ class ProfileCard extends StatelessWidget {
               ),
             ),
             const Gap(8),
-    
+
             //* Name
-             Text(
-             name,
+            Text(
+              name,
               style: TextStyle(
                 fontSize: 13.6,
                 fontWeight: FontWeight.w700,
@@ -59,14 +65,14 @@ class ProfileCard extends StatelessWidget {
               ),
             ),
             const Gap(4),
-    
+
             //* Age and level
-             Text(
+            Text(
               "$age • Niveau $level",
               style: TextStyle(fontSize: 11.9, color: Color(0xFF718096)),
             ),
             const Gap(8),
-    
+
             //* Progress bar
             ClipRRect(
               borderRadius: BorderRadius.circular(9999),
@@ -80,24 +86,18 @@ class ProfileCard extends StatelessWidget {
               ),
             ),
             const Gap(8),
-    
+
             //* XP display
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:  [
+              children: [
                 const Text(
                   "XP",
-                  style: TextStyle(
-                    fontSize: 10.2,
-                    color: Color(0xFF718096),
-                  ),
+                  style: TextStyle(fontSize: 10.2, color: Color(0xFF718096)),
                 ),
                 Text(
                   "$xp/$xpGoal",
-                  style: TextStyle(
-                    fontSize: 10.2,
-                    color: Color(0xFF718096),
-                  ),
+                  style: TextStyle(fontSize: 10.2, color: Color(0xFF718096)),
                 ),
               ],
             ),
