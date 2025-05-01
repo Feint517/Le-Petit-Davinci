@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/personalization/screens/language_selection/widgets/info_section.dart';
 import 'package:kids_learning_app/features/personalization/screens/language_selection/widgets/language_option.dart';
-import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class LanguageScreen extends StatefulWidget {
   const LanguageScreen({super.key});

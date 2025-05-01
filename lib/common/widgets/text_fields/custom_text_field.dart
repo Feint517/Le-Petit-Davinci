@@ -5,13 +5,14 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final Widget icon;
   final bool obscureText;
-  final Widget? right_icon;
+  final Widget? rightIcon;
   const CustomTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.icon,
-    this.obscureText = false,this.right_icon,
+    this.obscureText = false,
+    this.rightIcon,
   });
 
   @override
@@ -22,7 +23,7 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         suffixIcon: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [right_icon??SizedBox()],
+          children: [rightIcon ?? SizedBox()],
         ),
         prefixIcon: Column(
           mainAxisAlignment: MainAxisAlignment.center,

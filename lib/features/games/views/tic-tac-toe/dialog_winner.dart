@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'dart:math' as math;
-import 'package:lottie/lottie.dart';
 import 'package:gif/gif.dart';
 
-class CongratulationsDialogO extends StatefulWidget {
+class CongratulationsDialog extends StatefulWidget {
   final VoidCallback onPressed;
 
-  CongratulationsDialogO({required this.onPressed});
+  const CongratulationsDialog({super.key, required this.onPressed});
 
   @override
-  _CongratulationsDialogOState createState() => _CongratulationsDialogOState();
+  State<CongratulationsDialog> createState() => _CongratulationsDialogOState();
 }
 
-class _CongratulationsDialogOState extends State<CongratulationsDialogO>
+class _CongratulationsDialogOState extends State<CongratulationsDialog>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
-  late Animation<double> _rotationAnimation; 
-  late Animation<double> _bounceAnimation;  
+  late Animation<double> _rotationAnimation;
+  late Animation<double> _bounceAnimation;
 
-    @override
+  @override
   void initState() {
     super.initState();
 
@@ -28,32 +27,20 @@ class _CongratulationsDialogOState extends State<CongratulationsDialogO>
       vsync: this,
       duration: Duration(milliseconds: 1200),
     );
- 
 
     _scaleAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.elasticOut,
-      ),
-    );
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticOut));
 
-    _rotationAnimation = Tween<double>(
-      begin: -0.1,
-      end: 0.1,
-    ).animate(
+    _rotationAnimation = Tween<double>(begin: -0.1, end: 0.1).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Interval(0.4, 0.8, curve: Curves.easeInOut),
       ),
     );
 
-    _bounceAnimation = Tween<double>(
-      begin: 0.0,
-      end: 10.0,
-    ).animate(
+    _bounceAnimation = Tween<double>(begin: 0.0, end: 10.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Interval(0.5, 1.0, curve: Curves.elasticOut),
@@ -65,22 +52,27 @@ class _CongratulationsDialogOState extends State<CongratulationsDialogO>
 
   @override
   void dispose() {
-    _controller.dispose(); 
+    _controller.dispose();
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) {  
+  Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _controller,
       builder: (BuildContext context, Widget? child) {
         // Ensure opacity is within valid range
         final safeOpacity = _scaleAnimation.value.clamp(0.0, 1.0);
-        
+
         return Transform.translate(
-          offset: Offset(0, math.sin(_controller.value * math.pi * 2) * _bounceAnimation.value),
+          offset: Offset(
+            0,
+            math.sin(_controller.value * math.pi * 2) * _bounceAnimation.value,
+          ),
           child: Transform.rotate(
-            angle: math.sin(_controller.value * math.pi * 4) * _rotationAnimation.value,
+            angle:
+                math.sin(_controller.value * math.pi * 4) *
+                _rotationAnimation.value,
             child: Opacity(
               opacity: safeOpacity,
               child: Transform.scale(
@@ -94,17 +86,21 @@ class _CongratulationsDialogOState extends State<CongratulationsDialogO>
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
-                       
                     ),
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,crossAxisAlignment: CrossAxisAlignment.center  ,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Gif(
-    image: AssetImage("assets/images/tictactoe/congrats.gif"), 
-    fps: 30,               width: 150, height: 150,
-    //duration: const Duration(seconds: 3),
-    autostart: Autostart.loop,   
-),
+                          image: AssetImage(
+                            "assets/images/tictactoe/congrats.gif",
+                          ),
+                          fps: 30,
+                          width: 150,
+                          height: 150,
+                          //duration: const Duration(seconds: 3),
+                          autostart: Autostart.loop,
+                        ),
                         SizedBox(height: 10),
                         Text(
                           'Félicitations!',
@@ -115,7 +111,7 @@ class _CongratulationsDialogOState extends State<CongratulationsDialogO>
                             color: AppColors.orange,
                             fontFamily: 'BricolageGrotesque',
                           ),
-                        ), 
+                        ),
                         Container(
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -124,7 +120,6 @@ class _CongratulationsDialogOState extends State<CongratulationsDialogO>
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                               
                               Text(
                                 'vous avez gagné!',
                                 textAlign: TextAlign.center,
@@ -150,7 +145,10 @@ class _CongratulationsDialogOState extends State<CongratulationsDialogO>
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30,
+                              vertical: 10,
+                            ),
                           ),
                           child: Text(
                             'Super!',
@@ -174,20 +172,18 @@ class _CongratulationsDialogOState extends State<CongratulationsDialogO>
   }
 }
 
- 
-
-class GameOverDialog extends StatefulWidget { 
+class GameOverDialog extends StatefulWidget {
   final VoidCallback onPlayAgain;
   final VoidCallback onMenu;
 
   const GameOverDialog({
-    Key? key, 
+    super.key,
     required this.onPlayAgain,
     required this.onMenu,
-  }) : super(key: key);
+  });
 
   @override
-  _GameOverDialogState createState() => _GameOverDialogState();
+  State<GameOverDialog> createState() => _GameOverDialogState();
 }
 
 class _GameOverDialogState extends State<GameOverDialog>
@@ -207,20 +203,14 @@ class _GameOverDialogState extends State<GameOverDialog>
       duration: Duration(milliseconds: 1500),
     );
 
-    _scaleAnimation = Tween<double>(
-      begin: 0.8,
-      end: 1.0,
-    ).animate(
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Interval(0.0, 0.6, curve: Curves.easeOut),
       ),
     );
 
-    _shakeAnimation = Tween<double>(
-      begin: -1.0,
-      end: 1.0,
-    ).animate(
+    _shakeAnimation = Tween<double>(begin: -1.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Interval(0.0, 0.4, curve: Curves.elasticIn),
@@ -236,11 +226,8 @@ class _GameOverDialogState extends State<GameOverDialog>
         curve: Interval(0.3, 1.0, curve: Curves.easeInOut),
       ),
     );
-    
-    _fadeAnimation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Interval(0.3, 0.7, curve: Curves.easeIn),
@@ -261,10 +248,13 @@ class _GameOverDialogState extends State<GameOverDialog>
     return AnimatedBuilder(
       animation: _controller,
       builder: (BuildContext context, Widget? child) {
-        final shake = _controller.value < 0.4 
-            ? math.sin(_controller.value * math.pi * 8) * _shakeAnimation.value * 5
-            : 0.0;
-            
+        final shake =
+            _controller.value < 0.4
+                ? math.sin(_controller.value * math.pi * 8) *
+                    _shakeAnimation.value *
+                    5
+                : 0.0;
+
         return Transform.translate(
           offset: Offset(shake, 0),
           child: Opacity(
@@ -282,13 +272,13 @@ class _GameOverDialogState extends State<GameOverDialog>
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: (_colorAnimation.value ?? Colors.redAccent).withOpacity(0.25),
+                        color: (_colorAnimation.value ?? Colors.redAccent)
+                            .withValues(alpha: 0.25),
                         spreadRadius: 3,
                         blurRadius: 8,
                         offset: Offset(0, 4),
                       ),
                     ],
-                     
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -297,7 +287,8 @@ class _GameOverDialogState extends State<GameOverDialog>
                       Container(
                         padding: EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: (_colorAnimation.value ?? Colors.redAccent).withOpacity(0.15),
+                          color: (_colorAnimation.value ?? Colors.redAccent)
+                              .withValues(alpha: 0.15),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -307,7 +298,7 @@ class _GameOverDialogState extends State<GameOverDialog>
                         ),
                       ),
                       SizedBox(height: 16),
-                      
+
                       // Game Over text
                       Text(
                         'Partie Terminée',
@@ -319,9 +310,9 @@ class _GameOverDialogState extends State<GameOverDialog>
                           fontFamily: 'BricolageGrotesque',
                         ),
                       ),
-                      
+
                       SizedBox(height: 12),
-                      
+
                       // Motivational text
                       Text(
                         'Pas de chance cette fois-ci!\nEssayez encore!',
@@ -329,25 +320,26 @@ class _GameOverDialogState extends State<GameOverDialog>
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.black54,
-                          fontFamily: 'BricolageGrotesque', 
+                          fontFamily: 'BricolageGrotesque',
                         ),
                       ),
                       SizedBox(height: 12),
                       // Action buttons
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [  
+                        children: [
                           // Play Again button
                           ElevatedButton.icon(
                             onPressed: widget.onPlayAgain,
                             icon: Icon(Icons.replay),
                             label: Text('Rejouer'),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: _colorAnimation.value ?? Colors.redAccent,
+                              backgroundColor:
+                                  _colorAnimation.value ?? Colors.redAccent,
                               foregroundColor: Colors.white,
                               padding: EdgeInsets.symmetric(
-                                horizontal: 16, 
-                                vertical: 10
+                                horizontal: 16,
+                                vertical: 10,
                               ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
@@ -359,7 +351,7 @@ class _GameOverDialogState extends State<GameOverDialog>
                               ),
                             ),
                           ),
-                           // Menu button
+                          // Menu button
                           ElevatedButton.icon(
                             onPressed: widget.onMenu,
                             icon: Icon(Icons.menu),
@@ -368,8 +360,8 @@ class _GameOverDialogState extends State<GameOverDialog>
                               backgroundColor: Colors.grey.shade800,
                               foregroundColor: Colors.white,
                               padding: EdgeInsets.symmetric(
-                                horizontal: 16, 
-                                vertical: 10
+                                horizontal: 16,
+                                vertical: 10,
                               ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
@@ -383,8 +375,6 @@ class _GameOverDialogState extends State<GameOverDialog>
                           ),
                         ],
                       ),
-                       
-                       
                     ],
                   ),
                 ),
@@ -400,10 +390,11 @@ class _GameOverDialogState extends State<GameOverDialog>
 class CongratulationsDialogEqual extends StatefulWidget {
   final VoidCallback onPressed;
 
-  CongratulationsDialogEqual({required this.onPressed});
+  const CongratulationsDialogEqual({super.key, required this.onPressed});
 
   @override
-  _CongratulationsDialogEqualState createState() => _CongratulationsDialogEqualState();
+  State<CongratulationsDialogEqual> createState() =>
+      _CongratulationsDialogEqualState();
 }
 
 class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
@@ -431,12 +422,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
     _scaleAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.elasticOut,
-      ),
-    );
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticOut));
 
     _pulseAnimation = Tween<double>(
       begin: 1.0,
@@ -447,10 +433,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
       begin: Colors.purple,
       end: Colors.blue,
     ).animate(
-      CurvedAnimation(
-        parent: _pulseController,
-        curve: Curves.easeInOut,
-      ),
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
     _controller.forward();
@@ -470,7 +453,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
       builder: (BuildContext context, Widget? child) {
         // Ensure opacity is within valid range
         final safeOpacity = _scaleAnimation.value.clamp(0.0, 1.0);
-        
+
         return Opacity(
           opacity: safeOpacity,
           child: Transform.scale(
@@ -493,7 +476,8 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: (_gradientAnimation.value ?? Colors.purple).withOpacity(0.4),
+                      color: (_gradientAnimation.value ?? Colors.purple)
+                          .withValues(alpha: 0.4),
                       spreadRadius: 5,
                       blurRadius: 10,
                       offset: Offset(0, 3),
@@ -509,11 +493,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                        height: 100,
                        repeat: true,
                      ),*/
-                    Icon(
-                      Icons.handshake,
-                      size: 70,
-                      color: Colors.white,
-                    ),
+                    Icon(Icons.handshake, size: 70, color: Colors.white),
                     SizedBox(height: 10),
                     Text(
                       'Match nul!',
@@ -536,7 +516,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                     Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Row(
@@ -587,7 +567,10 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 10,
+                        ),
                       ),
                       child: Text(
                         'Rejouer!',

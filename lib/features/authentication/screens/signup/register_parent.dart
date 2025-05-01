@@ -95,7 +95,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                                 SvgAssets.solar_lock_password_linear,
                               ),
                               obscureText: true,
-                              right_icon: SvgPicture.asset(
+                              rightIcon: SvgPicture.asset(
                                 SvgAssets.solar_eye_linear,
                               ),
                             ),

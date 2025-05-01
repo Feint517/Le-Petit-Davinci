@@ -7,19 +7,19 @@ class GameCard extends StatelessWidget {
     required this.subtitle,
     required this.iconPath,
     required this.color,
+    this.onTap,
   });
 
   final String iconPath;
   final String title;
   final String subtitle;
   final Color color;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        //context.push("/game-details");
-      },
+      onTap: onTap,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
