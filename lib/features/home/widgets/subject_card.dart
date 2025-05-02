@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
+import 'package:kids_learning_app/utils/constants/sizes.dart';
 
 class SubjectCard extends StatelessWidget {
   final String title;
   final String total;
   final String imagePath;
   final double progress;
+  final VoidCallback onTap;
 
   const SubjectCard({
     super.key,
@@ -15,17 +17,16 @@ class SubjectCard extends StatelessWidget {
     required this.total,
     required this.imagePath,
     required this.progress,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        //context.push("/subject-details");
-      },
+      onTap: onTap,
       child: Container(
         width: 160,
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(AppSizes.md),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
@@ -36,9 +37,9 @@ class SubjectCard extends StatelessWidget {
           children: [
             //* Image
             SvgPicture.asset(imagePath, height: 40),
-            const SizedBox(height: 12),
+            const Gap(12),
             Text(title, style: TextStyle(fontWeight: FontWeight.w500)),
-            const SizedBox(height: 4),
+            const Gap(4),
             Text(
               total,
               style: TextStyle(color: Color(0xff494949), fontSize: 10),
@@ -54,23 +55,23 @@ class SubjectCard extends StatelessWidget {
                 minHeight: 8,
               ),
             ),
-            const SizedBox(height: 20),
-            Center(
-              child: SizedBox(
-                height: 27,
-                width: 120,
-                child: ElevatedButton(
-                  onPressed: () {
-                    //context.push("/subject-details");
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primaryDeep,
-                    shape: StadiumBorder(),
-                  ),
-                  child: Text("Sélectionner", style: TextStyle(fontSize: 10)),
-                ),
-              ),
-            ),
+            // const Gap(20),
+            // Center(
+            //   child: SizedBox(
+            //     height: 27,
+            //     width: 120,
+            //     child: ElevatedButton(
+            //       onPressed: () {
+            //         //context.push("/subject-details");
+            //       },
+            //       style: ElevatedButton.styleFrom(
+            //         backgroundColor: AppColors.primaryDeep,
+            //         shape: StadiumBorder(),
+            //       ),
+            //       child: Text("Sélectionner", style: TextStyle(fontSize: 10)),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

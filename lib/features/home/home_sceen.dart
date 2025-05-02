@@ -5,6 +5,7 @@ import 'package:kids_learning_app/features/home/widgets/games_section.dart';
 import 'package:kids_learning_app/features/home/widgets/primary_section.dart';
 import 'package:kids_learning_app/features/home/widgets/subjects_section.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
+import 'package:kids_learning_app/utils/constants/sizes.dart';
 
 class ChildHomeScreen extends StatelessWidget {
   const ChildHomeScreen({super.key});
@@ -17,7 +18,7 @@ class ChildHomeScreen extends StatelessWidget {
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.symmetric(horizontal: AppSizes.md),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -27,15 +28,15 @@ class ChildHomeScreen extends StatelessWidget {
 
               //* Welcome Text
               PrimarySection(),
-              const Gap(24),
+              const Gap(AppSizes.spaceBtwSections),
 
               //* Matières
               SubjectsSection(),
-              const Gap(25),
+              const Gap(AppSizes.spaceBtwSections),
 
               //* Jeux éducatifs
               const GamesSection(),
-              const Gap(30),
+              const Gap(AppSizes.spaceBtwSections),
 
               //* Matériaux
               //const MaterialsSection(),
