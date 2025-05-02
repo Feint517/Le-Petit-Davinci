@@ -38,6 +38,7 @@ class CustomAppBar extends StatelessWidget {
                             "Ma progression de niveau",
                             style: TextStyle(
                               fontSize: 10,
+                              fontFamily: 'Bricolage Grotesque',
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -89,11 +90,15 @@ class CustomAppBar extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 10,
+                    offset: const Offset(0, 1),
+                  ),
+                ],
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [SvgPicture.asset(SvgAssets.notification)],
-              ),
+              child: Center(child: SvgPicture.asset(SvgAssets.notification)),
             ),
           ],
         ),

@@ -3,13 +3,13 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/subject_deatils/detail_introduction_screen.dart';
-import 'package:kids_learning_app/features/subject_deatils/widgets/learning_card.dart';
-import 'package:kids_learning_app/features/subject_deatils/widgets/lesson_category_card.dart';
+import 'package:kids_learning_app/features/subject_deatils/widgets/category_card.dart';
+import 'package:kids_learning_app/features/subject_deatils/widgets/learning_card.dart'; 
 import 'package:kids_learning_app/features/subject_deatils/widgets/subject_description.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/sunject_stats_row.dart';
-import 'package:kids_learning_app/features/subjects/evaluate_details.dart';
-import 'package:kids_learning_app/features/subjects/learn_subject.dart';
-import 'package:kids_learning_app/features/subjects/practice_deatils.dart';
+import 'package:kids_learning_app/features/subjects/learn_subject/AlphabetLesson.dart';
+import 'package:kids_learning_app/features/subjects/learn_subject/ConstructionLesson.dart';
+import 'package:kids_learning_app/features/subjects/learn_subject/VocabulaireLesson.dart'; 
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
@@ -20,91 +20,97 @@ class SubjectDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> lessonCards = [
-      LessonCategoryCard(
-        number: "01",
-        title: "Alphabet & Prononciation",
-        content: "5 Contenu",
-        time: "2 Heures 30 Minutes",
-        points: 40,
-        backgroundColor: AppColors.primaryDeep,
-        onTap: () => Get.to(() => const AlphabetLessonScreen()),
-      ),
-      const Gap(AppSizes.spaceBtwItems),
-      const LessonCategoryCard(
-        number: "02",
-        title: "Vocabulaire Thématique",
-        content: "4 Contenu",
-        time: "1 Heures 20 Minutes",
-        points: 35,
-        backgroundColor: AppColors.secondary,
-      ),
-      const Gap(AppSizes.spaceBtwItems),
-      const LessonCategoryCard(
-        number: "03",
-        title: "Construction De Phrases Simples",
-        content: "6 Contenu",
-        time: "1 Heures 45 Minutes",
-        points: 52,
-        backgroundColor: AppColors.accent,
-      ),
+      CategoryCard(
+                            number: "01",
+                            points: "40",
+                            title: "Alphabet et Prononciation",
+                            content: "5 Contenues",
+                            time: "2 Heures 30 Minutes",
+                            color: AppColors.purple,
+                            onTap: () => Get.to(() => const AlphabetLessonScreen()),
+                          ),
+                          CategoryCard(
+                            number: "02",
+                            points: "35",
+                            title: "Vocabulaire Thématique",
+                            content: "4 Contenues",
+                            time: "1 Heure 20 minutes",
+                            color: AppColors.orange,
+                            onTap: ()  => Get.to(() => const VocabulaireLessonScreen()),
+                          ),
+                          CategoryCard(
+                            number: "03",
+                            points: "52",
+                            title: "Construction De Phrases Simples",
+                            content: "6 Contenues",
+                            time: "1 Heure 45 minutes",
+                            color: AppColors.accent,
+                            onTap: ()  => Get.to(() => const ConstructionLessonScreen()),
+                          ),
     ];
     final List<Widget> practiceCards = [
-      LessonCategoryCard(
-        number: "01",
-        title: "Exercices d’écriture et de lecture",
-        content: "5 Contenu",
-        time: "2 Heures 30 Minutes",
-        points: 20,
-        backgroundColor: AppColors.primaryDeep,
-        onTap: () => Get.to(() => const WritingPracticeScreen()),
-      ),
-      const Gap(AppSizes.spaceBtwItems),
-      const LessonCategoryCard(
-        number: "02",
-        title: "Activités d'association",
-        content: "5 Contenu",
-        time: "3 Heures 45 Minutes",
-        points: 15,
-        backgroundColor: AppColors.secondary,
-      ),
-      const Gap(AppSizes.spaceBtwItems),
-      const LessonCategoryCard(
-        number: "03",
-        title: "Jeux de structuration de phrases",
-        content: "3 Contenu",
-        time: "3 Heures 30 Minutes",
-        points: 15,
-        backgroundColor: AppColors.accent,
-      ),
+      CategoryCard(
+                          number: "01",
+                          points: "20",
+                          title: "Exercices d’écriture et de lecture",
+                          content: "4 Exercices",
+                          time: "2 Heures 50 Minutes",
+                          color: AppColors.purple,
+                          onTap: () { 
+                          },
+                        ),
+                          CategoryCard(
+                            number: "02",
+                            points: "15",
+                            title: "Activités d’association",
+                            content: "4 Exercices",
+                            time: "3 Heures 45 Minutes",
+                            color: AppColors.orange,
+                            onTap: () { 
+                            },
+                          ),
+                          CategoryCard(
+                            number: "03",
+                            points: "52",
+                            title: "Jeux de structuration de phrases",
+                            content: "6 Exercices",
+                            time: "3 Heures 30 Minutes",
+                            color: AppColors.accent,
+                            onTap: () { 
+                            },
+                          ),
     ];
     final List<Widget> quizCards = [
-      LessonCategoryCard(
-        number: "01",
-        title: "Dictées interactives",
-        content: "5 Contenu",
-        time: "2 Heures 30 Minutes",
-        points: 60,
-        backgroundColor: AppColors.primaryDeep,
-        onTap: () => Get.to(() => const QuizEvaluationScreen()),
-      ),
-      const Gap(AppSizes.spaceBtwItems),
-      const LessonCategoryCard(
-        number: "02",
-        title: "Quiz à choix multiples",
-        content: "4 Contenu",
-        time: "2 Heures 30 Minutes",
-        points: 48,
-        backgroundColor: AppColors.secondary,
-      ),
-      const Gap(AppSizes.spaceBtwItems),
-      const LessonCategoryCard(
-        number: "03",
-        title: "Exercices d'appariement",
-        content: "6 Contenu",
-        time: "2 Heures 30 Minutes",
-        points: 55,
-        backgroundColor: AppColors.accent,
-      ),
+      CategoryCard(
+                            number: "01",
+                            points: "40",
+                            title: "Dictées interactives",
+                            content: "5 Contenues",
+                            time: "2 Heures 30 Minutes",
+                            color: AppColors.purple,
+                            onTap: () { 
+                            },
+                          ),
+                          CategoryCard(
+                            number: "02",
+                            points: "35",
+                            title: "Quiz à choix multiples",
+                            content: "4 Contenues",
+                            time: "1 Heure 20 minutes",
+                            color: AppColors.orange,
+                            onTap: () { 
+                            },
+                          ),
+                          CategoryCard(
+                            number: "03",
+                            points: "52",
+                            title: "Exercices d'appariement",
+                            content: "6 Contenues",
+                            time: "1 Heure 45 minutes",
+                            color: AppColors.accent,
+                            onTap: () { 
+                            },
+                          ),
     ];
 
     return Scaffold(
@@ -134,6 +140,7 @@ class SubjectDetailScreen extends StatelessWidget {
                 onTap:
                     () => Get.to(
                       () => DetailIntroductionScreen(
+                        title: 'Apprendre - Français',
                         illustrationPath: ImageAssets.learn,
                         introductionTitle: 'Catégories de leçons',
                         totalLessons: 10,
@@ -154,6 +161,7 @@ class SubjectDetailScreen extends StatelessWidget {
                 onTap:
                     () => Get.to(
                       () => DetailIntroductionScreen(
+                        title: 'Pratiquer - Francais',
                         illustrationPath: ImageAssets.practice,
                         introductionTitle: 'Exercices interactifs',
                         totalLessons: 10,
@@ -174,6 +182,7 @@ class SubjectDetailScreen extends StatelessWidget {
                 onTap:
                     () => Get.to(
                       () => DetailIntroductionScreen(
+                        title: 'Évaluer - Français',
                         illustrationPath: ImageAssets.evaluate,
                         introductionTitle: "Types d’évaluations",
                         totalLessons: 10,

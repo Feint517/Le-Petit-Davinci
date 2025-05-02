@@ -30,7 +30,11 @@ class SubjectCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(24),
-          boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black12)],
+          boxShadow: [BoxShadow(
+            color: AppColors.black.withOpacity(0.2),
+            blurRadius: 10,
+            offset: const Offset(0, 1),
+          ),],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
+import 'package:kids_learning_app/common/widgets/show_all_button.dart'; 
+import 'package:kids_learning_app/features/subject_deatils/widgets/header.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/progress_row.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
@@ -8,6 +9,7 @@ import 'package:kids_learning_app/utils/constants/sizes.dart';
 class DetailIntroductionScreen extends StatelessWidget {
   const DetailIntroductionScreen({
     super.key,
+    required this.title,
     required this.illustrationPath,
     required this.introductionTitle,
     required this.totalLessons,
@@ -15,6 +17,7 @@ class DetailIntroductionScreen extends StatelessWidget {
     required this.lessonCards,
   });
 
+  final String title;
   final String illustrationPath;
   final String introductionTitle;
   final int totalLessons;
@@ -24,7 +27,7 @@ class DetailIntroductionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -34,7 +37,9 @@ class DetailIntroductionScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     //* Header and Illustration
-                    ProfileHeader(activeIcon: false),
+                    CommonHeader(
+                  title: title, ),
+                    const Gap(AppSizes.defaultSpace),
                     SizedBox(
                       child: Image.asset(
                         illustrationPath,
@@ -49,9 +54,18 @@ class DetailIntroductionScreen extends StatelessWidget {
               //* Main content
               Container(
                 padding: const EdgeInsets.all(20),
-                decoration: const BoxDecoration(
+                decoration:   BoxDecoration(
                   color: AppColors.white,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.black.withOpacity(0.2),
+                      spreadRadius: 0,
+                      blurRadius: 7,
+                      offset: Offset(0, -3), // shadow appears above (only top left/right)
+                    ),
+                    
+                  ],
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(36)),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,24 +81,11 @@ class DetailIntroductionScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 8,
+                  ShowAllButton(
+                            callback: () {
+                              // Navigation code here
+                            },
                           ),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryDeep,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: const Text(
-                            "Voir tout",
-                            style: TextStyle(
-                              color: AppColors.black,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                     const Gap(AppSizes.defaultSpace),

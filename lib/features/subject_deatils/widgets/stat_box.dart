@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class StatBox extends StatelessWidget {
   final String title;
@@ -24,13 +25,20 @@ class StatBox extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withValues(alpha: 0.3),
+            blurRadius: 2,
+            offset: const Offset(0, 1),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Text(title, style: const TextStyle(fontSize: 9)),
+              Text(title, style: const TextStyle(fontSize: 9,fontFamily: 'Bricolage Grotesque', fontWeight: FontWeight.w600)),
               const Spacer(),
               SvgPicture.asset(iconPath, height: 16),
             ],

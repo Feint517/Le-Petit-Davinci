@@ -1,34 +1,38 @@
 import 'package:flutter/material.dart';
 
 class CustomDropdownButton extends StatefulWidget {
-  const CustomDropdownButton({super.key});
+  const CustomDropdownButton({super.key , required this.Options});
+  final List<String> Options;
+  
 
   @override
   State<CustomDropdownButton> createState() => _CustomDropdownButtonState();
 }
 
 class _CustomDropdownButtonState extends State<CustomDropdownButton> {
-  final List<String> options = [
-    "Contenu 1 - Les Bases de l’Alphabet Français",
-    "Contenu 2 - Les Chiffres en Français",
-    "Contenu 3 - Les Jours de la Semaine",
-  ];
-
   String? selectedOption;
-
+  
   @override
   void initState() {
     super.initState();
-    selectedOption = options[0]; // Default selected value
+    selectedOption = widget.Options.isNotEmpty ? widget.Options[0] : null;
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      margin: EdgeInsets.symmetric(  vertical: 15),
       decoration: BoxDecoration(
         color: Color(0xFF9581FF),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 10,
+            spreadRadius: 2,
+            offset: Offset(0, 0),
+          ),
+        ],
         borderRadius: BorderRadius.circular(40),
       ),
       child: DropdownButtonHideUnderline(
@@ -39,7 +43,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           style: TextStyle(color: Colors.white, fontSize: 12),
           isExpanded: true,
           borderRadius: BorderRadius.circular(20),
-          items: options.map((String value) {
+          items: widget.Options.map((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Padding(

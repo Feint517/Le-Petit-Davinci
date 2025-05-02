@@ -13,6 +13,13 @@ class PrimarySection extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20, bottom: 0),
       decoration: BoxDecoration(
         color: AppColors.white,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withOpacity(0.2),
+            blurRadius: 10,
+            offset: const Offset(0, 1),
+          ),
+        ],
         borderRadius: BorderRadius.circular(40),
       ),
       child: Column(
@@ -130,6 +137,13 @@ class PrimarySection extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xFF9281FF),
               borderRadius: BorderRadius.circular(30),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.black.withOpacity(0.2),
+                  blurRadius: 10,
+                  offset: const Offset(0, 1),
+                ),
+              ],
             ),
             child: Padding(
               padding: const EdgeInsets.only(bottom: 12.0),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class ShowAllButton extends StatelessWidget {
   final VoidCallback callback;
@@ -6,9 +7,16 @@ class ShowAllButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 26,
       width: 62,
+      decoration: BoxDecoration( 
+        boxShadow: [BoxShadow(
+            color: AppColors.black.withOpacity(0.2),
+            blurRadius: 10,
+            offset: const Offset(0, 1),
+          ),]
+      ),
       child: ElevatedButton(
         onPressed: () {
           callback();
@@ -22,7 +30,7 @@ class ShowAllButton extends StatelessWidget {
         ),
         child: const Text(
           "Voir tout",
-          style: TextStyle(color: Color(0xff272727), fontSize: 10),
+          style: TextStyle(color: AppColors.white,fontFamily: 'Bricolage Grotesque', fontSize: 10),
         ),
       ),
     );
