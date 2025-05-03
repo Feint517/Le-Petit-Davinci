@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 //import 'package:kids_learning_app/features/authentication/screens/onboarding/onboarding.dart';
-import 'package:kids_learning_app/features/home/home_sceen.dart';
+import 'package:kids_learning_app/features/home/screens/home_sceen.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();

@@ -12,7 +12,7 @@ class CategoryCard extends StatelessWidget {
   final void Function()? onTap;
 
   const CategoryCard({
-    Key? key,
+    super.key,
     required this.number,
     required this.points,
     required this.title,
@@ -20,7 +20,7 @@ class CategoryCard extends StatelessWidget {
     required this.time,
     required this.color,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,10 @@ class CategoryCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.accent3,
                       borderRadius: BorderRadius.circular(20),
@@ -70,7 +73,8 @@ class CategoryCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 2),
-                  Row(spacing: 8,
+                  Row(
+                    spacing: 8,
                     children: [
                       Text(
                         content,
@@ -103,7 +107,12 @@ class CategoryCard extends StatelessWidget {
                 ],
               ),
             ),
-            SvgPicture.asset('assets/svgs/arrow-right.svg', color: Colors.white, width: 24, height: 24),
+            SvgPicture.asset(
+              'assets/svgs/arrow-right.svg',
+              color: Colors.white,
+              width: 24,
+              height: 24,
+            ),
           ],
         ),
       ),

@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:kids_learning_app/features/splash/screens/splash_screen.dart';
+import 'package:kids_learning_app/features/splash/views/splash_screen.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/theme/theme.dart';
 
@@ -12,17 +12,17 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Configure system UI for better splash experience
+    //* Configure system UI for better splash experience
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: Colors.white,
+        systemNavigationBarColor: AppColors.white,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
     );
 
-    // Ensure GetStorage is initialized
+    //* Ensure GetStorage is initialized
     try {
       GetStorage();
     } catch (e) {
@@ -41,10 +41,10 @@ class App extends StatelessWidget {
       theme: CustomAppTheme.lightTheme,
       darkTheme: CustomAppTheme.darkTheme,
       
-      // Explicitly set home to SplashScreen and prevent any automatic redirects
+      //* Explicitly set home to SplashScreen and prevent any automatic redirects
       home: const SplashScreen(),
       
-      // Disable any initial route bindings that might override the home screen
+      //* Disable any initial route bindings that might override the home screen
       initialRoute: null,
     );
   }

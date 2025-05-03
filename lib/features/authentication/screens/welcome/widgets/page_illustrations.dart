@@ -27,7 +27,7 @@ class PageIllustrations extends StatelessWidget {
           ),
           SizedBox(
             child: SvgPicture.asset(
-              SvgAssets.splashIllustration,
+              SvgAssets.welcomeIllustration,
               width: HelperFunctions.screenHeight() / 2.2,
               fit: BoxFit.contain, //? to preserve the aspect ratio
             ),

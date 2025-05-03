@@ -6,7 +6,6 @@ const String ICONS_PATH = 'assets/icons';
 const String LOTTIE_PATH = 'assets/lottie';
 const String ICON_PATH = 'assets/icons';
 const String JSON_PATH = 'assets/json';
-//const String FONT_PATH = 'assets/fonts';
 
 class ImageAssets {
   static const String avatar1 = '$IMAGE_PATH/avatars/Avatar-0.png';
@@ -29,12 +28,16 @@ class ImageAssets {
   static const String learn = '$IMAGE_PATH/misc/learn.png';
   static const String practice = '$IMAGE_PATH/misc/practice.png';
   static const String evaluate = '$IMAGE_PATH/misc/evaluate.png';
-
+  static const String illustration_kid =
+      '$IMAGE_PATH/misc/illustration-kid.png';
+  static const String splashLogo = '$IMAGE_PATH/illustrations/splash.png';
 }
 
 class SvgAssets {
   static const String logo = '$SVG_PATH/logo.svg';
-  static const String splashIllustration = '$SVG_PATH/splash.svg';
+  static const String welcomeIllustration =
+      '$SVG_PATH/welcome_illustration.svg';
+
   static const String learn = '$SVG_PATH/learn.svg';
   static const String practice = '$SVG_PATH/practice.svg';
   static const String solar_letter_linear = '$SVG_PATH/solar_letter-linear.svg';
@@ -50,18 +53,20 @@ class SvgAssets {
       '$SVG_PATH/solar_notebook-bookmark-linear.svg';
   static const String solar_square_academic_cap_linear =
       '$SVG_PATH/solar_square-academic-cap-linear.svg';
-  static const String solar_clock_circle_linear = '$SVG_PATH/solar_clock-circle-linear.svg';
+  static const String solar_clock_circle_linear =
+      '$SVG_PATH/solar_clock-circle-linear.svg';
   static const String solar_arrow_right_up_linear =
       '$SVG_PATH/solar_arrow-right-up-linear.svg';
-  static const String solar_clipboard_check_linear = '$SVG_PATH/solar_clipboard-check-linear.svg';
+  static const String solar_clipboard_check_linear =
+      '$SVG_PATH/solar_clipboard-check-linear.svg';
   static const String arrow_right = '$SVG_PATH/arrow-right.svg';
   static const String solar_repeat_linear = '$SVG_PATH/solar_repeat-linear.svg';
-  static const String solar_rewind_forward_linear = '$SVG_PATH/solar_repeat-linear.svg';
-  static const String solar_round_alt_arrow_left_linear = '$SVG_PATH/solar_round-alt-arrow-left-linear.svg';
-  static const String solar_round_alt_arrow_right_linear = '$SVG_PATH/solar_round-alt-arrow-right-linear.svg';
-
-
-
+  static const String solar_rewind_forward_linear =
+      '$SVG_PATH/solar_repeat-linear.svg';
+  static const String solar_round_alt_arrow_left_linear =
+      '$SVG_PATH/solar_round-alt-arrow-left-linear.svg';
+  static const String solar_round_alt_arrow_right_linear =
+      '$SVG_PATH/solar_round-alt-arrow-right-linear.svg';
 
   static const String abc = '$SVG_PATH/abc.svg';
   static const String star = '$SVG_PATH/star.svg';

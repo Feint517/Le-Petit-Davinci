@@ -1,13 +1,10 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kids_learning_app/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:kids_learning_app/features/authentication/screens/welcome/welcome_screen.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
-import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -190,7 +187,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 child: Transform.scale(
                   scale: scale,
                   child: Image.asset(
-                    'assets/images/illustrations/splash.png',
+                    ImageAssets.splashLogo,
                     width: 200,
                     height: 200,
                     fit: BoxFit.contain,

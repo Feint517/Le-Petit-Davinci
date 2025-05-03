@@ -6,10 +6,10 @@ class AnswerArea extends StatelessWidget {
   final Function(String) onWordRemoved;
   
   const AnswerArea({
-    Key? key,
+    super.key,
     required this.selectedWords,
     required this.onWordRemoved,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

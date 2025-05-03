@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
+import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/header.dart';
-import 'package:kids_learning_app/features/subjects/widgets/content_dropdown_list.dart';
 import 'package:kids_learning_app/features/subjects/widgets/contenu_precedant_suivant.dart';
-import 'package:kids_learning_app/features/subjects/widgets/select_options.dart';
 
 class AlphabetLessonScreen extends StatefulWidget {
   const AlphabetLessonScreen({super.key});
@@ -17,7 +15,7 @@ class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
   final List<String> tabs = ["Étude", "Exercices", "Animation", "Vidéo"];
 
   final List<String> letters = ["Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg", "Hh"];
-    final List<String> lesson = [
+  final List<String> lesson = [
     "Contenu 1 - Les Bases de l’Alphabet Français",
     "Contenu 2 - Les Chiffres en Français",
     "Contenu 3 - Les Jours de la Semaine",
@@ -40,21 +38,19 @@ class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20,),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //* AppBar
                 //ArrowBackTitle(title: "Alphabet & Prononciation"),
-                CommonHeader(
-                  title: "Alphabet & Prononciation",
-                  ),
+                CommonHeader(title: "Alphabet & Prononciation"),
                 //* Section title dropdown
-                CustomDropdownButton(Options: lesson,), 
+                CustomDropdownButton(options: lesson, optionsList: []),
                 //* Tabs
                 //* Letter Grid
                 Container(
-                  margin: EdgeInsets.all(20), 
+                  margin: EdgeInsets.all(20),
                   padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -93,7 +89,7 @@ class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
                       ),
                     ],
                   ),
-                ), 
+                ),
                 // Points
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
@@ -109,20 +105,17 @@ class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
                     ),
                   ),
                 ),
-            
+
                 SizedBox(height: 15),
-            
+
                 // Lesson Content
                 Text(
                   "Les Bases de l’Alphabet Français",
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                 ),
-            
+
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                     
-                    vertical: 10,
-                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
                     "L’alphabet français se compose de 26 lettres, divisées en voyelles et consonnes. Chaque lettre a un son spécifique qui peut varier selon les mots et les accents.",
                     style: TextStyle(
@@ -133,7 +126,7 @@ class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
                     ),
                   ),
                 ),
-            
+
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -158,7 +151,7 @@ class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
                     ),
                   ],
                 ),
-            
+
                 SizedBox(height: 40),
                 ContenuPrecedantSuivant(),
               ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:kids_learning_app/common/widgets/custom_app_bar.dart';
-import 'package:kids_learning_app/features/home/widgets/games_section.dart';
-import 'package:kids_learning_app/features/home/widgets/primary_section.dart';
-import 'package:kids_learning_app/features/home/widgets/subjects_section.dart';
+import 'package:kids_learning_app/features/home/screens/widgets/games_section.dart';
+import 'package:kids_learning_app/features/home/screens/widgets/primary_section.dart';
+import 'package:kids_learning_app/features/home/screens/widgets/subjects_section.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 

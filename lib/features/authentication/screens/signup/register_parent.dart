@@ -22,8 +22,6 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
   bool isChildSelected = true;
   @override
   Widget build(BuildContext context) {
-    //final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -68,18 +66,18 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                         ? Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 20),
+                            const Gap(20),
 
                             // Name field
-                            const SizedBox(height: 24),
+                            const Gap(24),
                             CustomTextField(
                               controller: emailController,
                               hintText: "Nom et prénom",
                               icon: SvgPicture.asset(
-                                "assets/icons/solar_user-linear.svg",
+                                SvgAssets.solar_user_linear,
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            const Gap(16),
                             CustomTextField(
                               controller: emailController,
                               hintText: "E-mail",
@@ -87,7 +85,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                                 SvgAssets.solar_letter_linear,
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            const Gap(16),
                             CustomTextField(
                               controller: passwordController,
                               hintText: "Mot de passe",
@@ -100,7 +98,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                               ),
                             ),
 
-                            const SizedBox(height: 24),
+                            const Gap(24),
 
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -138,7 +136,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
                               ],
                             ),
 
-                            const SizedBox(height: 40),
+                            const Gap(40),
 
                             // Sign up button
                             SizedBox(
@@ -210,7 +208,7 @@ class _RegisterParentScreenState extends State<RegisterParentScreen> {
             ),
           ),
         ),
-        SizedBox(width: 16),
+        const Gap(16),
         // Parent Button
         Expanded(
           child: GestureDetector(

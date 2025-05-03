@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:kids_learning_app/features/home/widgets/material_card.dart';
+import 'package:kids_learning_app/features/home/screens/widgets/material_card.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class MaterialsSection extends StatelessWidget {

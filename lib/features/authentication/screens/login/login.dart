@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/authentication/controllers/login/login_controller.dart';
 import 'package:kids_learning_app/features/authentication/screens/signup/register_parent.dart';
-import 'package:kids_learning_app/features/home/home_sceen.dart';
+import 'package:kids_learning_app/features/home/screens/home_sceen.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

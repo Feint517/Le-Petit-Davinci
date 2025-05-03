@@ -26,7 +26,7 @@ class WelcomeScreen extends StatelessWidget {
 
               //* Main illustration
               SvgPicture.asset(
-                SvgAssets.splashIllustration,
+                SvgAssets.welcomeIllustration,
                 width: DeviceUtils.getScreenWidth(context),
                 fit: BoxFit.fitWidth,
               ),
