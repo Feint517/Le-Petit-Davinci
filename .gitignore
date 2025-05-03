@@ -33,6 +33,14 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Folder to ignore (windows, macOS, and Linux)
+# This folder is created by the Flutter tool when you run `flutter build` or `flutter run`.
+# It contains the compiled version of your app, which is not needed in version control.
+/windows/
+/linux/
+/macos/
+
+
 # Symbolication related
 app.*.symbols
 

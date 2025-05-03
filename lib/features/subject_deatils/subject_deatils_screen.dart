@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:kids_learning_app/features/evaluations/dictee/screens/dictee_interactive_screen.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/subject_deatils/detail_introduction_screen.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/category_card.dart';
@@ -88,8 +89,7 @@ class SubjectDetailScreen extends StatelessWidget {
                             content: "5 Contenues",
                             time: "2 Heures 30 Minutes",
                             color: AppColors.purple,
-                            onTap: () { 
-                            },
+                            onTap: () => Get.to(() => const DicteeInteractiveScreen()),
                           ),
                           CategoryCard(
                             number: "02",
