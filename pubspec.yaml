@@ -54,11 +54,17 @@ flutter:
     - assets/images/logos/
     - assets/images/misc/
     - assets/images/tictactoe/
+    - assets/images/mascots/
+    - assets/images/mascots/owl/
+    - assets/images/mascots/elephant/
+    - assets/images/mascots/panda/
     - assets/sfx/
     - assets/icons/
     - assets/lottie/
     - assets/svgs/
     - assets/fonts/
+    - assets/
+
 
   fonts:
     - family: BricolageGrotesque
@@ -72,5 +78,5 @@ flutter:
           weight: 500
         - asset: assets/fonts/BricolageGrotesque-Light.ttf
           weight: 300
-        
-  
+
+

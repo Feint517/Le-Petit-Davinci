@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class WordChip extends StatelessWidget {
   final String text;
@@ -14,6 +15,23 @@ class WordChip extends StatelessWidget {
     required this.onTap,
   }) : super(key: key);
 
+  // Get a random pastel color for words
+  Color _getWordColor() {
+    final List<Color> colors = [
+      const Color(0xFFFFD6E0),  // Light Pink
+      const Color(0xFFFFEFB5),  // Light Yellow
+      const Color(0xFFB5EAFF),  // Light Blue
+      const Color(0xFFD1FFBD),  // Light Green
+      const Color(0xFFE5CBFF),  // Light Purple
+      const Color(0xFFFFD6C9),  // Light Orange
+    ];
+    
+    // Use the first character of the text as a seed for consistent colors
+    final int seed = text.isNotEmpty ? text.codeUnitAt(0) : 0;
+    final random = math.Random(seed);
+    return colors[random.nextInt(colors.length)];
+  }
+
   @override
   Widget build(BuildContext context) {
     // Don't show the chip if it's selected and not in the answer area
@@ -21,28 +39,40 @@ class WordChip extends StatelessWidget {
       return const SizedBox.shrink();
     }
     
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.only(right: 6, bottom: 6),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          borderRadius: BorderRadius.circular(30),
-          border: Border.all(
-            color: isSelected ? Colors.black : Color(0xFF000000).withOpacity(0.3),
-            width: isSelected ? 1.0 : 1.0,
+    final backgroundColor = isInAnswer ? _getWordColor() : _getWordColor().withOpacity(0.6);
+    
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      transform: isSelected ? Matrix4.identity().scaled(1.0) : Matrix4.identity(),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          margin: const EdgeInsets.only(right: 6, bottom: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: isSelected ? Colors.black : Colors.black.withOpacity(0.2),
+              width: isSelected ? 2.0 : 1.0,
+            ),
+            boxShadow: isSelected ? [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                offset: const Offset(0, 2),
+                blurRadius: 4,
+              ),
+            ] : null,
           ),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontFamily: 'Bricolage Grotesque',
-            fontSize: 12,
-            color: isSelected 
-                ? Color(0xFF272727) 
-                : Color(0xFF272727).withOpacity(0.4),
-            letterSpacing: -0.04 * 12,
+          child: Text(
+            text,
+            style: TextStyle(
+              fontFamily: 'Bricolage Grotesque',
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.black.withOpacity(isSelected ? 1.0 : 0.7),
+              letterSpacing: -0.5,
+            ),
           ),
         ),
       ),

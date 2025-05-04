@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/evaluations/dictee/screens/dictee_interactive_screen.dart';
+import 'package:kids_learning_app/features/evaluations/exercices_appariement/screens/exercices_appariement_screen.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/category_card.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
@@ -34,9 +35,7 @@ class EvaluationCards {
         content: "6 Exercices",
         time: "40 Minutes",
         color: AppColors.accent,
-        onTap: () {
-          // Navigate to your matching exercises screen
-        },
+        onTap: () => Get.to(() => const ExercicesAppariementScreen()),
       ),
     ];
   }

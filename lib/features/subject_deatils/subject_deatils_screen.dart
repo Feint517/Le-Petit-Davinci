@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/evaluations/dictee/screens/dictee_interactive_screen.dart';
+import 'package:kids_learning_app/features/evaluations/quiz_choix_multiples/models/quiz_question.dart';
+import 'package:kids_learning_app/features/evaluations/quiz_choix_multiples/screens/quiz_screen.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/subject_deatils/detail_introduction_screen.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/category_card.dart';
@@ -14,6 +16,8 @@ import 'package:kids_learning_app/features/subjects/learn_subject/VocabulaireLes
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
+
+import '../evaluations/exercices_appariement/screens/exercices_appariement_screen.dart';
 
 class SubjectDetailScreen extends StatelessWidget {
   const SubjectDetailScreen({super.key});
@@ -98,8 +102,10 @@ class SubjectDetailScreen extends StatelessWidget {
                             content: "4 Contenues",
                             time: "1 Heure 20 minutes",
                             color: AppColors.orange,
-                            onTap: () { 
-                            },
+                            onTap: () => Get.to(() => QuizScreen(
+                              title: "Quiz à choix multiples",
+                              questions: QuizQuestion.getSampleQuestions(),
+                            )),
                           ),
                           CategoryCard(
                             number: "03",
@@ -108,8 +114,7 @@ class SubjectDetailScreen extends StatelessWidget {
                             content: "6 Contenues",
                             time: "1 Heure 45 minutes",
                             color: AppColors.accent,
-                            onTap: () { 
-                            },
+                            onTap: () => Get.to(() => const ExercicesAppariementScreen()),
                           ),
     ];
 

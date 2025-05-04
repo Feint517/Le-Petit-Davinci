@@ -13,53 +13,88 @@ class AnswerArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Check for small screen to adjust spacing
+    final isSmallScreen = MediaQuery.of(context).size.height < 700;
+    
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: 6, vertical: isSmallScreen ? 2 : 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 35, top: 16, bottom: 20),
-            child: Wrap(
-              spacing: 6,
-              runSpacing: 6,
-              children: selectedWords.map((word) {
-                return WordChip(
-                  text: word,
-                  isSelected: true,
-                  isInAnswer: true,
-                  onTap: () => onWordRemoved(word),
-                );
-              }).toList(),
+          // Selected words area (expanded to take most of the space)
+          Expanded(
+            flex: 3,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8, right: 8, top: 4),
+                child: Center(
+                  child: selectedWords.isEmpty 
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Using a different icon instead of the missing giraffe image
+                          Icon(
+                            Icons.lightbulb_outline,
+                            color: Colors.amber,
+                            size: isSmallScreen ? 24 : 28,
+                          ),
+                          SizedBox(height: isSmallScreen ? 4 : 6),
+                          const Text(
+                            "Choisis les mots",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Bricolage Grotesque',
+                              fontSize: 13,
+                              color: Colors.purple,
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ],
+                      )
+                    : Wrap(
+                        spacing: isSmallScreen ? 5 : 8,
+                        runSpacing: isSmallScreen ? 5 : 8,
+                        alignment: WrapAlignment.center,
+                        children: selectedWords.map((word) {
+                          return WordChip(
+                            text: word,
+                            isSelected: true,
+                            isInAnswer: true,
+                            onTap: () => onWordRemoved(word),
+                          );
+                        }).toList(),
+                      ),
+                ),
+              ),
             ),
           ),
-          // Decorative lines representing blank spaces for words
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Column(
-              children: [
-                // First line
-                Container(
-                  width: double.infinity,
-                  height: 1,
-                  color: const Color(0xFF494949),
-                  margin: const EdgeInsets.only(bottom: 20),
-                ),
-                // Second line
-                Container(
-                  width: double.infinity,
-                  height: 1,
-                  color: const Color(0xFF494949),
-                  margin: const EdgeInsets.only(bottom: 20),
-                ),
-                // Third line (shorter)
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  height: 1,
-                  color: const Color(0xFF494949),
-                ),
-              ],
+          
+          // Decorative lines - reduced vertical height
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // First line - simplified
+                  Container(
+                    width: double.infinity,
+                    height: 1.5,
+                    color: const Color(0xFFE5CBFF),
+                  ),
+                  SizedBox(height: isSmallScreen ? 6 : 8),
+                  
+                  // Second line
+                  Container(
+                    width: double.infinity,
+                    height: 1.5,
+                    color: const Color(0xFFE5CBFF),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

@@ -23,7 +23,7 @@ class DicteeQuestion {
       DicteeQuestion(
         id: '1',
         audioPath: 'assets/sfx/dictee_sample1.mp3', // Replace with actual audio path
-        imagePath: 'assets/images/misc/giraffe.png', // Replace with actual image path
+        imagePath: 'assets/images/illustrations/onBoarding_giraffe1.png', // Changed from giraffe.png to an existing image
         wordBank: ['chat', 'joue', 'avec', 'la', 'balle', 'rouge', 'dans', 'jardin'],
         correctAnswer: ['chat', 'joue', 'avec', 'la', 'balle', 'rouge', 'dans', 'jardin'],
         points: 10,
@@ -31,7 +31,7 @@ class DicteeQuestion {
       DicteeQuestion(
         id: '2',
         audioPath: 'assets/sfx/dictee_sample2.mp3', // Replace with actual audio path
-        imagePath: 'assets/images/illustrations/lion.png', // Replace with actual image path
+        imagePath: 'assets/images/illustrations/lion.png', // Using the lion image that exists
         wordBank: ['enfant', 'lit', 'un', 'livre', 'sur', 'le', 'canapé', 'bleu'],
         correctAnswer: ['enfant', 'lit', 'un', 'livre', 'sur', 'le', 'canapé', 'bleu'],
         points: 15,
@@ -39,7 +39,7 @@ class DicteeQuestion {
       DicteeQuestion(
         id: '3',
         audioPath: 'assets/sfx/dictee_sample3.mp3', // Replace with actual audio path
-        imagePath: 'assets/images/avatars/fox.png', // Replace with actual image path
+        imagePath: 'assets/images/mascots/owl/happy_owl.png', // This path should be verified
         wordBank: ['chien', 'aboie', 'fort', 'quand', 'il', 'voit', 'facteur', 'arriver'],
         correctAnswer: ['chien', 'aboie', 'fort', 'quand', 'il', 'voit', 'facteur', 'arriver'],
         points: 20,

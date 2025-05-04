@@ -17,74 +17,110 @@ class NavigationButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Use MediaQuery to adapt button sizes based on screen width
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isSmallScreen = screenWidth < 360;
+    
     return Row(
       children: [
         // Previous button
         Expanded(
-          child: ElevatedButton(
-            onPressed: isFirstQuestion ? null : onPrevious,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryDeep,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 8),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.arrow_back_rounded,
-                  color: isFirstQuestion ? Colors.grey : Color(0xFF272727),
-                  size: 14,
-                ),
-                const SizedBox(width: 6),
-                Text(
-                  "Précédent",
-                  style: TextStyle(
-                    fontFamily: 'Bricolage Grotesque',
-                    fontSize: 12,
-                    letterSpacing: -0.04 * 12,
-                    color: isFirstQuestion ? Colors.grey : Color(0xFF272727),
-                  ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: [
+                BoxShadow(
+                  color: isFirstQuestion 
+                    ? Colors.transparent 
+                    : AppColors.primaryDeep.withOpacity(0.3),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                  spreadRadius: 0,
                 ),
               ],
+            ),
+            child: ElevatedButton(
+              onPressed: isFirstQuestion ? null : onPrevious,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: isFirstQuestion 
+                  ? AppColors.primaryDeep.withOpacity(0.3) 
+                  : AppColors.primaryDeep,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: EdgeInsets.symmetric(vertical: isSmallScreen ? 12 : 14),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.arrow_back_rounded,
+                    color: Colors.white,
+                    size: isSmallScreen ? 14 : 16,
+                  ),
+                  SizedBox(width: isSmallScreen ? 4 : 8),
+                  Text(
+                    "Précédent",
+                    style: TextStyle(
+                      fontFamily: 'Bricolage Grotesque',
+                      fontSize: isSmallScreen ? 12 : 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
         
-        const SizedBox(width: 10),
+        const SizedBox(width: 12),
         
         // Next button
         Expanded(
-          child: ElevatedButton(
-            onPressed: onNext,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.accent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 8),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Suivant",
-                  style: TextStyle(
-                    fontFamily: 'Bricolage Grotesque',
-                    fontSize: 12,
-                    letterSpacing: -0.04 * 12,
-                    color: Color(0xFF272727),
-                  ),
-                ),
-                const SizedBox(width: 6),
-                Icon(
-                  Icons.arrow_forward_rounded,
-                  color: Color(0xFF272727),
-                  size: 14,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.accent.withOpacity(0.3),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
+                  spreadRadius: 0,
                 ),
               ],
+            ),
+            child: ElevatedButton(
+              onPressed: onNext,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.accent,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: EdgeInsets.symmetric(vertical: isSmallScreen ? 12 : 14),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    isLastQuestion ? "Terminer" : "Suivant",
+                    style: TextStyle(
+                      fontFamily: 'Bricolage Grotesque',
+                      fontSize: isSmallScreen ? 12 : 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(width: isSmallScreen ? 4 : 8),
+                  Icon(
+                    isLastQuestion ? Icons.check_circle : Icons.arrow_forward_rounded,
+                    color: Colors.white,
+                    size: isSmallScreen ? 14 : 16,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
