@@ -34,7 +34,7 @@ class ImageAssets {
 
 class SvgAssets {
   static const String logo = '$SVG_PATH/logo.svg';
-  static const String splashIllustration = '$SVG_PATH/splash_illustration.svg';
+  static const String splashIllustration = '$SVG_PATH/splash.svg';
   static const String learn = '$SVG_PATH/learn.svg';
   static const String practice = '$SVG_PATH/practice.svg';
   static const String solar_letter_linear = '$SVG_PATH/solar_letter-linear.svg';

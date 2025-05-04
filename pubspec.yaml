@@ -37,6 +37,7 @@ dependencies:
   audioplayers: ^6.4.0
   gif: ^2.3.0
   just_audio: ^0.10.2
+  flutter_native_splash: ^2.4.6
 
 dev_dependencies:
   flutter_test:
@@ -78,5 +79,33 @@ flutter:
           weight: 500
         - asset: assets/fonts/BricolageGrotesque-Light.ttf
           weight: 300
+
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/images/illustrations/splash.png
+  
+  # Customize the Android and iOS settings
+  android_12:
+    image: assets/images/illustrations/splash.png
+    icon_background_color: "#FFFFFF"
+  
+  # Positioning and size
+  fullscreen: true
+  image_size: 200
+  
+  # Animation branding
+  branding: assets/images/logos/logo.png
+  branding_mode: bottom
+  
+  # Disable web support if not needed
+  web: false
+  
+  # Set to "center" to center the icon
+  android: true
+  ios: true
+  
+  # Maintain the splash screen longer during development
+  android_gravity: center
+  ios_content_mode: center
 
 

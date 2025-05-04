@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:kids_learning_app/features/splash/screens/splash_screen.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
-//import 'package:kids_learning_app/features/authentication/screens/welcome/welcome_screen.dart';
-//import 'package:kids_learning_app/features/home/home_sceen.dart';
 import 'package:kids_learning_app/utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -10,19 +12,40 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Configure system UI for better splash experience
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+    );
+
+    // Ensure GetStorage is initialized
+    try {
+      GetStorage();
+    } catch (e) {
+      if (kDebugMode) {
+        print("GetStorage error: $e");
+      }
+    }
+    
+    if (kDebugMode) {
+      print("Initializing app with SplashScreen as home");
+    }
+    
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: CustomAppTheme.lightTheme,
       darkTheme: CustomAppTheme.darkTheme,
-      //? when the app runs, it will automatically initiate all the methods in GeneralBindings
-      //initialBinding: GeneralBindings(),
-      home: const Scaffold(
-        backgroundColor: AppColors.primary,
-        body: Center(
-          child: CircularProgressIndicator(color: Colors.white),
-        ),
-      ),
+      
+      // Explicitly set home to SplashScreen and prevent any automatic redirects
+      home: const SplashScreen(),
+      
+      // Disable any initial route bindings that might override the home screen
+      initialRoute: null,
     );
   }
 }

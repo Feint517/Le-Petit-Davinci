@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kids_learning_app/app.dart';
-import 'package:kids_learning_app/data/repositories/authentication_repository.dart';
 
 void main() async {
+  // Ensure Flutter is initialized
   WidgetsFlutterBinding.ensureInitialized();
-
-  //* init local storage
+  
+  // Set preferred orientations
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+  
+  // Initialize GetStorage
   await GetStorage.init();
-  Get.put(AuthenticationRepository());
-
+  
+  // Run the app
   runApp(const App());
 }
