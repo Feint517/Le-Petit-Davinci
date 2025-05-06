@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/features/evaluations/dictee/screens/dictee_interactive_screen.dart';
-import 'package:kids_learning_app/features/evaluations/quiz_choix_multiples/models/quiz_question.dart';
-import 'package:kids_learning_app/features/evaluations/quiz_choix_multiples/screens/quiz_screen.dart';
+import 'package:kids_learning_app/features/evaluations/screens/dictation/dictee_interactive_screen.dart';
+import 'package:kids_learning_app/features/evaluations/models/multiple_choice/quiz_question.dart';
+import 'package:kids_learning_app/features/evaluations/screens/multiple_choice/quiz_screen.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/features/subject_deatils/detail_introduction_screen.dart';
@@ -11,13 +11,13 @@ import 'package:kids_learning_app/features/subject_deatils/widgets/category_card
 import 'package:kids_learning_app/features/subject_deatils/widgets/learning_card.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/subject_description.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/sunject_stats_row.dart';
-import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabets_lesson.dart';
-import 'package:kids_learning_app/features/subjects/learn_subject/construction_lesson.dart';
-import 'package:kids_learning_app/features/subjects/learn_subject/vocabulaire_lesson.dart';
+import 'package:kids_learning_app/features/lessons/screens/construction/construction_lesson.dart';
+import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_lesson.dart';
+import 'package:kids_learning_app/features/lessons/screens/vocabulary/vocabulaire_lesson.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
-import '../evaluations/exercices_appariement/screens/exercices_appariement_screen.dart';
+import '../evaluations/screens/pairing/exercices_appariement_screen.dart';
 
 class SubjectDetailScreen extends StatelessWidget {
   const SubjectDetailScreen({super.key});
@@ -34,6 +34,7 @@ class SubjectDetailScreen extends StatelessWidget {
         color: AppColors.purple,
         onTap: () => Get.to(() => const AlphabetLessonScreen()),
       ),
+      const Gap(AppSizes.spaceBtwItems),
       CategoryCard(
         number: "02",
         points: "35",
@@ -41,8 +42,9 @@ class SubjectDetailScreen extends StatelessWidget {
         content: "4 Contenues",
         time: "1 Heure 20 minutes",
         color: AppColors.orange,
-        onTap: () => Get.to(() => const VocabulaireLessonScreen()),
+        onTap: () => Get.to(() => const VocabularyLessonScreen()),
       ),
+      const Gap(AppSizes.spaceBtwItems),
       CategoryCard(
         number: "03",
         points: "52",
@@ -92,6 +94,7 @@ class SubjectDetailScreen extends StatelessWidget {
         color: AppColors.purple,
         onTap: () => Get.to(() => const DicteeInteractiveScreen()),
       ),
+      const Gap(AppSizes.spaceBtwItems),
       CategoryCard(
         number: "02",
         points: "35",
@@ -107,6 +110,7 @@ class SubjectDetailScreen extends StatelessWidget {
               ),
             ),
       ),
+      const Gap(AppSizes.spaceBtwItems),
       CategoryCard(
         number: "03",
         points: "52",

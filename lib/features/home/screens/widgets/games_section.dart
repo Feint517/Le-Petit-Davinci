@@ -4,7 +4,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/utils.dart';
 import 'package:kids_learning_app/common/widgets/show_all_button.dart';
 import 'package:kids_learning_app/features/games/views/snake/snake.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/tic_tac_toe.dart';
+import 'package:kids_learning_app/features/games/views/tic-tac-toe/tic_tac_toe(updated).dart';
 import 'package:kids_learning_app/features/home/screens/widgets/game_card.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';

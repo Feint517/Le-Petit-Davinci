@@ -9,13 +9,12 @@ import 'package:kids_learning_app/features/authentication/screens/welcome/widget
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/text_strings.dart';
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends GetView<OnBoardingController> {
   const OnBoardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //? Get the instance of the obBoarding controller
-    final controller = Get.put(OnBoardingController());
+    Get.put(OnBoardingController());
 
     return Scaffold(
       body: Stack(

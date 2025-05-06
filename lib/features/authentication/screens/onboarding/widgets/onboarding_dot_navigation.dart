@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 import 'package:kids_learning_app/features/authentication/controllers/onboarding/onboarding_controller.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/device/device_utility.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnBoardingDotNavigation extends StatelessWidget {
+class OnBoardingDotNavigation extends GetView<OnBoardingController> {
   const OnBoardingDotNavigation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = OnBoardingController.instance;
-
     return Positioned(
       bottom: DeviceUtils.getBottomNavigationBarHeight() + 25,
       left: DeviceUtils.getScreenWidth(context) / 2 - 50,
