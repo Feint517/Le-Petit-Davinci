@@ -5,6 +5,7 @@ import 'package:kids_learning_app/features/evaluations/dictee/screens/dictee_int
 import 'package:kids_learning_app/features/evaluations/quiz_choix_multiples/models/quiz_question.dart';
 import 'package:kids_learning_app/features/evaluations/quiz_choix_multiples/screens/quiz_screen.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
+import 'package:kids_learning_app/features/practice/screens/association/association_practice.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/features/subject_deatils/detail_introduction_screen.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/category_card.dart';
@@ -64,13 +65,14 @@ class SubjectDetailScreen extends StatelessWidget {
         onTap: () => Get.to(() => const WritingPracticeScreen()),
       ),
       const Gap(AppSizes.spaceBtwItems),
-      const CategoryCard(
+      CategoryCard(
         number: "02",
         title: "Activités d'association",
         content: "5 Contenu",
         time: "3 Heures 45 Minutes",
         points: '15',
         color: AppColors.secondary,
+        onTap: () => Get.to(() => AssociationActivitiesScreen()),
       ),
       const Gap(AppSizes.spaceBtwItems),
       const CategoryCard(
