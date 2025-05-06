@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kids_learning_app/features/splash/views/splash_screen.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
+import 'package:kids_learning_app/utils/constants/font_manager.dart';
 import 'package:kids_learning_app/utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -37,6 +39,15 @@ class App extends StatelessWidget {
     
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      useInheritedMediaQuery: false,
+      locale: DevicePreview.locale(context),
+      builder: (context, child) {
+        return FontScale.scaleBuilder(
+          context,
+          child,
+          DevicePreview.appBuilder, // Pass DevicePreview's builder
+        );
+      },
       themeMode: ThemeMode.system,
       theme: CustomAppTheme.lightTheme,
       darkTheme: CustomAppTheme.darkTheme,
