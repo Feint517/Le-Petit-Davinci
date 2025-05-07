@@ -15,6 +15,7 @@ This document outlines the implementation of a reusable popup dialog component f
 2. **PopupHelper**: A utility class that provides methods to easily show the popup dialog from anywhere in the app, including a predefined method for logout confirmation.
 
 ## File Structure
+```
 lib/
 ├── common/
 │   └── widgets/
@@ -27,10 +28,13 @@ lib/
 │           ├── custom_popup_dialog.dart # New file
 │           └── popup_helper.dart        # New file
 └── features/
-└── personalization/
-└── screens/
-└── profile/
-└── profile_screen.dart  # Modified file
+    └── personalization/
+        └── screens/
+            └── profile/
+                └──widgets
+                   └──profile_header.dart #changed file
+    
+```
 ## Changes Made
 
 ### New Files Created
@@ -53,7 +57,7 @@ Created a utility class that provides:
 
 ### Modified Files
 
-#### 1. `lib/features/personalization/screens/profile/profile_screen.dart`
+#### 1. `lib/features/personalization/screens/profile/widgets/profile_header.dart`
 
 Modified the profile screen to use the new popup dialog for logout confirmation:
 - Updated the logout icon to show the confirmation popup when clicked
