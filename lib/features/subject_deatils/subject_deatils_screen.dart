@@ -7,6 +7,7 @@ import 'package:kids_learning_app/features/evaluations/screens/multiple_choice/q
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/features/subject_deatils/detail_introduction_screen.dart';
+import 'package:kids_learning_app/features/subject_deatils/screens/cheat_sheet_screen.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/category_card.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/learning_card.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/subject_description.dart';
@@ -200,6 +201,16 @@ class SubjectDetailScreen extends StatelessWidget {
                       ),
                     ),
               ),
+              const Gap(AppSizes.spaceBtwItems),
+              LearningCard(
+                title: 'Aide-mémoire',
+                description:'Fiches de référence pour un apprentissage rapide et efficace.',
+                stats: '5 Fiches · 120 Mots · Référence Rapide',
+                color: Colors.teal,  // You can adjust this color as needed
+                imagePath: ImageAssets.cheat,  // Use an appropriate image
+                onTap: () => Get.to(() => const CheatSheetScreen()),
+              ),
+              const Gap(AppSizes.spaceBtwItems),
             ],
           ),
         ),

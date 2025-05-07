@@ -28,6 +28,7 @@ class ImageAssets {
   static const String learn = '$IMAGE_PATH/misc/learn.png';
   static const String practice = '$IMAGE_PATH/misc/practice.png';
   static const String evaluate = '$IMAGE_PATH/misc/evaluate.png';
+    static const String cheat = '$IMAGE_PATH/misc/cheat.png';
   static const String illustration_kid =
       '$IMAGE_PATH/misc/illustration-kid.png';
   static const String splashLogo = '$IMAGE_PATH/illustrations/splash.png';
@@ -86,6 +87,7 @@ class IconAssets {
   static const String echecs = '$ICONS_PATH/echecs.png';
   static const String ticTacToe = '$ICONS_PATH/tic-tac-toe.png';
   static const String echles = '$ICONS_PATH/echles.png';
+  static const String math_icon = '$ICONS_PATH/math_icon.png';
   static const String arcade_games = '$ICONS_PATH/arcade_games.png';
   static const String snake_game = '$ICONS_PATH/snake_game.png';
 
