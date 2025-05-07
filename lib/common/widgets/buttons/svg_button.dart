@@ -8,12 +8,13 @@ class SvgButton extends StatelessWidget {
     required this.label,
     required this.svgPath,
     required this.backgroundColor,
+    this.textColor = Colors.black,
   });
 
   final String label;
   final String svgPath;
   final Color backgroundColor;
-
+  final Color textColor;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -26,7 +27,7 @@ class SvgButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(label, style: const TextStyle(color: Colors.black)),
+          Text(label, style: TextStyle(color: textColor)),
           const Gap(8),
           SvgPicture.asset(svgPath, height: 16),
         ],

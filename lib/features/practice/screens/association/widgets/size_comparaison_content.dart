@@ -1,4 +1,3 @@
-// size_comparaison_content.dart
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -29,9 +28,8 @@ class SizeComparisonContent extends GetView<AssociationController> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min, // Prevent overflow
+          mainAxisSize: MainAxisSize.min,
           children: [
-            // Category label with better styling
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: BoxDecoration(
@@ -49,7 +47,6 @@ class SizeComparisonContent extends GetView<AssociationController> {
             ),
             const Gap(10),
 
-            // Instructions with more engaging style
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -79,7 +76,6 @@ class SizeComparisonContent extends GetView<AssociationController> {
             ),
             const Gap(15),
 
-            // Item group with name and icon
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -103,7 +99,6 @@ class SizeComparisonContent extends GetView<AssociationController> {
             ),
             const Gap(15),
 
-            // Size options in a row
             LayoutBuilder(
               builder: (context, constraints) {
                 final imageAreaWidth = constraints.maxWidth / 3;
@@ -125,7 +120,6 @@ class SizeComparisonContent extends GetView<AssociationController> {
               },
             ),
 
-            // Progress indicator
             const Gap(15),
             LinearProgressIndicator(
               value:
@@ -148,7 +142,6 @@ class SizeComparisonContent extends GetView<AssociationController> {
     );
   }
 
-  // Get appropriate icon for different item groups
   IconData _getIconForGroup(String groupName) {
     switch (groupName.toLowerCase()) {
       case "hippopotames":
@@ -169,7 +162,6 @@ class SizeComparisonContent extends GetView<AssociationController> {
     }
   }
 
-  // Build a selectable item - simplified for largest selection only
   Widget _buildSelectableItem(
     BuildContext context,
     ItemGroup group,
@@ -177,13 +169,10 @@ class SizeComparisonContent extends GetView<AssociationController> {
     String itemId,
     double areaWidth,
   ) {
-    // Calculate image size relative to the available area
     final imageSize = areaWidth * option.scale * 0.9;
 
-    // Determine if this item is selected (only check largest selection)
     final isSelected = option.isLargestSelected;
 
-    // Is this the correct answer?
     final isCorrectAnswer = option.size == "grand";
 
     return SizedBox(
@@ -191,7 +180,6 @@ class SizeComparisonContent extends GetView<AssociationController> {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // The image without any container
           Material(
             color: Colors.transparent,
             child: InkWell(
@@ -224,11 +212,14 @@ class SizeComparisonContent extends GetView<AssociationController> {
             ),
           ),
 
-          // Show circle animation for selected item - circle only now
-          if (isSelected) _buildCircleAnimation(imageSize),
+          Obx(
+            () =>
+                isSelected.value
+                    ? _buildCircleAnimation(imageSize)
+                    : SizedBox(),
+          ),
 
-          // Validation feedback icons
-          if (controller.isAnswerValidated.value && isSelected) ...[
+          if (controller.isAnswerValidated.value && isSelected.value) ...[
             Positioned(
               top: 0,
               right: 0,
@@ -251,13 +242,10 @@ class SizeComparisonContent extends GetView<AssociationController> {
     );
   }
 
-  // Helper method to handle item tap - simplified for direct selection
   void _handleItemTap(SizeOption option) {
-    // Just directly select as largest
     controller.selectLargestItem(option.size);
   }
 
-  // Build animated circle for largest selection - kept from original
   Widget _buildCircleAnimation(double size) {
     return SizedBox(
       width: size,
@@ -271,7 +259,7 @@ class SizeComparisonContent extends GetView<AssociationController> {
             painter: CircleAnimationPainter(
               progress: value,
               color: AppColors.primary,
-              strokeWidth: 2.0,
+              strokeWidth: 4.0,
             ),
           );
         },
@@ -280,7 +268,6 @@ class SizeComparisonContent extends GetView<AssociationController> {
   }
 }
 
-// Custom painter for animated circle drawing
 class CircleAnimationPainter extends CustomPainter {
   final double progress;
   final Color color;
@@ -304,11 +291,10 @@ class CircleAnimationPainter extends CustomPainter {
           ..strokeWidth = strokeWidth
           ..strokeCap = StrokeCap.round;
 
-    // Draw animated circle
     final sweepAngle = 2 * 3.14159 * progress;
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
-      -3.14159 / 2, // Start from top
+      -3.14159 / 2,
       sweepAngle,
       false,
       paint,

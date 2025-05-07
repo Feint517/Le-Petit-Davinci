@@ -1,5 +1,6 @@
 // size_comparison_item.dart
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class SizeComparisonItem {
   final String instruction;
@@ -23,29 +24,25 @@ class ItemGroup {
 }
 
 class SizeOption {
-  final String size; // "grand", "moyen", or "petit"
-  final String label; // Display label
-  final double scale; // Scale factor for rendering (e.g., 1.0, 0.7, 0.4)
+  final String size;
+  final String label;
+  final double scale;
 
-  // Store the rendered position of the item for hit detection
+  // Keep only the reactive properties
+  final RxBool isLargestSelected = false.obs;
+  final RxBool isSelected = false.obs;
+
   Rect bounds = Rect.zero;
-
-  // Track selection state
-  bool isLargestSelected = false;
-  bool isSmallestSelected = false;
-  bool isSelected = false;
 
   SizeOption({required this.size, required this.label, required this.scale});
 
-  // Method to update bounds after rendering
   void updateBounds(Rect newBounds) {
     bounds = newBounds;
   }
 
-  // Reset all selection states
+  // Update the reset method to modify the reactive properties
   void resetSelection() {
-    isLargestSelected = false;
-    isSmallestSelected = false;
-    isSelected = false;
+    isLargestSelected.value = false;
+    isSelected.value = false;
   }
 }

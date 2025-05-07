@@ -7,22 +7,26 @@ class PointsIndicator extends GetView<AssociationController> {
 
   @override
   Widget build(BuildContext context) {
+    final isNarrowScreen = MediaQuery.of(context).size.width < 360;
+
     return Obx(
       () => Container(
-        margin: const EdgeInsets.symmetric(vertical: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: EdgeInsets.symmetric(
+          horizontal: isNarrowScreen ? 10 : 14,
+          vertical: 4,
+        ),
         decoration: BoxDecoration(
-          color: const Color(0xFFFFD6F4),
-          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xFFFDCFFE),
+          borderRadius: BorderRadius.circular(18),
         ),
         child: Text(
-          controller.isExerciseCompleted.value
-              ? "Félicitations! ${controller.points.value} points gagnés"
-              : "Obtenez 5 points",
+          isNarrowScreen
+              ? "${controller.points.value} pts"
+              : "Obtenez ${controller.isExerciseCompleted.value ? controller.points.value : 5} points",
           style: const TextStyle(
-            fontSize: 12,
-            color: Color(0xFFFF725E),
-            fontWeight: FontWeight.w500,
+            fontFamily: 'Archivo',
+            fontSize: 10,
+            color: Color(0xFF6A3EA1),
           ),
         ),
       ),
