@@ -22,12 +22,12 @@ void main() async {
   
   
   // Run the app
-  // runApp(DevicePreview(
-  //     enabled: kDebugMode,
-  //     builder: (context) => App(),
-  //   ),
-  // );
-  runApp(App());
+  runApp(DevicePreview(
+      enabled: kDebugMode,
+      builder: (context) => App(),
+    ),
+  );
+  // runApp(App());
 }
 
 //! known issues:

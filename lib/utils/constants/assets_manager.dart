@@ -3,7 +3,7 @@
 const String IMAGE_PATH = 'assets/images';
 const String SVG_PATH = 'assets/svgs';
 const String ICONS_PATH = 'assets/icons';
-const String LOTTIE_PATH = 'assets/lottie';
+const String LOTTIE_PATH = 'assets/lottie/misc';
 const String ICON_PATH = 'assets/icons';
 const String JSON_PATH = 'assets/json';
 
@@ -17,6 +17,8 @@ class ImageAssets {
   static const String avatar7 = '$IMAGE_PATH/avatars/Avatar-6.png';
   static const String avatar8 = '$IMAGE_PATH/avatars/Avatar-7.png';
   static const String giraffe = '$IMAGE_PATH/misc/giraffe.png';
+  static const String happy_owl = '$IMAGE_PATH/mascots/owl/happy_owl.png';
+  static const String sad_owl = '$IMAGE_PATH/mascots/owl/sad_owl.png';
   static const String chat_character = '$IMAGE_PATH/misc/chat_character.png';
   static const String onBoarding1 =
       '$IMAGE_PATH/illustrations/onBoarding_giraffe1.png';
@@ -80,7 +82,9 @@ class SvgAssets {
   static const String onBoarding3 = '$SVG_PATH/onBoarding_giraffe3.svg';
 }
 
-class LottieAssets {}
+class LottieAssets {
+  static const String confetti = '$LOTTIE_PATH/confetti.json';
+}
 
 class IconAssets {
   static const String avatar = '$ICONS_PATH/avatar.png';

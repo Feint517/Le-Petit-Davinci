@@ -1,3 +1,4 @@
+// lib/features/evaluations/screens/dictation/dictee_interactive_screen.dart
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:kids_learning_app/features/evaluations/models/dictation/dictee_question.dart';
@@ -8,6 +9,9 @@ import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/question_progress.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/qui_navigation_footer.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/quiz_dropdown.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
+import 'package:kids_learning_app/utils/popups/lesson_result_helper.dart';
 
 class DicteeInteractiveScreen extends StatefulWidget {
   const DicteeInteractiveScreen({super.key});
@@ -22,6 +26,8 @@ class _DicteeInteractiveScreenState extends State<DicteeInteractiveScreen> with 
   final List<String> _selectedWords = [];
   final AudioPlayer _audioPlayer = AudioPlayer();
   late AnimationController _animationController;
+  int _score = 0;
+  int _correctAnswers = 0;
   
   DicteeQuestion get _currentQuestion => _questions[_currentQuestionIndex];
 
@@ -73,6 +79,61 @@ class _DicteeInteractiveScreenState extends State<DicteeInteractiveScreen> with 
     });
   }
 
+  // Check answer correctness
+  bool _checkAnswer() {
+    // Compare selected words with correct answer
+    // Simple check: same length and all words match (in order)
+    if (_selectedWords.length != _currentQuestion.correctAnswer.length) {
+      return false;
+    }
+    
+    for (int i = 0; i < _selectedWords.length; i++) {
+      if (_selectedWords[i] != _currentQuestion.correctAnswer[i]) {
+        return false;
+      }
+    }
+    
+    return true;
+  }
+  
+  // Check and show results before moving to next question
+  void _checkAndContinue() {
+    final isCorrect = _checkAnswer();
+    
+    // Update score and correct answers count if correct
+    if (isCorrect) {
+      _score += _currentQuestion.points;
+      _correctAnswers++;
+    }
+    
+    // Calculate question XP
+    final questionXp = isCorrect ? _currentQuestion.points : 0;
+    
+    // Show the lesson result screen
+    LessonResultHelper.showResultScreen(
+      context: context,
+      isPerfect: isCorrect,
+      totalXp: questionXp,
+      correctAnswers: isCorrect ? 1 : 0,
+      totalQuestions: 1,
+      customMessage: isCorrect 
+          ? 'Tu as bien écrit la phrase correctement !' 
+          : 'Essaie encore, tu as presque trouvé la bonne réponse !',
+      onContinue: () {
+        // Move to next question or show completion
+        if (_currentQuestionIndex < _questions.length - 1) {
+          setState(() {
+            _currentQuestionIndex++;
+            _selectedWords.clear();
+          });
+          _loadAudio();
+        } else {
+          _showFinalResults();
+        }
+      },
+    );
+  }
+
   void _goToPreviousQuestion() {
     if (_currentQuestionIndex > 0) {
       setState(() {
@@ -82,78 +143,25 @@ class _DicteeInteractiveScreenState extends State<DicteeInteractiveScreen> with 
       _loadAudio();
     }
   }
-
-  void _goToNextQuestion() {
-    if (_currentQuestionIndex < _questions.length - 1) {
-      setState(() {
-        _currentQuestionIndex++;
-        _selectedWords.clear();
-      });
-      _loadAudio();
-    } else {
-      _showCompletionDialog();
-    }
-  }
   
-  void _showCompletionDialog() {
-    showDialog(
+  // Show final results after completing all questions
+  void _showFinalResults() {
+    // Calculate overall performance
+    final bool isPerfect = _correctAnswers == _questions.length;
+    final int percentage = (_correctAnswers / _questions.length * 100).toInt();
+    
+    LessonResultHelper.showResultScreen(
       context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/images/illustrations/lion.png',
-                  height: 80,
-                  width: 80,
-                ),
-                const SizedBox(height: 12),
-                const Text(
-                  "Félicitations !",
-                  style: TextStyle(
-                    fontFamily: 'Bricolage Grotesque',
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF6A3EA1),
-                  ),
-                ),
-                const SizedBox(height: 6),
-                const Text(
-                  "Tu as terminé toutes les dictées !",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Bricolage Grotesque',
-                    fontSize: 14,
-                    color: Colors.black87,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF6A3EA1),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                  ),
-                  child: const Text("Continuer"),
-                ),
-              ],
-            ),
-          ),
-        );
+      isPerfect: isPerfect,
+      totalXp: _score,
+      correctAnswers: _correctAnswers,
+      totalQuestions: _questions.length,
+      customMessage: isPerfect 
+          ? 'Tu as terminé toutes les dictées parfaitement !'
+          : 'Tu as terminé les dictées avec $percentage% de réussite !',
+      onContinue: () {
+        // Return to previous screen
+        Navigator.of(context).pop();
       },
     );
   }
@@ -255,10 +263,10 @@ class _DicteeInteractiveScreenState extends State<DicteeInteractiveScreen> with 
                   ),
                   SizedBox(height: isSmallScreen ? 8 : 12),
                   
-                  // Navigation buttons row
+                  // Navigation buttons row - Modified to use check and continue
                   NavigationButtons(
                     onPrevious: _goToPreviousQuestion,
-                    onNext: _goToNextQuestion,
+                    onNext: _checkAndContinue, // Changed to _checkAndContinue
                     isFirstQuestion: _currentQuestionIndex == 0,
                     isLastQuestion: _currentQuestionIndex == _questions.length - 1,
                   ),

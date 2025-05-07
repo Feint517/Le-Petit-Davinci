@@ -62,7 +62,7 @@ flutter:
     - assets/images/mascots/panda/
     - assets/sfx/
     - assets/icons/
-    - assets/lottie/
+    - assets/lottie/misc/
     - assets/svgs/
     - assets/fonts/
     - assets/
