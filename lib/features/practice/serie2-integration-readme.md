@@ -16,4 +16,3 @@ Enhanced feedback with snackbars, icons and helpful error messages
 Connected everything to the subject detail screen so users can access the new exercises
 
 The app now has both simple matching exercises and size comparison tasks. Kids can practice identifying which object is the largest in each group, with visual feedback when they make a selection.
-All tests passed. Ready for review.

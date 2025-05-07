@@ -20,7 +20,7 @@ class SizeComparisonContent extends GetView<AssociationController> {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
+              color: AppColors.textSecondary,
               spreadRadius: 1,
               blurRadius: 3,
               offset: const Offset(0, 2),
@@ -49,14 +49,14 @@ class SizeComparisonContent extends GetView<AssociationController> {
             ),
             const Gap(10),
 
-            // Instructions with more engaging style - UPDATED FOR LARGEST ONLY
+            // Instructions with more engaging style
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.orange.withOpacity(0.1),
+                color: AppColors.orange.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: Colors.orange.withOpacity(0.3),
+                  color: AppColors.orange.withOpacity(0.3),
                   width: 1,
                 ),
               ),
@@ -66,12 +66,11 @@ class SizeComparisonContent extends GetView<AssociationController> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      // Simplified instruction for the largest only
                       "Sélectionne l'image la plus grande.",
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black87, // DARKER TEXT COLOR
+                        color: AppColors.black,
                       ),
                     ),
                   ),
@@ -88,7 +87,7 @@ class SizeComparisonContent extends GetView<AssociationController> {
                   _getIconForGroup(
                     controller.currentExercise.itemGroup.groupName,
                   ),
-                  color: Colors.purple,
+                  color: AppColors.primaryDeep,
                   size: 22,
                 ),
                 const SizedBox(width: 8),
@@ -97,14 +96,14 @@ class SizeComparisonContent extends GetView<AssociationController> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Colors.purple,
+                    color: AppColors.primaryDeep,
                   ),
                 ),
               ],
             ),
             const Gap(15),
 
-            // Size options in a row - simplified approach
+            // Size options in a row
             LayoutBuilder(
               builder: (context, constraints) {
                 final imageAreaWidth = constraints.maxWidth / 3;
@@ -236,7 +235,7 @@ class SizeComparisonContent extends GetView<AssociationController> {
               child: Container(
                 padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
-                  color: isCorrectAnswer ? Colors.green : Colors.red,
+                  color: isCorrectAnswer ? AppColors.accent : AppColors.accent2,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -256,8 +255,6 @@ class SizeComparisonContent extends GetView<AssociationController> {
   void _handleItemTap(SizeOption option) {
     // Just directly select as largest
     controller.selectLargestItem(option.size);
-
-    // Note: We don't need to validate here as selectLargestItem handles this
   }
 
   // Build animated circle for largest selection - kept from original
@@ -273,7 +270,7 @@ class SizeComparisonContent extends GetView<AssociationController> {
             size: Size(size, size),
             painter: CircleAnimationPainter(
               progress: value,
-              color: Colors.blue,
+              color: AppColors.primary,
               strokeWidth: 2.0,
             ),
           );
@@ -283,7 +280,7 @@ class SizeComparisonContent extends GetView<AssociationController> {
   }
 }
 
-// Custom painter for animated circle drawing 
+// Custom painter for animated circle drawing
 class CircleAnimationPainter extends CustomPainter {
   final double progress;
   final Color color;
