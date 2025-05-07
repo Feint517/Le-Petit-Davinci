@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/features/games/views/snake/snake.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/tic_tac_toe(updated).dart';
+import 'package:kids_learning_app/features/games/screens/snake/snake.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/tic_tac_toe(updated).dart';
 import 'package:kids_learning_app/features/home/screens/widgets/game_card.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';

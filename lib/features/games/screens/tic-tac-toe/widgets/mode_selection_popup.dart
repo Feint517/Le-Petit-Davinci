@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/state_manager.dart';
 import 'package:kids_learning_app/features/games/controllers/tic_tac_toe/tic_tac_toe_controller.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/widgets/difficulty_button.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/widgets/difficulty_button.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class ModeSelectionPopup extends GetView<TicTacToeController> {

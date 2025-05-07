@@ -15,6 +15,6 @@ class AuthenticationRepository extends GetxController {
 
   //* function to show relevant screen
   void screenRedirect() async {
-    Get.to(() => const ChildHomeScreen());
+    Get.to(() => const HomeScreen());
   }
 }

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/games/controllers/tic_tac_toe/tic_tac_toe_controller.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/dialog_winner.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/widgets/game_board.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/widgets/game_controls.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/widgets/header.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/widgets/mode_selection_popup.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/widgets/progress_section.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/widgets/turn_indicator.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/dialog_winner.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/widgets/game_board.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/widgets/game_controls.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/widgets/header.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/widgets/mode_selection_popup.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/widgets/progress_section.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/widgets/turn_indicator.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class TicTacToe extends GetView<TicTacToeController> {

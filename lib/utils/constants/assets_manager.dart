@@ -97,6 +97,10 @@ class IconAssets {
       '$ICONS_PATH/vocabulaire_thematique.png';
   static const String addition_et_soustraction =
       '$ICONS_PATH/addition_et_soustraction.png';
+
+
+  static const String abc = '$ICONS_PATH/abc.png';
+  static const String math = '$ICONS_PATH/math_icon.png';
 }
 
 class JsonAssets {}

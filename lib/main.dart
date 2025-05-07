@@ -18,11 +18,15 @@ void main() async {
   await GetStorage.init();
   
   // Run the app
-  runApp(DevicePreview(
-      enabled: kDebugMode,
-      builder: (context) => App(),
-    ),
-  );
+  // runApp(DevicePreview(
+  //     enabled: kDebugMode,
+  //     builder: (context) => App(),
+  //   ),
+  // );
+  runApp(App());
 }
 
 //! known issues:
+
+//TODO:
+// 1. refactor home screen widgets

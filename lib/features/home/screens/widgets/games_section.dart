@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/show_all_button.dart';
-import 'package:kids_learning_app/features/games/views/games_list_screen.dart';
+import 'package:kids_learning_app/features/games/screens/games_list_screen.dart';
 import 'package:kids_learning_app/features/home/screens/widgets/game_category_card.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';

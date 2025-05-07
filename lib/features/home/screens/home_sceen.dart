@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/custom_app_bar.dart';
+import 'package:kids_learning_app/features/home/controllers/home_controller.dart';
 import 'package:kids_learning_app/features/home/screens/widgets/games_section.dart';
 import 'package:kids_learning_app/features/home/screens/widgets/primary_section.dart';
 import 'package:kids_learning_app/features/home/screens/widgets/subjects_section.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 
-class ChildHomeScreen extends StatelessWidget {
-  const ChildHomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   final String selectedSubject = 'Français';
 
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController());
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(

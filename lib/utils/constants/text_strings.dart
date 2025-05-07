@@ -34,38 +34,4 @@ class CustomTexts {
   static const String privacy = "Privacy Policy";
   static const String and = "and";
   static const String terms = "Terms of use";
-
-  //* authentication heading text
-  static const String loginTitle = "Welcome!";
-  static const String loginSubtitle = "jump back to your account";
-  static const String signUpTitle = "Let's create your account";
-
-  //* forgot password screen
-  static const String forgetPasswordTitle = "Forgot your password?";
-  static const String forgetPasswordSubTitle =
-      "Write your email down so we can send you a reset link";
-  static const String submit = "Submit";
-
-  static const String changeYourPasswordTitle = "Password reset email sent!";
-  static const String changeYourPasswordSubTitle =
-      "i honestly have nothing to say here";
-  static const String sayDone = "Done";
-  static const String resendEmail = "Resend Email";
-
-  static const String confirmEmail = "Verify your email address!";
-  static const String confirmEmailSubtitle =
-      "Congratulations! Your account awaits, please verify your email to start using it";
-
-  static const String sayContinue = "Continue";
-  static const String enterPins =
-      "Please enter the PIN codes related to your account:";
-
-  //* success screen
-  static const String yourAccountCreatedTitle =
-      "Your Account was created successfully!";
-  static const String yourAccountCreatedSubtitle =
-      "Congratulations, you can now start exploring the app";
-
-  //* home appbar title
-  static const String homeAppbarTitle = "Good morning";
 }

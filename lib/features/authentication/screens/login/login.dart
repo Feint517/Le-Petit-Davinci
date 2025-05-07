@@ -172,7 +172,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Get.to(() => ChildHomeScreen());
+                          Get.to(() => HomeScreen());
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.primary,

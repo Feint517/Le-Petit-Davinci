@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kids_learning_app/features/games/views/tic-tac-toe/dialog_winner.dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/dialog_winner.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:audioplayers/audioplayers.dart';
