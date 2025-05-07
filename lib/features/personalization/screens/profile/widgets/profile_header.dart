@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:kids_learning_app/common/widgets/popups/popup_helper.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key, required this.activeIcon});
@@ -29,7 +30,19 @@ class ProfileHeader extends StatelessWidget {
           ),
         ),
         if (activeIcon != null && activeIcon == true)
-          const Icon(Icons.logout, color: Color(0xFF494949), size: 24)
+          GestureDetector(
+            onTap: () {
+              PopupHelper.showLogoutConfirmation(
+                context: context,
+                onConfirm: () {
+                  // Handle logout logic here
+                  // For example: AuthController.instance.signOut();
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              );
+            },
+            child: const Icon(Icons.logout, color: Color(0xFF494949), size: 24),
+          )
         else
           const SizedBox.shrink(),
       ],
