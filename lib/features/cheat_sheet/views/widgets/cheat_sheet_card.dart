@@ -23,7 +23,7 @@ class CheatSheetCard extends StatefulWidget {
 }
 
 class _CheatSheetCardState extends State<CheatSheetCard> {
-  bool _isExpanded = true;
+  bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {

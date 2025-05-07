@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
+import 'package:kids_learning_app/features/cheat_sheet/views/widgets/category_chip.dart';
 import 'package:kids_learning_app/features/cheat_sheet/views/widgets/cheat_sheet_card.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
@@ -23,7 +24,7 @@ class CheatSheetScreen extends StatelessWidget {
               //* Header section
               CommonHeader(),
               const Gap(AppSizes.spaceBtwSections),
-              
+
               //* Title and description
               Container(
                 padding: const EdgeInsets.all(16),
@@ -40,11 +41,7 @@ class CheatSheetScreen extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    SvgPicture.asset(
-                      SvgAssets.abc,
-                      height: 40,
-                      width: 40,
-                    ),
+                    SvgPicture.asset(SvgAssets.abc, height: 40, width: 40),
                     const Gap(16),
                     Expanded(
                       child: Column(
@@ -73,26 +70,25 @@ class CheatSheetScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              
+
               const Gap(AppSizes.spaceBtwSections),
-              
-              // Category chips row
+
+              //* Category chips row
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _buildCategoryChip('Alphabet', Colors.blue[300]!),
-                    _buildCategoryChip('Mois', Colors.red[300]!),
-                    _buildCategoryChip('Jours', Colors.pink[300]!),
-                    _buildCategoryChip('Heures', Colors.amber[400]!),
-                    _buildCategoryChip('Date', Colors.green[300]!),
+                    CategoryChip(label: 'Alphabet', color: Colors.blue[300]!),
+                    CategoryChip(label: 'Mois', color: Colors.red[300]!),
+                    CategoryChip(label: 'Jours', color: Colors.pink[300]!),
+                    CategoryChip(label: 'Heurs', color: Colors.amber[400]!),
+                    CategoryChip(label: 'Date', color: Colors.green[300]!),
                   ],
                 ),
               ),
-              
               const Gap(AppSizes.defaultSpace),
-              
-              // Alphabet French Cheat Sheet
+
+              //* Alphabet French Cheat Sheet
               CheatSheetCard(
                 title: 'Alphabet Français',
                 color: Colors.blue[300]!,
@@ -111,10 +107,9 @@ class CheatSheetScreen extends StatelessWidget {
                 ],
                 alternateRowColor: Colors.blue[100]!,
               ),
-              
               const Gap(AppSizes.spaceBtwItems),
-              
-              // Months Cheat Sheet
+
+              //* Months Cheat Sheet
               CheatSheetCard(
                 title: 'Mois',
                 color: Colors.red[300]!,
@@ -136,10 +131,9 @@ class CheatSheetScreen extends StatelessWidget {
                 ],
                 alternateRowColor: Colors.red[100]!,
               ),
-              
               const Gap(AppSizes.spaceBtwItems),
-              
-              // Days & Weeks Cheat Sheet
+
+              //* Days & Weeks Cheat Sheet
               CheatSheetCard(
                 title: 'Jours et Semaines',
                 color: Colors.pink[300]!,
@@ -159,10 +153,9 @@ class CheatSheetScreen extends StatelessWidget {
                 ],
                 alternateRowColor: Colors.pink[100]!,
               ),
-              
               const Gap(AppSizes.spaceBtwItems),
-              
-              // Time of Day Cheat Sheet
+
+              //* Time of Day Cheat Sheet
               CheatSheetCard(
                 title: 'Moments de la Journée',
                 color: Colors.amber[400]!,
@@ -185,10 +178,9 @@ class CheatSheetScreen extends StatelessWidget {
                 ],
                 alternateRowColor: Colors.amber[100]!,
               ),
-              
               const Gap(AppSizes.spaceBtwItems),
-              
-              // Date Cheat Sheet
+
+              //* Date Cheat Sheet
               CheatSheetCard(
                 title: 'Date',
                 color: Colors.green[300]!,
@@ -210,29 +202,10 @@ class CheatSheetScreen extends StatelessWidget {
                 ],
                 alternateRowColor: Colors.green[100]!,
               ),
-              
               const Gap(AppSizes.spaceBtwSections),
             ],
           ),
         ),
-      ),
-    );
-  }
-  
-  Widget _buildCategoryChip(String label, Color color) {
-    return Container(
-      margin: const EdgeInsets.only(right: 8),
-      child: Chip(
-        label: Text(
-          label,
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
-          ),
-        ),
-        backgroundColor: color,
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
       ),
     );
   }

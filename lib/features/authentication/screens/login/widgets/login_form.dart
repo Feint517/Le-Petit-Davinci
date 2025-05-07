@@ -16,12 +16,14 @@ class LoginForm extends GetView<LoginController> {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: const Color(0xFFF9FAFB),
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(12),
           ),
           child: TextField(
             controller: controller.emailController,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color(0xFFF9FAFB),
               hintText: "E-mail",
               hintStyle: const TextStyle(
                 color: Color(0xFFC4C4C4),
@@ -49,13 +51,15 @@ class LoginForm extends GetView<LoginController> {
 
         Container(
           decoration: BoxDecoration(
-            color: const Color(0xFFF9FAFB),
+            color: Colors.transparent,
             borderRadius: BorderRadius.circular(12),
           ),
           child: TextField(
             controller: controller.passwordController,
             obscureText: true,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color(0xFFF9FAFB),
               hintText: "Mot de passe",
               hintStyle: const TextStyle(
                 color: Color(0xFFC4C4C4),
