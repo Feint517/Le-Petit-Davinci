@@ -69,6 +69,7 @@ class SvgAssets {
       '$SVG_PATH/solar_round-alt-arrow-right-linear.svg';
 
   static const String abc = '$SVG_PATH/abc.svg';
+  static const String math_icon = '$SVG_PATH/math_icon.svg';
   static const String star = '$SVG_PATH/star.svg';
   static const String star_filled = '$SVG_PATH/star_filled.svg';
   static const String notification = '$SVG_PATH/notification.svg';
@@ -85,6 +86,9 @@ class IconAssets {
   static const String echecs = '$ICONS_PATH/echecs.png';
   static const String ticTacToe = '$ICONS_PATH/tic-tac-toe.png';
   static const String echles = '$ICONS_PATH/echles.png';
+  static const String arcade_games = '$ICONS_PATH/arcade_games.png';
+  static const String snake_game = '$ICONS_PATH/snake_game.png';
+
   static const String utilisation_des_temps =
       '$ICONS_PATH/utilisation_des_temps.png';
   static const String vocabulaire_thematique =

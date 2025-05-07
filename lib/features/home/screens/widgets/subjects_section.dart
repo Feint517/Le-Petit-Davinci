@@ -5,6 +5,7 @@ import 'package:kids_learning_app/common/widgets/show_all_button.dart';
 import 'package:kids_learning_app/features/home/screens/widgets/subject_card.dart';
 import 'package:kids_learning_app/features/subject_deatils/subject_deatils_screen.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 
 class SubjectsSection extends StatelessWidget {
@@ -14,8 +15,8 @@ class SubjectsSection extends StatelessWidget {
     {
       "title": "Mathématiques",
       "total": "15 matériaux au total",
-      "image": SvgAssets.abc,
-      "progress": 0.7,
+      "image": SvgAssets.math_icon,
+      "progress": 0.8,
       "color": Color(0xFFBBA1FF),
       "onTap": () {},
     },
@@ -44,34 +45,33 @@ class SubjectsSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               "Sélection des matières",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                fontSize: 16, 
+                fontWeight: FontWeight.w600,
+                fontFamily: 'BricolageGrotesque',
+              ),
             ),
             ShowAllButton(callback: () {}),
           ],
         ),
         const Gap(AppSizes.spaceBtwItems),
         SizedBox(
-          height: 160,
+          height: 220, // Increased height to accommodate the enhanced card
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: subjects.length,
+            physics: const BouncingScrollPhysics(),
+            padding: const EdgeInsets.only(left: 4),
             itemBuilder: (context, index) {
               final subject = subjects[index];
-              return Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: AppSizes.md),
-                    child: SubjectCard(
-                      title: subject['title']! as String,
-                      total: subject['total'] as String,
-                      imagePath: subject['image'] as String,
-                      progress: subject['progress'] as double,
-                      onTap: subject['onTap'] as VoidCallback,
-                    ),
-                  ),
-                ],
+              return SubjectCard(
+                title: subject['title']! as String,
+                total: subject['total'] as String,
+                imagePath: subject['image'] as String,
+                progress: subject['progress'] as double,
+                onTap: subject['onTap'] as VoidCallback,
               );
             },
           ),
