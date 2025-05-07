@@ -6,10 +6,10 @@ class QuizNavigationFooter extends StatelessWidget {
   final VoidCallback onNextQuiz;
   
   const QuizNavigationFooter({
-    Key? key,
+    super.key,
     required this.onPreviousQuiz,
     required this.onNextQuiz,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

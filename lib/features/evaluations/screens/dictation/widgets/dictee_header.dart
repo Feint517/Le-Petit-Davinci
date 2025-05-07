@@ -6,9 +6,9 @@ class DicteeHeader extends StatelessWidget {
   final VoidCallback onBackPressed;
   
   const DicteeHeader({
-    Key? key,
+    super.key,
     required this.onBackPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

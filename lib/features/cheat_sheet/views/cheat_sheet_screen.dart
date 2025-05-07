@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
-import 'package:kids_learning_app/features/subject_deatils/widgets/cheat_sheet_card.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
+import 'package:kids_learning_app/features/cheat_sheet/views/widgets/cheat_sheet_card.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
@@ -20,11 +20,11 @@ class CheatSheetScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header section
-              ProfileHeader(activeIcon: false),
+              //* Header section
+              CommonHeader(),
               const Gap(AppSizes.spaceBtwSections),
               
-              // Title and description
+              //* Title and description
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -32,7 +32,7 @@ class CheatSheetScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(24),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),

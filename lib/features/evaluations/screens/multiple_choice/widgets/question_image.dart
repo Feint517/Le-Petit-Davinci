@@ -5,9 +5,9 @@ class QuestionImage extends StatelessWidget {
   final String imagePath;
 
   const QuestionImage({
-    Key? key,
+    super.key,
     required this.imagePath,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

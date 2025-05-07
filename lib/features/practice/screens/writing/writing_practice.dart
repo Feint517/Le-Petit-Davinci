@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 
@@ -235,7 +235,8 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
             padding: const EdgeInsets.symmetric(horizontal: AppSizes.md),
             child: Column(
               children: [
-                ProfileHeader(activeIcon: false),
+                const CommonHeader(),
+                
                 const Gap(AppSizes.defaultSpace),
 
                 SingleChildScrollView(
@@ -486,7 +487,7 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
                       decoration:
                           isSelected
                               ? BoxDecoration(
-                                color: const Color(0xFFEFE3FF).withOpacity(0.5),
+                                color: const Color(0xFFEFE3FF).withValues(alpha: 0.5),
                                 borderRadius: BorderRadius.circular(4),
                               )
                               : null,
@@ -520,7 +521,7 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
             onPressed: !isCompleted ? _validateAnswers : null,
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primaryDeep,
-              disabledBackgroundColor: Colors.grey.withOpacity(0.3),
+              disabledBackgroundColor: Colors.grey.withValues(alpha: 0.3),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40),
               ),
@@ -725,7 +726,7 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
         points = 0;
       });
       _showFeedbackSnackBar(
-        "Navigation au contenu précédent: ${selectedContent}",
+        "Navigation au contenu précédent: $selectedContent",
       );
     } else {
       _showFeedbackSnackBar("Vous êtes déjà au premier contenu");
@@ -744,7 +745,7 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
         points = 0;
       });
       _showFeedbackSnackBar(
-        "Navigation au contenu suivant: ${selectedContent}",
+        "Navigation au contenu suivant: $selectedContent",
       );
     } else {
       _showFeedbackSnackBar("Vous êtes déjà au dernier contenu");

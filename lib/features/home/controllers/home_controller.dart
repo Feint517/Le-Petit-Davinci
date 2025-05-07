@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/subject_deatils/subject_deatils_screen.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class HomeController extends GetxController {
-  // Subjects data as an observable list
+  //* Subjects data as an observable list
   final subjects = [
     {
       "title": "Mathématiques",
@@ -28,9 +27,4 @@ class HomeController extends GetxController {
       "onTap": () {},
     },
   ].obs;
-
-  // Method to navigate to subject details
-  void navigateToSubjectDetails(String title) {
-    Get.to(() => const SubjectDetailScreen());
-  }
 }

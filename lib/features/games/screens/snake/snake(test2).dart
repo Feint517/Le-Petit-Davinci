@@ -402,8 +402,8 @@ class SnakeGame extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.buttonSecondary
-                            .withOpacity(0.3),
+                        color: AppColors.secondary
+                            .withValues(alpha: 0.3),
                         spreadRadius: 1,
                         blurRadius: 5,
                         offset: const Offset(0, 3),

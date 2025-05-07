@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/personalization/screens/accessibility/widgets/assisstance_settings_container.dart';
 import 'package:kids_learning_app/features/personalization/screens/accessibility/widgets/guide_card.dart';
 import 'package:kids_learning_app/features/personalization/screens/accessibility/widgets/visual_settings_container.dart';
-import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/section_header.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
@@ -31,7 +31,7 @@ class _AccessibilityScreenState extends State<AccessibilityScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProfileHeader(activeIcon: false),
+                const CommonHeader(),
                 const Gap(8),
 
                 //* Description

@@ -7,12 +7,12 @@ class NavigationButtons extends StatelessWidget {
   final VoidCallback onNext;
 
   const NavigationButtons({
-    Key? key,
+    super.key,
     required this.canGoBack,
     required this.canGoForward,
     required this.onPrevious,
     required this.onNext,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
@@ -157,7 +156,7 @@ class SubjectCard extends StatelessWidget {
 
                               const Gap(20),
 
-                              // Title with more emphasis
+                              //* Title with more emphasis
                               Text(
                                 controller.title,
                                 style: const TextStyle(
@@ -170,7 +169,7 @@ class SubjectCard extends StatelessWidget {
 
                               const Gap(8),
 
-                              // Materials count
+                              //* Materials count
                               Text(
                                 controller.total,
                                 style: const TextStyle(
@@ -182,7 +181,7 @@ class SubjectCard extends StatelessWidget {
 
                               const Gap(24),
 
-                              // Progress section
+                              //* Progress section
                               Row(
                                 children: [
                                   const Text(
@@ -194,7 +193,7 @@ class SubjectCard extends StatelessWidget {
                                     ),
                                   ),
                                   const Spacer(),
-                                  // Progress percentage pill
+                                  //* Progress percentage pill
                                   Container(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 8,
@@ -222,7 +221,7 @@ class SubjectCard extends StatelessWidget {
 
                               const Gap(8),
 
-                              // Enhanced progress bar with animation
+                              //* Enhanced progress bar with animation
                               TweenAnimationBuilder<double>(
                                 duration: const Duration(milliseconds: 1000),
                                 curve: Curves.easeInOut,

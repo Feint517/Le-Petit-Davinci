@@ -4,9 +4,9 @@ class QuizHeader extends StatelessWidget {
   final String title;
 
   const QuizHeader({
-    Key? key,
+    super.key,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

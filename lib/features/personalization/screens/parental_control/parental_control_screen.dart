@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/personalization/screens/parental_control/widgets/activities_section.dart';
 import 'package:kids_learning_app/features/personalization/screens/parental_control/widgets/parental_control_section.dart';
 import 'package:kids_learning_app/features/personalization/screens/parental_control/widgets/profile_card.dart';
 import 'package:kids_learning_app/features/personalization/screens/parental_control/widgets/statistics_card.dart';
 import 'package:kids_learning_app/features/personalization/screens/parental_control/widgets/subject_progress_card.dart';
-import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/section_header.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
@@ -24,7 +24,7 @@ class ParentalControlScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProfileHeader(activeIcon: false),
+                const CommonHeader(),
                 const Gap(16),
 
                 //* User profiles row

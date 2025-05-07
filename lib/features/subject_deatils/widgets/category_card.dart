@@ -109,7 +109,10 @@ class CategoryCard extends StatelessWidget {
             ),
             SvgPicture.asset(
               'assets/svgs/arrow-right.svg',
-              color: Colors.white,
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
               width: 24,
               height: 24,
             ),

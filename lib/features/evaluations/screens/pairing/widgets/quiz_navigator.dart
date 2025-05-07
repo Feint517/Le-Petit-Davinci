@@ -5,10 +5,10 @@ class QuizNavigator extends StatelessWidget {
   final VoidCallback? onNextQuiz;
 
   const QuizNavigator({
-    Key? key,
+    super.key,
     this.onPreviousQuiz,
     this.onNextQuiz,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

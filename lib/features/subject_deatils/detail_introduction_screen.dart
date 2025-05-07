@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:kids_learning_app/common/widgets/show_all_button.dart'; 
-import 'package:kids_learning_app/features/subject_deatils/widgets/header.dart';
+import 'package:kids_learning_app/common/widgets/show_all_button.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/progress_row.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 
@@ -38,7 +39,12 @@ class DetailIntroductionScreen extends StatelessWidget {
                   children: [
                     //* Header and Illustration
                     CommonHeader(
-                  title: title, ),
+                      pageTitle: title,
+                      trailing: CircleAvatar(
+                        backgroundImage: AssetImage(IconAssets.avatar),
+                        radius: 24,
+                      ),
+                    ),
                     const Gap(AppSizes.defaultSpace),
                     SizedBox(
                       child: Image.asset(
@@ -54,16 +60,18 @@ class DetailIntroductionScreen extends StatelessWidget {
               //* Main content
               Container(
                 padding: const EdgeInsets.all(20),
-                decoration:   BoxDecoration(
+                decoration: BoxDecoration(
                   color: AppColors.white,
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.black.withValues(alpha: 0.2),
                       spreadRadius: 0,
                       blurRadius: 7,
-                      offset: Offset(0, -3), // shadow appears above (only top left/right)
+                      offset: Offset(
+                        0,
+                        -3,
+                      ), // shadow appears above (only top left/right)
                     ),
-                    
                   ],
                   borderRadius: BorderRadius.vertical(top: Radius.circular(36)),
                 ),
@@ -81,11 +89,11 @@ class DetailIntroductionScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                  ShowAllButton(
-                            callback: () {
-                              // Navigation code here
-                            },
-                          ),
+                        ShowAllButton(
+                          callback: () {
+                            // Navigation code here
+                          },
+                        ),
                       ],
                     ),
                     const Gap(AppSizes.defaultSpace),

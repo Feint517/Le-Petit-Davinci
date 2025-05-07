@@ -45,7 +45,10 @@ class StatCard extends StatelessWidget {
             ),
             SvgPicture.asset(
               SvgAssets.solar_arrow_right_up_linear,
-              color: actionColor,
+              colorFilter: ColorFilter.mode(
+                actionColor,
+                BlendMode.srcIn,
+              ),
               height: 15,
             ),
           ],

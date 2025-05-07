@@ -5,10 +5,10 @@ class QuestionProgress extends StatelessWidget {
   final int totalQuestions;
   
   const QuestionProgress({
-    Key? key,
+    super.key,
     required this.currentQuestion,
     required this.totalQuestions,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

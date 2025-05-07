@@ -9,11 +9,11 @@ class QuestionBox extends StatelessWidget {
   final Function(String) onOptionSelected;
 
   const QuestionBox({
-    Key? key,
+    super.key,
     required this.question,
     required this.selectedAnswer,
     required this.onOptionSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

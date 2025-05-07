@@ -5,10 +5,10 @@ class QuizDropdown extends StatelessWidget {
   final VoidCallback onPressed;
 
   const QuizDropdown({
-    Key? key,
+    super.key,
     required this.title,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1232,8 +1232,9 @@ class _TicTacToeState extends State<TicTacToe>
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                if (showModeSelection)
+                if (showModeSelection) {
                   return; // Don't allow moves when mode selection is shown
+                }
 
                 setState(() {
                   if (xorOList[index] != 'assets/images/tictactoe/box.png') {

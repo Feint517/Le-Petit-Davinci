@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/description_section.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/exercise_content.dart';
@@ -7,7 +8,6 @@ import 'package:kids_learning_app/features/practice/screens/association/widgets/
 import 'package:kids_learning_app/features/practice/screens/association/widgets/navigation_footer.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/points_indicator.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/widgets/control_buttons.dart';
-import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 
@@ -28,7 +28,7 @@ class AssociationActivitiesScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: AppSizes.md),
           child: Column(
             children: [
-              const ProfileHeader(activeIcon: false),
+              const CommonHeader(),
 
               Expanded(
                 child: SingleChildScrollView(

@@ -5,10 +5,10 @@ class QuestionCounter extends StatelessWidget {
   final int totalQuestions;
 
   const QuestionCounter({
-    Key? key,
+    super.key,
     required this.currentIndex,
     required this.totalQuestions,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

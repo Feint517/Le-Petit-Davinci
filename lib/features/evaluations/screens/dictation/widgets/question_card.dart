@@ -33,14 +33,14 @@ class QuestionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.purple.withOpacity(0.1),
+            color: Colors.purple.withValues(alpha: 0.1),
             blurRadius: 15,
             offset: const Offset(0, 8),
             spreadRadius: 2,
           ),
         ],
         border: Border.all(
-          color: Colors.purple.withOpacity(0.2),
+          color: Colors.purple.withValues(alpha: 0.2),
           width: 2,
         ),
       ),
@@ -81,7 +81,7 @@ class QuestionCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.purple.withOpacity(0.2),
+                              color: Colors.purple.withValues(alpha: 0.2),
                               blurRadius: 5,
                               offset: const Offset(0, 2),
                             ),

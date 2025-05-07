@@ -7,11 +7,11 @@ class WordBank extends StatelessWidget {
   final Function(String) onWordSelected;
   
   const WordBank({
-    Key? key,
+    super.key,
     required this.words,
     required this.selectedWords,
     required this.onWordSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

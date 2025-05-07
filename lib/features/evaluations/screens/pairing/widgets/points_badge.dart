@@ -4,9 +4,9 @@ class PointsBadge extends StatelessWidget {
   final int points;
 
   const PointsBadge({
-    Key? key,
+    super.key,
     required this.points,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

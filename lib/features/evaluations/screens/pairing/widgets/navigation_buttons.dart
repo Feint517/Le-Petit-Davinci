@@ -7,12 +7,12 @@ class NavigationButtons extends StatelessWidget {
   final bool isLastQuestion;
 
   const NavigationButtons({
-    Key? key,
+    super.key,
     required this.onPrevious,
     required this.onNext,
     this.isFirstQuestion = false,
     this.isLastQuestion = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

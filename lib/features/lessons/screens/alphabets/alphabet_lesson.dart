@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
-import 'package:kids_learning_app/features/subject_deatils/widgets/header.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class AlphabetLessonScreen extends StatefulWidget {
   const AlphabetLessonScreen({super.key});
@@ -43,10 +44,17 @@ class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //* AppBar
-                //ArrowBackTitle(title: "Alphabet & Prononciation"),
-                CommonHeader(title: "Alphabet & Prononciation"),
+                CommonHeader(
+                  pageTitle: "Alphabet & Prononciation",
+                  trailing: CircleAvatar(
+                    backgroundImage: AssetImage(IconAssets.avatar),
+                    radius: 24,
+                  ),
+                ),
+
                 //* Section title dropdown
                 CustomDropdownButton(options: lesson, optionsList: []),
+
                 //* Tabs
                 //* Letter Grid
                 Container(

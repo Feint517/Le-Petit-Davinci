@@ -10,7 +10,7 @@ class AppColors {
   static const Color background = Color(0xFFF9ECFF);
   static const Color secondary = Color(0xFFFC715A);
   static const Color accent = Color(0xFF13BB87);
-  static const Color accent2 = Color(0xFFFDDC1B);
+  static const Color accent2 = Color(0xFF009688);
   static const Color accent3 = Color(0xFFFDCFFE);
   static const Color grey = Color(0xFF576062);
   static const Color darkGrey = Color(0xFF3D4141);

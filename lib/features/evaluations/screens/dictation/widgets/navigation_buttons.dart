@@ -8,12 +8,12 @@ class NavigationButtons extends StatelessWidget {
   final bool isLastQuestion;
   
   const NavigationButtons({
-    Key? key,
+    super.key,
     required this.onPrevious,
     required this.onNext,
     this.isFirstQuestion = false,
     this.isLastQuestion = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class NavigationButtons extends StatelessWidget {
                 BoxShadow(
                   color: isFirstQuestion 
                     ? Colors.transparent 
-                    : AppColors.primaryDeep.withOpacity(0.3),
+                    : AppColors.primaryDeep.withValues(alpha: 0.3),
                   blurRadius: 8,
                   offset: const Offset(0, 4),
                   spreadRadius: 0,
@@ -43,7 +43,7 @@ class NavigationButtons extends StatelessWidget {
               onPressed: isFirstQuestion ? null : onPrevious,
               style: ElevatedButton.styleFrom(
                 backgroundColor: isFirstQuestion 
-                  ? AppColors.primaryDeep.withOpacity(0.3) 
+                  ? AppColors.primaryDeep.withValues(alpha: 0.3) 
                   : AppColors.primaryDeep,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -84,7 +84,7 @@ class NavigationButtons extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.accent.withOpacity(0.3),
+                  color: AppColors.accent.withValues(alpha: 0.3),
                   blurRadius: 8,
                   offset: const Offset(0, 4),
                   spreadRadius: 0,

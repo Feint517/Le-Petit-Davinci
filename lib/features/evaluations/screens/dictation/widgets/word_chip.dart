@@ -8,12 +8,12 @@ class WordChip extends StatelessWidget {
   final VoidCallback onTap;
   
   const WordChip({
-    Key? key,
+    super.key,
     required this.text,
     required this.isSelected,
     this.isInAnswer = false,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   // Get a random pastel color for words
   Color _getWordColor() {
@@ -39,7 +39,7 @@ class WordChip extends StatelessWidget {
       return const SizedBox.shrink();
     }
     
-    final backgroundColor = isInAnswer ? _getWordColor() : _getWordColor().withOpacity(0.6);
+    final backgroundColor = isInAnswer ? _getWordColor() : _getWordColor().withValues(alpha: 0.6);
     
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
@@ -53,12 +53,12 @@ class WordChip extends StatelessWidget {
             color: backgroundColor,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isSelected ? Colors.black : Colors.black.withOpacity(0.2),
+              color: isSelected ? Colors.black : Colors.black.withValues(alpha: 0.2),
               width: isSelected ? 2.0 : 1.0,
             ),
             boxShadow: isSelected ? [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withValues(alpha: 0.1),
                 offset: const Offset(0, 2),
                 blurRadius: 4,
               ),

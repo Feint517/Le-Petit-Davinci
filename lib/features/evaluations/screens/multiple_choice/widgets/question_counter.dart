@@ -6,11 +6,11 @@ class QuestionCounter extends StatelessWidget {
   final int points;
 
   const QuestionCounter({
-    Key? key,
+    super.key,
     required this.currentIndex,
     required this.totalQuestions,
     required this.points,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

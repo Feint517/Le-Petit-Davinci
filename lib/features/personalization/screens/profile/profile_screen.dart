@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/application_container.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/learning_settings_container.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/notifications_container.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_container.dart';
-import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/section_header.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/version_display.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
+import 'package:kids_learning_app/utils/popups/popup_helper.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -32,7 +33,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //* Header with back button and logout
-              ProfileHeader(activeIcon: true),
+              CommonHeader(
+                trailing: Icon(
+                  Icons.logout,
+                  color: Color(0xFF494949),
+                  size: 24,
+                ),
+                onTap: () {
+                  PopupHelper.showLogoutConfirmation(
+                    context: context,
+                    onConfirm: () {
+                      Navigator.of(context).pop(); //? Close the dialog
+                    },
+                  );
+                },
+              ),
               const Gap(16),
 
               //* Profile container - using a fixed height

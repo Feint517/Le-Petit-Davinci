@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class CheatSheetCard extends StatefulWidget {
   final String title;
@@ -36,7 +35,7 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: widget.color.withOpacity(0.2),
+            color: widget.color.withValues(alpha: 0.2),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -86,7 +85,7 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.3),
+                      color: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
@@ -122,7 +121,7 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                 if (widget.columns.isNotEmpty)
                   Container(
                     decoration: BoxDecoration(
-                      color: widget.color.withOpacity(0.7),
+                      color: widget.color.withValues(alpha: 0.7),
                     ),
                     child: Row(
                       children: List.generate(
@@ -169,13 +168,13 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                                 border: Border(
                                   right: colIndex < widget.rows[rowIndex].length - 1
                                       ? BorderSide(
-                                          color: Colors.grey.withOpacity(0.2),
+                                          color: Colors.grey.withValues(alpha: 0.2),
                                           width: 1,
                                         )
                                       : BorderSide.none,
                                   bottom: rowIndex < widget.rows.length - 1
                                       ? BorderSide(
-                                          color: Colors.grey.withOpacity(0.2),
+                                          color: Colors.grey.withValues(alpha: 0.2),
                                           width: 1,
                                         )
                                       : BorderSide.none,
@@ -202,7 +201,7 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: BoxDecoration(
-                    color: widget.color.withOpacity(0.1),
+                    color: widget.color.withValues(alpha: 0.1),
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
