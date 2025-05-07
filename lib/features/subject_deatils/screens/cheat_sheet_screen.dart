@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kids_learning_app/features/personalization/screens/profile/widgets/profile_header.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/cheat_sheet_card.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class CheatSheetScreen extends StatelessWidget {
   const CheatSheetScreen({super.key});
@@ -18,32 +20,83 @@ class CheatSheetScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Header section
               ProfileHeader(activeIcon: false),
               const Gap(AppSizes.spaceBtwSections),
               
-              const Text(
-                'Aide-mémoire Français',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A202C),
+              // Title and description
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(24),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
-              ),
-              
-              const Text(
-                'Fiches de référence pour un apprentissage rapide',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF718096),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      SvgAssets.abc,
+                      height: 40,
+                      width: 40,
+                    ),
+                    const Gap(16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Aide-mémoire Français',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF1A202C),
+                              fontFamily: 'BricolageGrotesque',
+                            ),
+                          ),
+                          const Gap(4),
+                          const Text(
+                            'Fiches de référence pour un apprentissage rapide',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF718096),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
               
               const Gap(AppSizes.spaceBtwSections),
+              
+              // Category chips row
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _buildCategoryChip('Alphabet', Colors.blue[300]!),
+                    _buildCategoryChip('Mois', Colors.red[300]!),
+                    _buildCategoryChip('Jours', Colors.pink[300]!),
+                    _buildCategoryChip('Heures', Colors.amber[400]!),
+                    _buildCategoryChip('Date', Colors.green[300]!),
+                  ],
+                ),
+              ),
+              
+              const Gap(AppSizes.defaultSpace),
               
               // Alphabet French Cheat Sheet
               CheatSheetCard(
                 title: 'Alphabet Français',
                 color: Colors.blue[300]!,
+                icon: Icons.abc,
                 columns: const ['', '', ''],
                 rows: const [
                   ['A', 'B', 'C'],
@@ -65,6 +118,7 @@ class CheatSheetScreen extends StatelessWidget {
               CheatSheetCard(
                 title: 'Mois',
                 color: Colors.red[300]!,
+                icon: Icons.calendar_month,
                 columns: const ['English', 'Français'],
                 rows: const [
                   ['January', 'Janvier'],
@@ -89,6 +143,7 @@ class CheatSheetScreen extends StatelessWidget {
               CheatSheetCard(
                 title: 'Jours et Semaines',
                 color: Colors.pink[300]!,
+                icon: Icons.calendar_today,
                 columns: const ['English', 'Français'],
                 rows: const [
                   ['Today', 'Aujourd\'hui'],
@@ -110,7 +165,8 @@ class CheatSheetScreen extends StatelessWidget {
               // Time of Day Cheat Sheet
               CheatSheetCard(
                 title: 'Moments de la Journée',
-                color: Colors.yellow[300]!,
+                color: Colors.amber[400]!,
+                icon: Icons.access_time,
                 columns: const ['English', 'Français'],
                 rows: const [
                   ['Morning', 'Matin'],
@@ -127,7 +183,7 @@ class CheatSheetScreen extends StatelessWidget {
                   ['Minutes', 'Minutes'],
                   ['Seconds', 'Secondes'],
                 ],
-                alternateRowColor: Colors.yellow[100]!,
+                alternateRowColor: Colors.amber[100]!,
               ),
               
               const Gap(AppSizes.spaceBtwItems),
@@ -136,6 +192,7 @@ class CheatSheetScreen extends StatelessWidget {
               CheatSheetCard(
                 title: 'Date',
                 color: Colors.green[300]!,
+                icon: Icons.date_range,
                 columns: const ['English', 'Français'],
                 rows: const [
                   ['1st', 'Premier'],
@@ -158,6 +215,24 @@ class CheatSheetScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+  
+  Widget _buildCategoryChip(String label, Color color) {
+    return Container(
+      margin: const EdgeInsets.only(right: 8),
+      child: Chip(
+        label: Text(
+          label,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+          ),
+        ),
+        backgroundColor: color,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
       ),
     );
   }
