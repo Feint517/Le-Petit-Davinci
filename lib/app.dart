@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:kids_learning_app/features/home/screens/home_sceen.dart';
 import 'package:kids_learning_app/features/splash/screens/splash_screen.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/font_manager.dart';
@@ -32,11 +33,11 @@ class App extends StatelessWidget {
         print("GetStorage error: $e");
       }
     }
-    
+
     if (kDebugMode) {
       print("Initializing app with SplashScreen as home");
     }
-    
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       useInheritedMediaQuery: false,
@@ -51,10 +52,10 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: CustomAppTheme.lightTheme,
       darkTheme: CustomAppTheme.darkTheme,
-      
+
       //* Explicitly set home to SplashScreen and prevent any automatic redirects
-      home: const SplashScreen(),
-      
+      home: const HomeScreen(),
+
       //* Disable any initial route bindings that might override the home screen
       initialRoute: null,
     );
