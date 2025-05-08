@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/evaluations/models/multiple_choice/quiz_question.dart';
-import 'package:kids_learning_app/features/evaluations/screens/dictation/dictee_interactive_screen.dart';
+import 'package:kids_learning_app/features/evaluations/screens/dictation/dictation_interactive_screen.dart';
 import 'package:kids_learning_app/features/evaluations/screens/multiple_choice/quiz_screen.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/exercices_appariement_screen.dart';
 import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_lesson.dart';

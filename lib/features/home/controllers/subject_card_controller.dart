@@ -4,14 +4,13 @@ import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class SubjectCardController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  // Observable variables
   final RxBool isHovering = false.obs;
 
-  // Animation related variables
+  //* Animation related variables
   late AnimationController animationController;
   late Animation<double> scaleAnimation;
 
-  // Constructor that accepts parameters
+  //* Constructor that accepts parameters
   final String title;
   final String total;
   final String imagePath;
