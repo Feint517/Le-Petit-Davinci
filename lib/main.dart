@@ -6,18 +6,16 @@ import 'package:kids_learning_app/app.dart';
 import 'package:flutter/foundation.dart';
 
 void main() async {
-  // Ensure Flutter is initialized
+  //* Ensure Flutter is initialized
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Set preferred orientations
+  //* Set preferred orientations
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
   
   // Initialize GetStorage
   await GetStorage.init();
-
-  
   
   // Run the app
   // runApp(DevicePreview(

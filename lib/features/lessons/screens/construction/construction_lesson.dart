@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';

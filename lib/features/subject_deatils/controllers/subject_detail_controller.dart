@@ -9,9 +9,7 @@ import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_le
 import 'package:kids_learning_app/features/lessons/screens/construction/construction_lesson.dart';
 import 'package:kids_learning_app/features/lessons/screens/vocabulary/vocabulaire_lesson.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
-import 'package:kids_learning_app/features/subject_deatils/detail_introduction_screen.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/category_card.dart';
-import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 

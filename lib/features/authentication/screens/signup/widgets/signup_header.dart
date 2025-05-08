@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:kids_learning_app/features/authentication/screens/login/login_screen.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class SignupHeader extends StatelessWidget {
@@ -25,12 +27,18 @@ class SignupHeader extends StatelessWidget {
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
 
-        const SizedBox(height: 12),
+        const Gap(12),
 
         Row(
-          children: const [
-            Text("Vous avez déjà un compte ? "),
-            Text("Se connecter", style: TextStyle(color: Colors.redAccent)),
+          children: [
+            const Text("Vous avez déjà un compte ? "),
+            TextButton(
+              onPressed: () => Get.to(LoginScreen()),
+              child: Text(
+                "Se connecter",
+                style: TextStyle(color: Colors.redAccent),
+              ),
+            ),
           ],
         ),
       ],

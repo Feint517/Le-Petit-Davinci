@@ -14,14 +14,14 @@ class LessonResultScreen extends StatefulWidget {
   final String? customMessage;
 
   const LessonResultScreen({
-    Key? key,
+    super.key,
     required this.isPerfect,
     required this.totalXp,
     required this.correctAnswers,
     required this.totalQuestions,
     required this.onContinue,
     this.customMessage,
-  }) : super(key: key);
+  });
 
   @override
   State<LessonResultScreen> createState() => _LessonResultScreenState();
@@ -76,7 +76,7 @@ class _LessonResultScreenState extends State<LessonResultScreen> with SingleTick
     return Scaffold(
       backgroundColor: const Color(0xFF14191D), // Duolingo-like dark background
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
@@ -99,7 +99,7 @@ class _LessonResultScreenState extends State<LessonResultScreen> with SingleTick
                           child: child,
                         );
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: 180,
                         width: screenSize.width * 0.8,
                         child: widget.isPerfect
@@ -149,7 +149,7 @@ class _LessonResultScreenState extends State<LessonResultScreen> with SingleTick
                           const SizedBox(height: AppSizes.xl),
                           
                           // Stats container
-                          Container(
+                          SizedBox(
                             width: screenSize.width * 0.9,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -176,7 +176,7 @@ class _LessonResultScreenState extends State<LessonResultScreen> with SingleTick
                           const SizedBox(height: AppSizes.xl),
                           
                           // Continue button
-                          Container(
+                          SizedBox(
                             width: 200,
                             height: 60,
                             child: ElevatedButton(
@@ -216,7 +216,7 @@ class _LessonResultScreenState extends State<LessonResultScreen> with SingleTick
       width: 160,
       padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.15),
+        color: color.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: color,
@@ -262,7 +262,7 @@ class _LessonResultScreenState extends State<LessonResultScreen> with SingleTick
   
   Widget _buildConfetti() {
     return IgnorePointer(
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Lottie.asset(

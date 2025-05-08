@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/authentication/controllers/login/login_controller.dart';
+import 'package:kids_learning_app/features/authentication/screens/password_configuration/foget_password_screen.dart';
 import 'package:kids_learning_app/features/home/screens/home_sceen.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
@@ -125,14 +126,10 @@ class LoginForm extends GetView<LoginController> {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () => Get.to(() => const ForgotPasswordScreen()),
               child: Text(
                 "Mot de passe oublié?",
-                style: TextStyle(
-                  color: Color(0xFF272727),
-                  fontSize: 10,
-                  decoration: TextDecoration.underline,
-                ),
+                style: TextStyle(color: AppColors.secondary, fontSize: 12),
               ),
             ),
           ],

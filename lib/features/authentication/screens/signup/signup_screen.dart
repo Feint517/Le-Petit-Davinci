@@ -9,12 +9,11 @@ import 'package:kids_learning_app/features/authentication/screens/signup/widgets
 import 'package:kids_learning_app/features/authentication/screens/signup/widgets/signup_header.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends GetView<SignupController> {
   const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(() => SignupController(), permanent: true);
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -30,19 +29,19 @@ class SignupScreen extends StatelessWidget {
               const Gap(20),
 
               //* Dynamic content based on role
-              // Obx(
-              //   () =>
-              //       controller.isChildSelected.value
-              //           ? ChildForm()
-              //           : ParentForm(),
-              // ),
-              GetX<SignupController>(
-                builder:
-                    (controller) =>
-                        controller.isChildSelected.value
-                            ? ChildForm()
-                            : ParentForm(),
+              Obx(
+                () =>
+                    controller.isChildSelected.value
+                        ? ChildForm()
+                        : ParentForm(),
               ),
+              // GetX<SignupController>(
+              //   builder:
+              //       (controller) =>
+              //           controller.isChildSelected.value
+              //               ? ChildForm()
+              //               : ParentForm(),
+              // ),
             ],
           ),
         ),

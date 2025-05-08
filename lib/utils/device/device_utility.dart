@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +9,7 @@ class DeviceUtils {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
-  static setStatusBarColor(Color color) async {
+  static void setStatusBarColor(Color color) async {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: color),
     );
@@ -28,7 +27,8 @@ class DeviceUtils {
 
   static void setFuLLScreen(bool enable) {
     SystemChrome.setEnabledSystemUIMode(
-        enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge);
+      enable ? SystemUiMode.immersiveSticky : SystemUiMode.edgeToEdge,
+    );
   }
 
   static double getScreenHeight() {
@@ -77,7 +77,8 @@ class DeviceUtils {
   }
 
   static Future<void> setPreferredOrientations(
-      List<DeviceOrientation> orientations) async {
+    List<DeviceOrientation> orientations,
+  ) async {
     await SystemChrome.setPreferredOrientations(orientations);
   }
 
@@ -86,8 +87,10 @@ class DeviceUtils {
   }
 
   static void showStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: SystemUiOverlay.values,
+    );
   }
 
   static hasInternetConnection() async {
@@ -106,6 +109,7 @@ class DeviceUtils {
   static bool isAndroid() {
     return Platform.isAndroid;
   }
+
   /*
     static void launchUrl(String url) async {
       if (await canLaunchUrlString(url)) {

@@ -14,9 +14,9 @@ class ParentForm extends GetView<SignupController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Name field
+        //* Name field
         CustomTextField(
-          controller: controller.nameController,
+          controller: controller.parentNameController,
           hintText: "Nom et prénom",
           icon: SvgPicture.asset(SvgAssets.solar_user_linear),
         ),

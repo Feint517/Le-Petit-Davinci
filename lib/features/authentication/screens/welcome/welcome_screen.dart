@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/features/authentication/screens/login/login.dart';
+import 'package:kids_learning_app/features/authentication/screens/login/login_screen.dart';
 import 'package:kids_learning_app/features/authentication/screens/signup/signup_screen.dart';
 import 'package:kids_learning_app/features/authentication/screens/welcome/widgets/logo_header.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';

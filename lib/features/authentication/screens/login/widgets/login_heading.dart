@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/features/authentication/screens/signup/register_parent.dart';
+import 'package:kids_learning_app/features/authentication/screens/signup/signup_screen.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class LoginHeading extends StatelessWidget {
@@ -32,7 +32,8 @@ class LoginHeading extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(() => const RegisterParentScreen());
+                //Get.to(() => const RegisterParentScreen());
+                Get.to(() => const SignupScreen());
               },
               child: Text(
                 "S'inscrire",
