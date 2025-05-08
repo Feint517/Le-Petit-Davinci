@@ -15,7 +15,7 @@ class DetailIntroductionScreen extends StatelessWidget {
     required this.introductionTitle,
     required this.totalLessons,
     required this.completedLessons,
-    required this.lessonCards,
+    required this.cardsList,
   });
 
   final String title;
@@ -23,7 +23,7 @@ class DetailIntroductionScreen extends StatelessWidget {
   final String introductionTitle;
   final int totalLessons;
   final int completedLessons;
-  final List<Widget> lessonCards;
+  final List<Widget> cardsList;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +108,7 @@ class DetailIntroductionScreen extends StatelessWidget {
                     ListView(
                       primary: false,
                       shrinkWrap: true,
-                      children: [...lessonCards],
+                      children: [...cardsList],
                     ),
                   ],
                 ),

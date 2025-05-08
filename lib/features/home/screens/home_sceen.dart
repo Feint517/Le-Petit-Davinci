@@ -12,8 +12,6 @@ import 'package:kids_learning_app/utils/constants/sizes.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  final String selectedSubject = 'Français';
-
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());

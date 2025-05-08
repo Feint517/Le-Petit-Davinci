@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:kids_learning_app/features/subject_deatils/controllers/subject_detail_controller.dart';
 import 'package:kids_learning_app/features/subject_deatils/subject_deatils_screen.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
@@ -19,9 +18,7 @@ class HomeController extends GetxController {
       "image": IconAssets.abc,
       "progress": 0.5,
       "onTap": (){
-        Get.put(SubjectDetailController());
         Get.to(() => const SubjectDetailScreen());
-
       } 
     },
     {

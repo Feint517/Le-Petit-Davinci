@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:kids_learning_app/utils/constants/sizes.dart';
 
 class ConstructionLessonScreen extends StatefulWidget {
   const ConstructionLessonScreen({super.key});
@@ -32,12 +34,17 @@ class _ConstructionLessonScreenState extends State<ConstructionLessonScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //* AppBar
-                CommonHeader(pageTitle: "Vocabulaire Thématique",trailing: CircleAvatar(
+                CommonHeader(
+                  pageTitle: "Vocabulaire Thématique",
+                  trailing: CircleAvatar(
                     backgroundImage: AssetImage(IconAssets.avatar),
                     radius: 24,
-                  ),),
+                  ),
+                ),
+                const Gap(AppSizes.defaultSpace),
+
                 //* Section title dropdown
-                CustomDropdownButton(options: vocabulaire, optionsList: []),
+                //CustomDropdownButton(options: vocabulaire, optionsList: []),
                 //* Tabs
                 //* Letter Grid
                 Container(

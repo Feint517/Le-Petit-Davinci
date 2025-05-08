@@ -6,11 +6,8 @@ import 'package:kids_learning_app/features/home/controllers/home_controller.dart
 import 'package:kids_learning_app/features/home/screens/widgets/subject_card.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 
-class SubjectsSection extends StatelessWidget {
-  SubjectsSection({super.key});
-
-  // Get the home controller instance
-  final HomeController homeController = Get.find<HomeController>();
+class SubjectsSection extends GetView<HomeController> {
+  const SubjectsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +32,11 @@ class SubjectsSection extends StatelessWidget {
           height: 220,
           child: Obx(() => ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: homeController.subjects.length,
+            itemCount: controller.subjects.length,
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.only(left: 4),
             itemBuilder: (context, index) {
-              final subject = homeController.subjects[index];
+              final subject = controller.subjects[index];
               return SubjectCard(
                 title: subject['title']! as String,
                 total: subject['total'] as String,

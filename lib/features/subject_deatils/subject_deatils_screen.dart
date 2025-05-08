@@ -17,6 +17,7 @@ class SubjectDetailScreen extends GetView<SubjectDetailController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SubjectDetailController());
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -48,7 +49,7 @@ class SubjectDetailScreen extends GetView<SubjectDetailController> {
                         introductionTitle: 'Catégories de leçons',
                         totalLessons: 10,
                         completedLessons: 3,
-                        lessonCards: [...controller.lessonCards],
+                        cardsList: [...controller.lessonCards],
                         title: 'Apprendre - Français',
                       ),
                     ),
@@ -70,7 +71,7 @@ class SubjectDetailScreen extends GetView<SubjectDetailController> {
                         introductionTitle: 'Exercices interactifs',
                         totalLessons: 10,
                         completedLessons: 7,
-                        lessonCards: [...controller.practiceCards],
+                        cardsList: [...controller.practiceCards],
                       ),
                     ),
               ),
@@ -91,7 +92,7 @@ class SubjectDetailScreen extends GetView<SubjectDetailController> {
                         introductionTitle: "Types d’évaluations",
                         totalLessons: 10,
                         completedLessons: 1,
-                        lessonCards: [...controller.quizCards],
+                        cardsList: [...controller.quizCards],
                       ),
                     ),
               ),
