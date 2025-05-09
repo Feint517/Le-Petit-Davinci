@@ -67,6 +67,8 @@ flutter:
     - assets/fonts/
     - assets/
     - assets/images/exercises/size/
+    - assets/images/exercises/
+    - assets/images/exercises/colors/
 
 
   fonts:

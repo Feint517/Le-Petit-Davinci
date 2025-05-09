@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:math';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 
 class OptionsGrid extends GetView<AssociationController> {
@@ -9,6 +8,7 @@ class OptionsGrid extends GetView<AssociationController> {
 
   @override
   Widget build(BuildContext context) {
+    // Check for small screen to adjust spacing
     final isSmallScreen = MediaQuery.of(context).size.height < 700;
 
     return Container(
@@ -17,6 +17,7 @@ class OptionsGrid extends GetView<AssociationController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Title for the options bank
           Padding(
             padding: EdgeInsets.only(
               left: 12,
@@ -40,56 +41,55 @@ class OptionsGrid extends GetView<AssociationController> {
             ),
           ),
 
+          // Options container with a different approach to building the children
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: const Color(0xFFF7F7FF),
-              ),
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Padding(
-                  padding: EdgeInsets.all(isSmallScreen ? 6 : 8),
-                  child: Obx(
-                    () => Center(
+            child: Obx(() {
+              // Get the current state once
+              final currentOptions = controller.currentExercise.options;
+              final selectedAnswer = controller.selectedAnswer.value;
+              final isValidated = controller.isAnswerValidated.value;
+              final correctAnswer = controller.currentExercise.correctAnswer;
+
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: const Color(0xFFF7F7FF),
+                ),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: EdgeInsets.all(isSmallScreen ? 6 : 8),
+                    child: Center(
                       child: Wrap(
                         spacing: isSmallScreen ? 6 : 8,
                         runSpacing: isSmallScreen ? 6 : 8,
                         alignment: WrapAlignment.center,
-                        children:
-                            controller.currentExercise.options.map((option) {
-                              final isSelected =
-                                  controller.selectedAnswer.value == option;
-                              final isCorrect =
-                                  controller.isAnswerValidated.value &&
-                                  option ==
-                                      controller.currentExercise.correctAnswer;
-                              final isIncorrect =
-                                  controller.isAnswerValidated.value &&
-                                  isSelected &&
-                                  option !=
-                                      controller.currentExercise.correctAnswer;
-
-                              return _buildOptionChip(
-                                option,
-                                isSelected,
-                                isCorrect,
-                                isIncorrect,
-                                isSmallScreen,
-                              );
-                            }).toList(),
+                        children: [
+                          // Explicitly build each option widget
+                          for (final option in currentOptions)
+                            _buildOptionChip(
+                              option,
+                              selectedAnswer == option,
+                              isValidated && option == correctAnswer,
+                              isValidated &&
+                                  selectedAnswer == option &&
+                                  option != correctAnswer,
+                              isSmallScreen,
+                            ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
+              );
+            }),
           ),
         ],
       ),
     );
   }
 
+  // Your existing _buildOptionChip method
   Widget _buildOptionChip(
     String text,
     bool isSelected,
@@ -97,8 +97,10 @@ class OptionsGrid extends GetView<AssociationController> {
     bool isIncorrect,
     bool isSmallScreen,
   ) {
+    // Get color for the chip
     final Color backgroundColor = _getChipColor(text, isSelected);
 
+    // Add visual feedback
     Color borderColor =
         isSelected ? Colors.black : Colors.black.withOpacity(0.2);
 
@@ -152,14 +154,15 @@ class OptionsGrid extends GetView<AssociationController> {
     );
   }
 
+  // Color selection method
   Color _getChipColor(String text, bool isSelected) {
     final List<Color> colors = [
-      const Color(0xFFFFD6E0),
-      const Color(0xFFFFEFB5),
-      const Color(0xFFB5EAFF),
-      const Color(0xFFD1FFBD),
-      const Color(0xFFE5CBFF),
-      const Color(0xFFFFD6C9),
+      const Color(0xFFFFD6E0), // Light Pink
+      const Color(0xFFFFEFB5), // Light Yellow
+      const Color(0xFFB5EAFF), // Light Blue
+      const Color(0xFFD1FFBD), // Light Green
+      const Color(0xFFE5CBFF), // Light Purple
+      const Color(0xFFFFD6C9), // Light Orange
     ];
 
     final int seed = text.isNotEmpty ? text.codeUnitAt(0) : 0;

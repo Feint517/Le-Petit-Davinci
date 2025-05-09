@@ -110,7 +110,7 @@ class SeriesFourContent extends GetView<AssociationController> {
               ),
 
               Expanded(
-                flex: isSmallScreen ? 10 : 11,
+                flex: isSmallScreen ? 11 : 12,
                 child: Container(
                   margin: const EdgeInsets.fromLTRB(8, 5, 8, 8),
                   decoration: BoxDecoration(
@@ -134,12 +134,12 @@ class SeriesFourContent extends GetView<AssociationController> {
   Widget _buildImageGrid(BuildContext context) {
     return Obx(
       () => Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(5.0),
         child: GridView.count(
           crossAxisCount: 2,
-          childAspectRatio: 1.0,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 16,
+          childAspectRatio: 1.1,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
           children: List.generate(
             controller.currentExercise.images.length,
             (index) => _buildImageItem(context, index),

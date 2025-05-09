@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/animated_score_display.dart';
+import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_eight_content.dart';
+import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_five_content.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_one_content.dart';
+import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_seven_content.dart';
+import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_six_content.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_three_content.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_two_content.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_four_content.dart'; // New import
-import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class ExerciseContent extends GetView<AssociationController> {
   const ExerciseContent({super.key});
@@ -33,7 +36,15 @@ class ExerciseContent extends GetView<AssociationController> {
       duration: const Duration(milliseconds: 300),
       child: Obx(() {
         // Show the appropriate content based on the series
-        if (controller.isInSeries4) {
+        if (controller.isInSeriesEight) {
+          return const SeriesEightContent();
+        } else if (controller.isInSeries7) {
+          return const SeriesSevenContent();
+        } else if (controller.isInSeries6) {
+          return SeriesSixContent();
+        } else if (controller.isInSeries5) {
+          return const SeriesFiveContent();
+        } else if (controller.isInSeries4) {
           return const SeriesFourContent();
         } else if (controller.isInSeries3) {
           return const SeriesThreeContent();

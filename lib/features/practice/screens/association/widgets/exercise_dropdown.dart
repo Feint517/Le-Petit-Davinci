@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/features/practice/controllers/association/data.dart';
+import 'package:kids_learning_app/features/practice/controllers/association/association_data.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import '../../../controllers/association/association_controller.dart';
 
@@ -23,7 +23,10 @@ class ExerciseDropdown extends GetView<AssociationController> {
             children: [
               Expanded(
                 child: Text(
-                  controller.selectedExercise.value,
+                  controller.selectedExercise.value
+                      .split(' ')
+                      .take(2)
+                      .join(' '),
                   style: const TextStyle(
                     fontFamily: 'Archivo',
                     fontSize: 10,
