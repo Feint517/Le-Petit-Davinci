@@ -4,9 +4,14 @@ import 'package:kids_learning_app/common/widgets/stat_card.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
-class PrimarySection extends StatelessWidget {
+class PrimarySection extends StatefulWidget {
   const PrimarySection({super.key});
 
+  @override
+  State<PrimarySection> createState() => _PrimarySectionState();
+}
+
+class _PrimarySectionState extends State<PrimarySection> {
   @override
   Widget build(BuildContext context) {
     return Container(
