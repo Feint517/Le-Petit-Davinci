@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class OptionItem extends StatelessWidget {
   final String option;
@@ -20,7 +21,8 @@ class OptionItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0xFFF9FAFB), // Neutral Color/White Silk
           border: Border.all(
-            color: isSelected ? const Color(0xFF9281FF) : const Color(0xFFFDCFFE),
+            color:
+                isSelected ? const Color(0xFF9281FF) : const Color(0xFFFDCFFE),
             width: 1,
           ),
           borderRadius: BorderRadius.circular(16),
@@ -36,19 +38,25 @@ class OptionItem extends StatelessWidget {
                   height: 20,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: const Color(0xFF494949), width: 0.8),
+                    border: Border.all(
+                      color: const Color(0xFF494949),
+                      width: 0.8,
+                    ),
                   ),
-                  child: isSelected
-                      ? Container(
-                          margin: const EdgeInsets.all(2.86),
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color(0xFF9281FF), // Main Color/Purple - Primary
-                          ),
-                        )
-                      : null,
+                  child:
+                      isSelected
+                          ? Container(
+                            margin: const EdgeInsets.all(2.86),
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(
+                                0xFF9281FF,
+                              ), // Main Color/Purple - Primary
+                            ),
+                          )
+                          : null,
                 ),
-                const SizedBox(width: 12),
+                const Gap(12),
                 Text(
                   option,
                   style: const TextStyle(

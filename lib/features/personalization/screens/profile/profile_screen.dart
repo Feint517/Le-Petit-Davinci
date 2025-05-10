@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   color: Color(0xFF494949),
                   size: 24,
                 ),
-                onTap: () {
+                onTapTrailing: () {
                   PopupHelper.showLogoutConfirmation(
                     context: context,
                     onConfirm: () {

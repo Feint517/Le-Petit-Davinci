@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/features/practice/models/counting_exercise_item.dart';
@@ -37,7 +38,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                         color: AppColors.primaryDeep,
                         size: 28,
                       ),
-                      const SizedBox(height: 6),
+                      const Gap(6),
                       Text(
                         "Compter les ${exercise.objectName}",
                         style: const TextStyle(
@@ -77,7 +78,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                     child: Row(
                       children: const [
                         Icon(Icons.school, color: Colors.purple, size: 14),
-                        SizedBox(width: 4),
+                        Gap(4),
                         Text(
                           "Mathématiques",
                           style: TextStyle(
@@ -162,7 +163,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                                 size: 50,
                                 color: Colors.grey[400],
                               ),
-                              const SizedBox(height: 10),
+                              const Gap(10),
                               Text(
                                 "Image non disponible",
                                 style: TextStyle(
@@ -209,7 +210,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                               color: Color(0xFFFF9E80),
                               size: 14,
                             ),
-                            SizedBox(width: 4),
+                            Gap(4),
                             Text(
                               "Choisis la bonne réponse",
                               style: TextStyle(
@@ -418,7 +419,8 @@ class SeriesEightContent extends GetView<AssociationController> {
     }
 
     // Create a much more prominent selection state
-    final backgroundColor = isSelected ? baseColor : baseColor.withValues(alpha: 0.5);
+    final backgroundColor =
+        isSelected ? baseColor : baseColor.withValues(alpha: 0.5);
 
     // Border color based on validation state - more prominent when selected
     Color borderColor = Colors.transparent;
@@ -517,7 +519,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                                 : Colors.black.withValues(alpha: 0.7),
                       ),
                     ),
-                    const SizedBox(height: 2),
+                    const Gap(2),
                     Text(
                       "(${option.number})",
                       style: TextStyle(

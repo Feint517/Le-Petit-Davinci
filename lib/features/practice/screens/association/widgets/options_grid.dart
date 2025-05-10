@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'dart:math';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
@@ -27,7 +28,7 @@ class OptionsGrid extends GetView<AssociationController> {
             child: const Row(
               children: [
                 Icon(Icons.lightbulb, color: Color(0xFFFF9E80), size: 14),
-                SizedBox(width: 4),
+                Gap(4),
                 Text(
                   "Options",
                   style: TextStyle(

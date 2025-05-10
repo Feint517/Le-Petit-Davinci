@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import '../../models/pairing/appariement_question.dart';
 import 'widgets/header.dart';
 import 'widgets/quiz_dropdown.dart';
@@ -12,14 +13,17 @@ class ExercicesAppariementScreen extends StatefulWidget {
   const ExercicesAppariementScreen({super.key});
 
   @override
-  State<ExercicesAppariementScreen> createState() => _ExercicesAppariementScreenState();
+  State<ExercicesAppariementScreen> createState() =>
+      _ExercicesAppariementScreenState();
 }
 
-class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen> {
-  final List<AppariementQuestion> _questions = AppariementQuestion.getSampleQuestions();
+class _ExercicesAppariementScreenState
+    extends State<ExercicesAppariementScreen> {
+  final List<AppariementQuestion> _questions =
+      AppariementQuestion.getSampleQuestions();
   int _currentQuestionIndex = 0;
   String? _selectedOption;
-  
+
   AppariementQuestion get _currentQuestion => _questions[_currentQuestionIndex];
 
   void _handleOptionSelected(String option) {
@@ -47,7 +51,7 @@ class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen>
       _showCompletionDialog();
     }
   }
-  
+
   void _showCompletionDialog() {
     showDialog(
       context: context,
@@ -70,7 +74,7 @@ class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen>
                   height: 80,
                   width: 80,
                 ),
-                const SizedBox(height: 12),
+                const Gap(12),
                 const Text(
                   "Félicitations !",
                   style: TextStyle(
@@ -80,7 +84,7 @@ class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen>
                     color: Color(0xFF6A3EA1),
                   ),
                 ),
-                const SizedBox(height: 6),
+                const Gap(6),
                 const Text(
                   "Tu as terminé tous les exercices d'appariement !",
                   textAlign: TextAlign.center,
@@ -90,7 +94,7 @@ class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen>
                     color: Colors.black87,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const Gap(16),
                 ElevatedButton(
                   onPressed: () => Navigator.pop(context),
                   style: ElevatedButton.styleFrom(
@@ -99,7 +103,10 @@ class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen>
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 10,
+                    ),
                   ),
                   child: const Text("Continuer"),
                 ),
@@ -126,15 +133,15 @@ class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen>
                 title: 'Exercices d\'appariement',
                 onBackPressed: () => Navigator.pop(context),
               ),
-              const SizedBox(height: 30),
-              
+              const Gap(30),
+
               // Quiz selection dropdown
               QuizDropdown(
                 title: 'Quiz 1 - Quiz de correspondance image et mot',
                 onPressed: () {},
               ),
-              const SizedBox(height: 16),
-              
+              const Gap(16),
+
               // Question counter and points
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,13 +150,11 @@ class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen>
                     currentIndex: _currentQuestionIndex + 1,
                     totalQuestions: _questions.length,
                   ),
-                  PointsBadge(
-                    points: _currentQuestion.points,
-                  ),
+                  PointsBadge(points: _currentQuestion.points),
                 ],
               ),
-              const SizedBox(height: 16),
-              
+              const Gap(16),
+
               // Question box
               Expanded(
                 child: QuestionBox(
@@ -159,9 +164,9 @@ class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen>
                   selectedOption: _selectedOption,
                 ),
               ),
-              
-              const SizedBox(height: 16),
-              
+
+              const Gap(16),
+
               // Navigation buttons
               NavigationButtons(
                 onPrevious: _goToPreviousQuestion,
@@ -169,14 +174,11 @@ class _ExercicesAppariementScreenState extends State<ExercicesAppariementScreen>
                 isFirstQuestion: _currentQuestionIndex == 0,
                 isLastQuestion: _currentQuestionIndex == _questions.length - 1,
               ),
-              
-              const SizedBox(height: 16),
-              
+
+              const Gap(16),
+
               // Quiz navigation
-              QuizNavigator(
-                onPreviousQuiz: () {},
-                onNextQuiz: () {},
-              ),
+              QuizNavigator(onPreviousQuiz: () {}, onNextQuiz: () {}),
             ],
           ),
         ),

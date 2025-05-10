@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -10,14 +9,12 @@ class ControlButtons extends GetView<AssociationController> {
 
   @override
   Widget build(BuildContext context) {
-    
     final screenWidth = MediaQuery.of(context).size.width;
     final isSmallScreen = screenWidth < 360;
 
     return Obx(
       () => Row(
         children: [
-          
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -60,7 +57,7 @@ class ControlButtons extends GetView<AssociationController> {
                       color: Colors.white,
                       size: isSmallScreen ? 14 : 16,
                     ),
-                    SizedBox(width: isSmallScreen ? 4 : 8),
+                    Gap(isSmallScreen ? 4 : 8),
                     Text(
                       "Réessayer",
                       style: TextStyle(
@@ -76,9 +73,8 @@ class ControlButtons extends GetView<AssociationController> {
             ),
           ),
 
-          const Gap( 12),
+          const Gap(12),
 
-          
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -124,7 +120,7 @@ class ControlButtons extends GetView<AssociationController> {
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(width: isSmallScreen ? 4 : 8),
+                    Gap(isSmallScreen ? 4 : 8),
                     Icon(
                       controller.isAnswerValidated.value
                           ? Icons.arrow_forward_rounded

@@ -45,7 +45,7 @@
 //                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
 //               ),
 
-//               const SizedBox(height: 12),
+//               const Gap( 12),
 //               Row(
 //                 children: const [
 //                   Text("Vous avez déjà un compte ? "),
@@ -55,7 +55,7 @@
 //                   ),
 //                 ],
 //               ),
-//               const SizedBox(height: 24),
+//               const Gap( 24),
 
 //               // Role toggle
 //               _buildRoleButton(),

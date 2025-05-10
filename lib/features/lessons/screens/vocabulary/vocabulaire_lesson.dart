@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
@@ -33,10 +34,13 @@ class _VocabulaireLessonScreenState extends State<VocabularyLessonScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //* AppBar
-                CommonHeader(pageTitle: "Vocabulaire Thématique",trailing: CircleAvatar(
+                CommonHeader(
+                  pageTitle: "Vocabulaire Thématique",
+                  trailing: CircleAvatar(
                     backgroundImage: AssetImage(IconAssets.avatar),
                     radius: 24,
-                  ),),
+                  ),
+                ),
                 //* Section title dropdown
                 CustomDropdownButton(options: vocabulaire, optionsList: []),
                 //* Tabs
@@ -76,7 +80,7 @@ class _VocabulaireLessonScreenState extends State<VocabularyLessonScreen> {
                   ),
                 ),
 
-                SizedBox(height: 15),
+                Gap(15),
 
                 // Lesson Content
                 Text(
@@ -101,7 +105,7 @@ class _VocabulaireLessonScreenState extends State<VocabularyLessonScreen> {
                   "La girafe est le mammifère terrestre le plus grand du monde. On la reconnaît à son long cou, à ses pattes élancées et à son pelage orné de taches brunes sur fond crème. Dans la savane, elle se nourrit principalement de feuilles d’acacia qu’elle atteint grâce à sa grande taille.",
                   style: textStyle,
                 ),
-                SizedBox(height: 40),
+                Gap(40),
                 ContenuPrecedantSuivant(),
               ],
             ),

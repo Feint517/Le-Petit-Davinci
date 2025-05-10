@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/features/practice/models/matching_item.dart';
@@ -55,7 +56,7 @@ class SeriesSixContent extends GetView<AssociationController> {
                     color: AppColors.primaryDeep,
                     size: 30,
                   ),
-                  const SizedBox(height: 8),
+                  const Gap(8),
                   Text(
                     title,
                     style: const TextStyle(
@@ -205,7 +206,7 @@ class SeriesSixContent extends GetView<AssociationController> {
                       .toList(),
             ),
           ),
-          const SizedBox(width: 20), // Spacer between columns
+          const Gap(20), // Spacer between columns
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -363,7 +364,7 @@ class SeriesSixContent extends GetView<AssociationController> {
                                 itemPair.isCorrect.value,
                             isError: isError,
                           ),
-                        if (displayMode == 'both') const SizedBox(width: 8),
+                        if (displayMode == 'both') const Gap(8),
                         if (displayMode != 'image-only')
                           Flexible(
                             child: _buildItemText(
@@ -382,7 +383,7 @@ class SeriesSixContent extends GetView<AssociationController> {
                               isLeft,
                             ),
                           ),
-                        if (displayMode == 'both') const SizedBox(width: 8),
+                        if (displayMode == 'both') const Gap(8),
                         if (displayMode != 'text-only')
                           _buildItemCard(
                             imagePath: itemPair.rightImagePath,
@@ -461,7 +462,9 @@ class SeriesSixContent extends GetView<AssociationController> {
         borderWidth = 2.5;
         boxShadow = [
           BoxShadow(
-            color: (isCorrect ? Colors.green : Colors.red).withValues(alpha: 0.3),
+            color: (isCorrect ? Colors.green : Colors.red).withValues(
+              alpha: 0.3,
+            ),
             blurRadius: 6,
             spreadRadius: 1,
           ),
@@ -662,7 +665,9 @@ class AnimatedConnectionPainter extends CustomPainter {
 
     final paint =
         Paint()
-          ..color = AppColors.primary.withValues(alpha: 0.9) // Animation line color
+          ..color = AppColors.primary.withValues(
+            alpha: 0.9,
+          ) // Animation line color
           ..strokeWidth =
               3.5 // Prominent during animation
           ..style = PaintingStyle.stroke

@@ -20,7 +20,7 @@ class SubjectDescription extends StatelessWidget {
                 'Français',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
               ),
-              SizedBox(height: 6),
+              Gap(6),
               Text(
                 'Maîtrisez la langue française avec des leçons interactives, des exercices ludiques et des quiz éducatifs !',
                 style: TextStyle(fontSize: 10),

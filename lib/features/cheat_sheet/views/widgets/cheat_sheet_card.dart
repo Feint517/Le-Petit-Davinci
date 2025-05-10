@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class CheatSheetCard extends StatefulWidget {
   final String title;
@@ -7,7 +8,7 @@ class CheatSheetCard extends StatefulWidget {
   final List<String> columns;
   final List<List<String>> rows;
   final IconData icon;
-  
+
   const CheatSheetCard({
     super.key,
     required this.title,
@@ -70,7 +71,7 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                     color: const Color.fromARGB(255, 0, 0, 0),
                     size: 20,
                   ),
-                  const SizedBox(width: 8),
+                  const Gap(8),
                   Expanded(
                     child: Text(
                       widget.title,
@@ -83,9 +84,17 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 0, 0, 0).withValues(alpha: 0.3),
+                      color: const Color.fromARGB(
+                        255,
+                        0,
+                        0,
+                        0,
+                      ).withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
@@ -96,7 +105,7 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                           color: const Color.fromARGB(255, 0, 0, 0),
                           size: 16,
                         ),
-                        const SizedBox(width: 4),
+                        const Gap(4),
                         Text(
                           _isExpanded ? 'Masquer' : 'Voir',
                           style: TextStyle(
@@ -111,7 +120,7 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
               ),
             ),
           ),
-          
+
           // Expandable content
           AnimatedCrossFade(
             firstChild: Container(height: 0),
@@ -125,7 +134,7 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                     ),
                     child: Row(
                       children: List.generate(
-                        widget.columns.length, 
+                        widget.columns.length,
                         (index) => Expanded(
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -143,41 +152,55 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                       ),
                     ),
                   ),
-                
+
                 // Table rows with enhanced styling
                 Column(
                   children: List.generate(
                     widget.rows.length,
                     (rowIndex) => Container(
                       decoration: BoxDecoration(
-                        color: rowIndex % 2 == 0 ? widget.alternateRowColor : Colors.white,
-                        borderRadius: rowIndex == widget.rows.length - 1
-                            ? const BorderRadius.only(
-                                bottomLeft: Radius.circular(20),
-                                bottomRight: Radius.circular(20),
-                              )
-                            : null,
+                        color:
+                            rowIndex % 2 == 0
+                                ? widget.alternateRowColor
+                                : Colors.white,
+                        borderRadius:
+                            rowIndex == widget.rows.length - 1
+                                ? const BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                )
+                                : null,
                       ),
                       child: Row(
                         children: List.generate(
                           widget.rows[rowIndex].length,
                           (colIndex) => Expanded(
                             child: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 8,
+                              ),
                               decoration: BoxDecoration(
                                 border: Border(
-                                  right: colIndex < widget.rows[rowIndex].length - 1
-                                      ? BorderSide(
-                                          color: Colors.grey.withValues(alpha: 0.2),
-                                          width: 1,
-                                        )
-                                      : BorderSide.none,
-                                  bottom: rowIndex < widget.rows.length - 1
-                                      ? BorderSide(
-                                          color: Colors.grey.withValues(alpha: 0.2),
-                                          width: 1,
-                                        )
-                                      : BorderSide.none,
+                                  right:
+                                      colIndex <
+                                              widget.rows[rowIndex].length - 1
+                                          ? BorderSide(
+                                            color: Colors.grey.withValues(
+                                              alpha: 0.2,
+                                            ),
+                                            width: 1,
+                                          )
+                                          : BorderSide.none,
+                                  bottom:
+                                      rowIndex < widget.rows.length - 1
+                                          ? BorderSide(
+                                            color: Colors.grey.withValues(
+                                              alpha: 0.2,
+                                            ),
+                                            width: 1,
+                                          )
+                                          : BorderSide.none,
                                 ),
                               ),
                               child: Text(
@@ -185,8 +208,11 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 14,
-                                  fontWeight: colIndex == 0 ? FontWeight.w500 : FontWeight.normal,
-                                   color: Colors.black,
+                                  fontWeight:
+                                      colIndex == 0
+                                          ? FontWeight.w500
+                                          : FontWeight.normal,
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
@@ -196,10 +222,13 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                     ),
                   ),
                 ),
-                
+
                 // Interactive footer
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   decoration: BoxDecoration(
                     color: widget.color.withValues(alpha: 0.1),
                     borderRadius: const BorderRadius.only(
@@ -214,7 +243,11 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                         onPressed: () {
                           // Add sound functionality here
                         },
-                        icon: Icon(Icons.volume_up, color: widget.color, size: 20),
+                        icon: Icon(
+                          Icons.volume_up,
+                          color: widget.color,
+                          size: 20,
+                        ),
                         label: Text(
                           'Écouter',
                           style: TextStyle(
@@ -224,7 +257,10 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                           ),
                         ),
                         style: TextButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
                         ),
                       ),
                     ],
@@ -232,7 +268,10 @@ class _CheatSheetCardState extends State<CheatSheetCard> {
                 ),
               ],
             ),
-            crossFadeState: _isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+            crossFadeState:
+                _isExpanded
+                    ? CrossFadeState.showSecond
+                    : CrossFadeState.showFirst,
             duration: const Duration(milliseconds: 300),
           ),
         ],

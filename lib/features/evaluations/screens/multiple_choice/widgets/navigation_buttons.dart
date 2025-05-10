@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class NavigationButtons extends StatelessWidget {
   final bool canGoBack;
@@ -22,7 +23,9 @@ class NavigationButtons extends StatelessWidget {
           child: ElevatedButton(
             onPressed: canGoBack ? onPrevious : null,
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF9281FF), // Main Color/Purple - Primary
+              backgroundColor: const Color(
+                0xFF9281FF,
+              ), // Main Color/Purple - Primary
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
@@ -31,8 +34,12 @@ class NavigationButtons extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Icon(Icons.arrow_back_rounded, color: Color(0xFF272727), size: 14),
-                SizedBox(width: 6),
+                Icon(
+                  Icons.arrow_back_rounded,
+                  color: Color(0xFF272727),
+                  size: 14,
+                ),
+                Gap(6),
                 Text(
                   'Précédent',
                   style: TextStyle(
@@ -46,7 +53,7 @@ class NavigationButtons extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 10),
+        const Gap(10),
         Expanded(
           child: ElevatedButton(
             onPressed: canGoForward ? onNext : null,
@@ -69,8 +76,12 @@ class NavigationButtons extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                SizedBox(width: 6),
-                Icon(Icons.arrow_forward_rounded, color: Color(0xFF272727), size: 14),
+                Gap(6),
+                Icon(
+                  Icons.arrow_forward_rounded,
+                  color: Color(0xFF272727),
+                  size: 14,
+                ),
               ],
             ),
           ),

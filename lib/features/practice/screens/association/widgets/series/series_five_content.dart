@@ -1,5 +1,6 @@
 // series_five_content.dart
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'dart:math' as math;
@@ -98,7 +99,7 @@ class SeriesFiveContent extends GetView<AssociationController> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Icon(Icons.palette, color: KColors.primary, size: 24),
-                const SizedBox(width: 8),
+                const Gap(8),
                 Text(
                   "Les Couleurs de l'Arc-en-ciel",
                   style: TextStyle(
@@ -387,7 +388,7 @@ class SeriesFiveContent extends GetView<AssociationController> {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const Gap(12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
@@ -422,7 +423,7 @@ class SeriesFiveContent extends GetView<AssociationController> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const Gap(4),
                         Text(
                           colorName,
                           style: const TextStyle(
@@ -542,8 +543,8 @@ class RainbowArcPainter extends CustomPainter {
 
       // 3. Draw selection highlight if selected and not yet completed
       if (isSelected) {
-        strokePaint.color = KColors.primary.withValues(alpha: 
-          0.8,
+        strokePaint.color = KColors.primary.withValues(
+          alpha: 0.8,
         ); // Purple highlight
         strokePaint.strokeWidth = outlineThickness + 2.0; // Thicker highlight
         canvas.drawPath(path, strokePaint);

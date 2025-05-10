@@ -236,7 +236,7 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
             child: Column(
               children: [
                 const CommonHeader(),
-                
+
                 const Gap(AppSizes.defaultSpace),
 
                 SingleChildScrollView(
@@ -295,12 +295,12 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          const Gap(8),
                           const Text(
                             "La lecture et l'écriture sont essentielles pour maîtriser la langue française. Cet exercice interactif t'aide à enrichir ton vocabulaire et à améliorer ta compréhension des phrases.",
                             style: TextStyle(fontSize: 11),
                           ),
-                          const SizedBox(height: 28),
+                          const Gap(28),
 
                           // Navigation for content
                           _buildNavigationFooter(context),
@@ -378,7 +378,7 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
                               )
                               : null,
                     ),
-                    const SizedBox(width: 8),
+                    const Gap(8),
                     Text(
                       label,
                       style: TextStyle(
@@ -415,12 +415,12 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
               color: Colors.black87,
             ),
           ),
-          const SizedBox(height: 20),
+          const Gap(20),
 
           // Build exercise boxes
           for (int i = 0; i < exercises.length; i++) ...[
             _buildExerciseBox(exercises[i].phrase, exercises[i].options, i),
-            if (i < exercises.length - 1) const SizedBox(height: 16),
+            if (i < exercises.length - 1) const Gap(16),
           ],
         ],
       ),
@@ -452,7 +452,7 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(phrase, style: const TextStyle(fontSize: 16)),
-          const SizedBox(height: 12),
+          const Gap(12),
           Wrap(
             spacing: 16,
             runSpacing: 6,
@@ -487,7 +487,9 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
                       decoration:
                           isSelected
                               ? BoxDecoration(
-                                color: const Color(0xFFEFE3FF).withValues(alpha: 0.5),
+                                color: const Color(
+                                  0xFFEFE3FF,
+                                ).withValues(alpha: 0.5),
                                 borderRadius: BorderRadius.circular(4),
                               )
                               : null,
@@ -538,7 +540,7 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
             ),
           ),
         ),
-        const SizedBox(width: 16),
+        const Gap(16),
 
         // Reset button - reset the exercise
         Expanded(
@@ -744,9 +746,7 @@ class _WritingPracticeScreenState extends State<WritingPracticeScreen> {
         attemptsLeft = 2;
         points = 0;
       });
-      _showFeedbackSnackBar(
-        "Navigation au contenu suivant: $selectedContent",
-      );
+      _showFeedbackSnackBar("Navigation au contenu suivant: $selectedContent");
     } else {
       _showFeedbackSnackBar("Vous êtes déjà au dernier contenu");
     }
@@ -790,7 +790,8 @@ class CustomDropdownButton extends StatefulWidget {
     super.key,
     required this.optionsList,
     this.onOptionSelected,
-    this.initialValue, required List<String> options,
+    this.initialValue,
+    required List<String> options,
   });
 
   @override

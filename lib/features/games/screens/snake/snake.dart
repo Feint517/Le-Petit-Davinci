@@ -3,7 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:gap/gap.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class SnakeGame extends StatefulWidget {
@@ -285,7 +286,7 @@ class _SnakeGameState extends State<SnakeGame> with TickerProviderStateMixin {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20),
+                Gap(20),
 
                 ElevatedButton(
                   onPressed: () {
@@ -363,59 +364,9 @@ class _SnakeGameState extends State<SnakeGame> with TickerProviderStateMixin {
               child: SafeArea(
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: [
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.arrow_back_ios,
-                                    color: AppColors.textSecondary,
-                                    size: 18,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                                Text(
-                                  'Retour',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: 'BricolageGrotesque',
-                                    color: AppColors.textSecondary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15.0),
-                              child: Text(
-                                'Snake Game', // Changed from Tic Tac Toe to Snake Game
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'BricolageGrotesque',
-                                  color: AppColors.accent,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                        const CircleAvatar(
-                          backgroundImage: AssetImage(IconAssets.avatar),
-                          radius: 24,
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(height: 20),
+                    CommonHeader(pageTitle: 'Jeu du Serpent'),
+                    Gap(20),
+                    
                     Column(
                       children: [
                         Row(
@@ -592,7 +543,7 @@ class _SnakeGameState extends State<SnakeGame> with TickerProviderStateMixin {
                                 icon: Icons.arrow_back,
                                 onPressed: () => changeDirection('left'),
                               ),
-                              SizedBox(width: 70),
+                              Gap(70),
                               ControlButton(
                                 icon: Icons.arrow_forward,
                                 onPressed: () => changeDirection('right'),
@@ -654,7 +605,7 @@ class _SnakeGameState extends State<SnakeGame> with TickerProviderStateMixin {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 15),
+                      Gap(15),
 
                       Row(
                         children: [
@@ -697,7 +648,7 @@ class _SnakeGameState extends State<SnakeGame> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          SizedBox(width: 10),
+                          Gap(10),
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
@@ -737,7 +688,7 @@ class _SnakeGameState extends State<SnakeGame> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          SizedBox(width: 10),
+                          Gap(10),
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
@@ -779,7 +730,7 @@ class _SnakeGameState extends State<SnakeGame> with TickerProviderStateMixin {
                           ),
                         ],
                       ),
-                      SizedBox(height: 15),
+                      Gap(15),
 
                       Text(
                         'Jeu du Serpent',
@@ -798,7 +749,7 @@ class _SnakeGameState extends State<SnakeGame> with TickerProviderStateMixin {
                           color: AppColors.white,
                         ),
                       ),
-                      SizedBox(height: 25),
+                      Gap(25),
                       Center(
                         child: GestureDetector(
                           onTap: startGame,
@@ -830,7 +781,7 @@ class _SnakeGameState extends State<SnakeGame> with TickerProviderStateMixin {
                                     color: Colors.black,
                                   ),
                                 ),
-                                SizedBox(width: 8),
+                                Gap(8),
                                 Icon(
                                   Icons.play_arrow_outlined,
                                   color: Colors.black,

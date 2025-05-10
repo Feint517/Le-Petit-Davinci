@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/state_manager.dart';
 import 'package:kids_learning_app/features/games/controllers/tic_tac_toe/tic_tac_toe_controller.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
@@ -8,7 +9,8 @@ class TurnIndicator extends GetView<TicTacToeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Row(
+    return Obx(
+      () => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
@@ -20,7 +22,7 @@ class TurnIndicator extends GetView<TicTacToeController> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(width: 5),
+          const Gap(5),
           Image.asset(
             controller.isTurnO.value
                 ? 'assets/images/tictactoe/o.png'

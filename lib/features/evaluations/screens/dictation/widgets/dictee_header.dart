@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class DicteeHeader extends StatelessWidget {
   final VoidCallback onBackPressed;
-  
-  const DicteeHeader({
-    super.key,
-    required this.onBackPressed,
-  });
+
+  const DicteeHeader({super.key, required this.onBackPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class DicteeHeader extends StatelessWidget {
                         color: Color(0xFF6C6C6C),
                         size: 18,
                       ),
-                      const SizedBox(width: 2),
+                      const Gap(2),
                       Text(
                         "Retour",
                         style: TextStyle(
@@ -44,7 +42,7 @@ class DicteeHeader extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 8),
+                const Gap(8),
                 // Title
                 Text(
                   "Dictées interactives",
@@ -58,7 +56,7 @@ class DicteeHeader extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // Avatar
           CircleAvatar(
             radius: 20,

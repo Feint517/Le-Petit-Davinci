@@ -136,7 +136,7 @@ class ChildForm extends GetView<SignupController> {
         //   () => Row(
         //     children: [
         //       _buildGradeOption(controller, 1, "1ere année"),
-        //       const SizedBox(width: 10),
+        //       const Gap( 10),
         //       _buildGradeOption(controller, 2, "2eme année"),
         //     ],
         //   ),

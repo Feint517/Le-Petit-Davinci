@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'dart:math' as math;
 import 'package:gif/gif.dart';
@@ -101,7 +102,7 @@ class _CongratulationsDialogOState extends State<CongratulationsDialog>
                           //duration: const Duration(seconds: 3),
                           autostart: Autostart.loop,
                         ),
-                        SizedBox(height: 10),
+                        Gap(10),
                         Text(
                           'Félicitations!',
                           textAlign: TextAlign.center,
@@ -133,7 +134,7 @@ class _CongratulationsDialogOState extends State<CongratulationsDialog>
                             ],
                           ),
                         ),
-                        SizedBox(height: 20),
+                        Gap(20),
                         ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).pop();
@@ -297,7 +298,7 @@ class _GameOverDialogState extends State<GameOverDialog>
                           color: _colorAnimation.value ?? Colors.redAccent,
                         ),
                       ),
-                      SizedBox(height: 16),
+                      Gap(16),
 
                       // Game Over text
                       Text(
@@ -311,7 +312,7 @@ class _GameOverDialogState extends State<GameOverDialog>
                         ),
                       ),
 
-                      SizedBox(height: 12),
+                      Gap(12),
 
                       // Motivational text
                       Text(
@@ -323,7 +324,7 @@ class _GameOverDialogState extends State<GameOverDialog>
                           fontFamily: 'BricolageGrotesque',
                         ),
                       ),
-                      SizedBox(height: 12),
+                      Gap(12),
                       // Action buttons
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -494,7 +495,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                        repeat: true,
                      ),*/
                     Icon(Icons.handshake, size: 70, color: Colors.white),
-                    SizedBox(height: 10),
+                    Gap(10),
                     Text(
                       'Match nul!',
                       textAlign: TextAlign.center,
@@ -512,7 +513,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                         ],
                       ),
                     ),
-                    SizedBox(height: 15),
+                    Gap(15),
                     Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -527,7 +528,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                             height: 30,
                             width: 30,
                           ),
-                          SizedBox(width: 10),
+                          Gap(10),
                           Text(
                             'vs',
                             style: TextStyle(
@@ -536,7 +537,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                               fontFamily: 'BricolageGrotesque',
                             ),
                           ),
-                          SizedBox(width: 10),
+                          Gap(10),
                           Image.asset(
                             'assets/images/tictactoe/x.png',
                             height: 30,
@@ -545,7 +546,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    Gap(10),
                     Text(
                       'Tous les deux sont forts!',
                       textAlign: TextAlign.center,
@@ -555,7 +556,7 @@ class _CongratulationsDialogEqualState extends State<CongratulationsDialogEqual>
                         fontFamily: 'BricolageGrotesque',
                       ),
                     ),
-                    SizedBox(height: 20),
+                    Gap(20),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pop();

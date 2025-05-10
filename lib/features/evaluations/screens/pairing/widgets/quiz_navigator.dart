@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class QuizNavigator extends StatelessWidget {
   final VoidCallback? onPreviousQuiz;
   final VoidCallback? onNextQuiz;
 
-  const QuizNavigator({
-    super.key,
-    this.onPreviousQuiz,
-    this.onNextQuiz,
-  });
+  const QuizNavigator({super.key, this.onPreviousQuiz, this.onNextQuiz});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +23,7 @@ class QuizNavigator extends StatelessWidget {
             child: Row(
               children: const [
                 Icon(Icons.arrow_back, size: 18, color: Color(0xFF272727)),
-                SizedBox(width: 2),
+                Gap(2),
                 Text(
                   'Quiz précédent',
                   style: TextStyle(
@@ -50,7 +47,7 @@ class QuizNavigator extends StatelessWidget {
                     color: Color(0xFF272727),
                   ),
                 ),
-                SizedBox(width: 2),
+                Gap(2),
                 Icon(Icons.arrow_forward, size: 18, color: Color(0xFF272727)),
               ],
             ),

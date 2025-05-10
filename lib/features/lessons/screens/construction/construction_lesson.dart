@@ -76,7 +76,7 @@ class _ConstructionLessonScreenState extends State<ConstructionLessonScreen> {
                           'assets/images/illustrations/sorry.png',
                           fit: BoxFit.cover,
                         ),
-                        SizedBox(height: 50),
+                        Gap(50),
                         Image.asset(
                           'assets/images/illustrations/dsl.png',
                           fit: BoxFit.cover,
@@ -101,7 +101,7 @@ class _ConstructionLessonScreenState extends State<ConstructionLessonScreen> {
                   ),
                 ),
 
-                SizedBox(height: 15),
+                Gap(15),
 
                 // Lesson Content
                 Text(
@@ -127,7 +127,7 @@ class _ConstructionLessonScreenState extends State<ConstructionLessonScreen> {
                   "L’expression « Je suis désolé » sert à présenter ses excuses ou exprimer son regret après avoir fait ou dit quelque chose qui a pu blesser, déranger ou décevoir quelqu’un. On l’emploie dans des contextes formels et informels pour montrer que l’on reconnaît une erreur ou une maladresse.",
                   style: textStyle,
                 ),
-                SizedBox(height: 40),
+                Gap(40),
                 ContenuPrecedantSuivant(),
               ],
             ),

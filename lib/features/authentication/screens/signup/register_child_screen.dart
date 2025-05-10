@@ -30,7 +30,7 @@
 //       crossAxisAlignment: CrossAxisAlignment.start,
 //       children: [
 //         // Header
-//         const SizedBox(height: 20),
+//         const Gap( 20),
 
 //         // Username field
 //         CustomTextField(
@@ -38,14 +38,14 @@
 //           hintText: "Nom et prénom",
 //           icon: SvgPicture.asset(SvgAssets.solar_user_linear),
 //         ),
-//         const SizedBox(height: 24),
+//         const Gap( 24),
 
 //         const Text(
 //           "Choisissez votre avatar",
 //           style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
 //         ),
 
-//         const SizedBox(height: 12),
+//         const Gap( 12),
 
 //         Wrap(
 //           spacing: 12,
@@ -74,14 +74,14 @@
 //           }),
 //         ),
 
-//         const SizedBox(height: 24),
+//         const Gap( 24),
 
 //         const Text(
 //           "Définissez votre code PIN",
 //           style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
 //         ),
 
-//         const SizedBox(height: 8),
+//         const Gap( 8),
 
 //         PinCodeTextField(
 //           appContext: context,
@@ -102,23 +102,23 @@
 //           enableActiveFill: true,
 //         ),
 
-//         const SizedBox(height: 24),
+//         const Gap( 24),
 
 //         const Text(
 //           "Sélectionnez le niveau scolaire",
 //           style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
 //         ),
-//         const SizedBox(height: 12),
+//         const Gap( 12),
 
 //         Row(
 //           children: [
 //             _buildGradeOption(1, "1ere année"),
-//             const SizedBox(width: 10),
+//             const Gap( 10),
 //             _buildGradeOption(2, "2eme année"),
 //           ],
 //         ),
 
-//         const SizedBox(height: 40),
+//         const Gap( 40),
 
 //         // Submit button
 //         SizedBox(

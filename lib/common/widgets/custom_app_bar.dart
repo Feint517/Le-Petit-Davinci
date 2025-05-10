@@ -21,7 +21,7 @@ class CustomAppBar extends StatelessWidget {
             radius: 24,
           ),
         ),
-        const SizedBox(width: 12),
+        const Gap(12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +42,7 @@ class CustomAppBar extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          SizedBox(width: 10),
+                          Gap(10),
                           Row(
                             children: [
                               Row(
@@ -52,7 +52,7 @@ class CustomAppBar extends StatelessWidget {
                                     height: 10,
                                     width: 11,
                                   ),
-                                  SizedBox(width: 5),
+                                  Gap(5),
                                   Text(
                                     "400 XP",
                                     style: TextStyle(
@@ -65,7 +65,7 @@ class CustomAppBar extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 25),
+                          Gap(25),
                         ],
                       ),
                       SizedBox(

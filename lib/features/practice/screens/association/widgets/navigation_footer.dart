@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
@@ -22,7 +23,7 @@ class NavigationFooter extends GetView<AssociationController> {
             child: Row(
               children: [
                 Icon(Icons.arrow_back_ios, color: Color(0xFF272727), size: 18),
-                const SizedBox(width: 2),
+                const Gap(2),
                 Text(
                   "Quiz précédent",
                   style: TextStyle(
@@ -47,7 +48,7 @@ class NavigationFooter extends GetView<AssociationController> {
                     color: Color(0xFF272727),
                   ),
                 ),
-                const SizedBox(width: 2),
+                const Gap(2),
                 Icon(
                   Icons.arrow_forward_ios,
                   color: Color(0xFF272727),

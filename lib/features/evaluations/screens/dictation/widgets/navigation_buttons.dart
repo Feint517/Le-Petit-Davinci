@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class NavigationButtons extends StatelessWidget {
@@ -6,7 +7,7 @@ class NavigationButtons extends StatelessWidget {
   final VoidCallback onNext;
   final bool isFirstQuestion;
   final bool isLastQuestion;
-  
+
   const NavigationButtons({
     super.key,
     required this.onPrevious,
@@ -20,7 +21,7 @@ class NavigationButtons extends StatelessWidget {
     // Use MediaQuery to adapt button sizes based on screen width
     final screenWidth = MediaQuery.of(context).size.width;
     final isSmallScreen = screenWidth < 360;
-    
+
     return Row(
       children: [
         // Previous button
@@ -30,9 +31,10 @@ class NavigationButtons extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
-                  color: isFirstQuestion 
-                    ? Colors.transparent 
-                    : AppColors.primaryDeep.withValues(alpha: 0.3),
+                  color:
+                      isFirstQuestion
+                          ? Colors.transparent
+                          : AppColors.primaryDeep.withValues(alpha: 0.3),
                   blurRadius: 8,
                   offset: const Offset(0, 4),
                   spreadRadius: 0,
@@ -42,14 +44,17 @@ class NavigationButtons extends StatelessWidget {
             child: ElevatedButton(
               onPressed: isFirstQuestion ? null : onPrevious,
               style: ElevatedButton.styleFrom(
-                backgroundColor: isFirstQuestion 
-                  ? AppColors.primaryDeep.withValues(alpha: 0.3) 
-                  : AppColors.primaryDeep,
+                backgroundColor:
+                    isFirstQuestion
+                        ? AppColors.primaryDeep.withValues(alpha: 0.3)
+                        : AppColors.primaryDeep,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                padding: EdgeInsets.symmetric(vertical: isSmallScreen ? 12 : 14),
+                padding: EdgeInsets.symmetric(
+                  vertical: isSmallScreen ? 12 : 14,
+                ),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +64,7 @@ class NavigationButtons extends StatelessWidget {
                     color: Colors.white,
                     size: isSmallScreen ? 14 : 16,
                   ),
-                  SizedBox(width: isSmallScreen ? 4 : 8),
+                  Gap(isSmallScreen ? 4 : 8),
                   Text(
                     "Précédent",
                     style: TextStyle(
@@ -74,9 +79,9 @@ class NavigationButtons extends StatelessWidget {
             ),
           ),
         ),
-        
-        const SizedBox(width: 12),
-        
+
+        const Gap(12),
+
         // Next button
         Expanded(
           child: Container(
@@ -99,7 +104,9 @@ class NavigationButtons extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                padding: EdgeInsets.symmetric(vertical: isSmallScreen ? 12 : 14),
+                padding: EdgeInsets.symmetric(
+                  vertical: isSmallScreen ? 12 : 14,
+                ),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -113,9 +120,11 @@ class NavigationButtons extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(width: isSmallScreen ? 4 : 8),
+                  Gap(isSmallScreen ? 4 : 8),
                   Icon(
-                    isLastQuestion ? Icons.check_circle : Icons.arrow_forward_rounded,
+                    isLastQuestion
+                        ? Icons.check_circle
+                        : Icons.arrow_forward_rounded,
                     color: Colors.white,
                     size: isSmallScreen ? 14 : 16,
                   ),

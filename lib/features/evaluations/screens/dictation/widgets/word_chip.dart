@@ -70,7 +70,7 @@ class WordChip extends StatelessWidget {
               fontFamily: 'Bricolage Grotesque',
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Colors.black.withOpacity(isSelected ? 1.0 : 0.7),
+              color: Colors.black.withValues(alpha: isSelected ? 1.0 : 0.7),
               letterSpacing: -0.5,
             ),
           ),

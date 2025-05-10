@@ -12,7 +12,6 @@
 
 // class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
 
-  
 //   TextStyle textStyle = TextStyle(fontSize: 12);
 //   final List<String> tabs = ["Étude", "Exercices", "Animation", "Vidéo"];
 
@@ -67,7 +66,7 @@
 //                       "Toucher une lettre pour entendre son son.",
 //                       style: TextStyle(fontSize: 12),
 //                     ),
-//                     SizedBox(height: 15),
+//                     Gap( 15),
 //                     GridView.count(
 //                       shrinkWrap: true,
 //                       crossAxisCount: 4,
@@ -114,7 +113,7 @@
 //                 ),
 //               ),
 
-//               SizedBox(height: 15),
+//               Gap( 15),
 
 //               // Lesson Content
 //               Padding(
@@ -147,7 +146,7 @@
 //                   crossAxisAlignment: CrossAxisAlignment.start,
 //                   children: [
 //                     Text("Dans cette leçon, tu apprendras :", style: textStyle),
-//                     SizedBox(height: 5),
+//                     Gap( 5),
 //                     Text(
 //                       "🔷 La prononciation correcte de chaque lettre.",
 //                       style: textStyle,
@@ -160,7 +159,7 @@
 //                       "🔷 Comment associer les lettres à des mots simples.",
 //                       style: textStyle,
 //                     ),
-//                     SizedBox(height: 10),
+//                     Gap( 10),
 //                     Text(
 //                       "💡 Astuce : Pratique régulièrement en lisant des mots simples à voix haute pour améliorer ton accent et ta fluidité.",
 //                       style: TextStyle(fontSize: 12),
@@ -169,7 +168,7 @@
 //                 ),
 //               ),
 
-//               SizedBox(height: 40),
+//               Gap( 40),
 //               Center(
 //                 child: SizedBox(
 //                   width: MediaQuery.of(context).size.width - 20,
@@ -226,7 +225,7 @@
 //                   ),
 //                 ),
 //               ),
-//               SizedBox(height: 40),
+//               Gap( 40),
 //             ],
 //           ),
 //         ),

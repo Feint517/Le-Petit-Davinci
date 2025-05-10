@@ -190,7 +190,7 @@ class _DicteeInteractiveScreenState extends State<DictationInteractiveScreen>
                 children: [
                   // Header with back button and title (made more compact)
                   DicteeHeader(onBackPressed: () => Navigator.pop(context)),
-                  SizedBox(height: isSmallScreen ? 10 : 14),
+                  Gap(isSmallScreen ? 10 : 14),
 
                   // Combined row for quiz selection and progress/points
                   isNarrowScreen
@@ -203,7 +203,7 @@ class _DicteeInteractiveScreenState extends State<DictationInteractiveScreen>
                             title: 'Dictée interactive',
                             onPressed: () {},
                           ),
-                          const SizedBox(height: 8),
+                          const Gap(8),
                           // Progress and points in a row
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -228,7 +228,7 @@ class _DicteeInteractiveScreenState extends State<DictationInteractiveScreen>
                               onPressed: () {},
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          const Gap(10),
                           // Question progress and points
                           Expanded(
                             flex: 3,
@@ -245,7 +245,7 @@ class _DicteeInteractiveScreenState extends State<DictationInteractiveScreen>
                           ),
                         ],
                       ),
-                  SizedBox(height: isSmallScreen ? 8 : 12),
+                  Gap(isSmallScreen ? 8 : 12),
 
                   // Question card (most of the screen space)
                   Expanded(
@@ -267,7 +267,7 @@ class _DicteeInteractiveScreenState extends State<DictationInteractiveScreen>
                     isLastQuestion:
                         _currentQuestionIndex == _questions.length - 1,
                   ),
-                  SizedBox(height: isSmallScreen ? 8 : 12),
+                  Gap(isSmallScreen ? 8 : 12),
 
                   // Quiz navigation footer
                   QuizNavigationFooter(

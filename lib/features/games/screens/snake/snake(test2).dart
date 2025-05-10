@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/games/controllers/snake/snake_game_controller.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
@@ -11,7 +12,7 @@ class SnakeGame extends StatelessWidget {
   Widget build(BuildContext context) {
     // Initialize the controller using GetX dependency injection
     final controller = Get.put(SnakeController());
-    
+
     // Listen for game over state changes using a worker rather than inside build
     // This avoids nesting reactive contexts
     ever(controller.isPlaying, (isPlaying) {
@@ -19,7 +20,7 @@ class SnakeGame extends StatelessWidget {
         _showGameOverDialog(context, controller);
       }
     });
-    
+
     return Scaffold(
       backgroundColor: AppColors.light,
       body: Padding(
@@ -33,10 +34,10 @@ class SnakeGame extends StatelessWidget {
                 child: Column(
                   children: [
                     _buildHeader(context),
-                    
-                    const SizedBox(height: 20),
+
+                    const Gap(20),
                     _buildProgressSection(controller),
-                    
+
                     // Header with sound control
                     _buildSoundControl(controller),
 
@@ -55,14 +56,15 @@ class SnakeGame extends StatelessWidget {
 
       // Mode selection popup at the bottom - using individual reactive widgets
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Obx(() => 
-        controller.showModeSelection.value 
-            ? _buildModeSelectionPopup(controller) 
-            : const SizedBox()
+      floatingActionButton: Obx(
+        () =>
+            controller.showModeSelection.value
+                ? _buildModeSelectionPopup(controller)
+                : const SizedBox(),
       ),
     );
   }
-  
+
   Widget _buildHeader(BuildContext context) {
     return Row(
       children: [
@@ -116,7 +118,7 @@ class SnakeGame extends StatelessWidget {
       ],
     );
   }
-  
+
   Widget _buildProgressSection(SnakeController controller) {
     return Column(
       children: [
@@ -133,23 +135,25 @@ class SnakeGame extends StatelessWidget {
               ),
             ),
             // Only wrap the text that needs to be updated, not the whole row
-            Obx(() => controller.showModeSelection.value
-                ? Text(
-                    '1542',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'BricolageGrotesque',
-                      color: AppColors.accent,
-                    ),
-                  )
-                : Text(
-                    'Score: ${controller.score.value}',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'BricolageGrotesque',
-                      color: AppColors.accent,
-                    ),
-                  )
+            Obx(
+              () =>
+                  controller.showModeSelection.value
+                      ? Text(
+                        '1542',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'BricolageGrotesque',
+                          color: AppColors.accent,
+                        ),
+                      )
+                      : Text(
+                        'Score: ${controller.score.value}',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'BricolageGrotesque',
+                          color: AppColors.accent,
+                        ),
+                      ),
             ),
           ],
         ),
@@ -158,9 +162,7 @@ class SnakeGame extends StatelessWidget {
           child: LinearProgressIndicator(
             value: 0.68, // Replace with your value
             backgroundColor: Colors.grey,
-            valueColor: AlwaysStoppedAnimation(
-              AppColors.accent,
-            ),
+            valueColor: AlwaysStoppedAnimation(AppColors.accent),
             minHeight: 16,
             borderRadius: BorderRadius.circular(20),
           ),
@@ -168,7 +170,7 @@ class SnakeGame extends StatelessWidget {
       ],
     );
   }
-  
+
   Widget _buildSoundControl(SnakeController controller) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -184,21 +186,22 @@ class SnakeGame extends StatelessWidget {
               borderRadius: BorderRadius.circular(7),
             ),
             // Only wrap the icon widget with Obx
-            child: Obx(() => IconButton(
+            child: Obx(
+              () => IconButton(
                 icon: Icon(
                   controller.isMuted.value ? Icons.volume_off : Icons.volume_up,
                   size: 24,
                   color: Colors.white,
                 ),
                 onPressed: controller.toggleSound,
-              )
+              ),
             ),
           ),
         ],
       ),
     );
   }
-  
+
   Widget _buildGameBoard(SnakeController controller) {
     return Expanded(
       child: Center(
@@ -208,10 +211,7 @@ class SnakeGame extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Colors.green[100],
-              border: Border.all(
-                color: AppColors.accent,
-                width: 3,
-              ),
+              border: Border.all(color: AppColors.accent, width: 3),
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
@@ -225,62 +225,66 @@ class SnakeGame extends StatelessWidget {
             // This avoids the reactive nesting issues
             child: GetBuilder<SnakeController>(
               init: controller,
-              builder: (ctrl) => GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: SnakeController.squaresPerRow,
-                ),
-                itemCount: SnakeController.squaresPerRow * SnakeController.squaresPerCol,
-                itemBuilder: (context, index) {
-                  if (ctrl.snake.isNotEmpty && ctrl.snake.first == index) {
-                    // Snake head
-                    return Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.buttonPrimary,
-                          borderRadius: BorderRadius.circular(10),
+              builder:
+                  (ctrl) => GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: SnakeController.squaresPerRow,
                         ),
-                      ),
-                    );
-                  } else if (ctrl.snake.contains(index)) {
-                    // Snake body
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.buttonPrimary,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    );
-                  } else if (ctrl.food.value == index) {
-                    // Food (apple)
-                    return Center(
-                      child: Container(
-                        decoration: const BoxDecoration(),
-                        child:  FittedBox(
-                          child: Image.asset(
-                            'assets/images/tictactoe/apple.png',
+                    itemCount:
+                        SnakeController.squaresPerRow *
+                        SnakeController.squaresPerCol,
+                    itemBuilder: (context, index) {
+                      if (ctrl.snake.isNotEmpty && ctrl.snake.first == index) {
+                        // Snake head
+                        return Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.buttonPrimary,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  } else {
-                    // Empty space
-                    return Container(
-                      margin: const EdgeInsets.all(1),
-                      decoration: BoxDecoration(
-                        color: Colors.green[100],
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    );
-                  }
-                },
-              ),
+                        );
+                      } else if (ctrl.snake.contains(index)) {
+                        // Snake body
+                        return Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.buttonPrimary,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        );
+                      } else if (ctrl.food.value == index) {
+                        // Food (apple)
+                        return Center(
+                          child: Container(
+                            decoration: const BoxDecoration(),
+                            child: FittedBox(
+                              child: Image.asset(
+                                'assets/images/tictactoe/apple.png',
+                              ),
+                            ),
+                          ),
+                        );
+                      } else {
+                        // Empty space
+                        return Container(
+                          margin: const EdgeInsets.all(1),
+                          decoration: BoxDecoration(
+                            color: Colors.green[100],
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        );
+                      }
+                    },
+                  ),
             ),
           ),
         ),
       ),
     );
   }
-  
+
   Widget _buildControlButtons(SnakeController controller) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -304,7 +308,7 @@ class SnakeGame extends StatelessWidget {
                 icon: Icons.arrow_back,
                 onPressed: () => controller.changeDirection('left'),
               ),
-              const SizedBox(width: 70),
+              const Gap(70),
               ControlButton(
                 icon: Icons.arrow_forward,
                 onPressed: () => controller.changeDirection('right'),
@@ -325,7 +329,7 @@ class SnakeGame extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget _buildModeSelectionPopup(SnakeController controller) {
     return SlideTransition(
       position: controller.slideAnimation,
@@ -357,21 +361,22 @@ class SnakeGame extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 15),
+            const Gap(15),
 
             // Separate reactive wrapper for just the difficulty buttons row
-            Obx(() => Row(
+            Obx(
+              () => Row(
                 children: [
                   _buildDifficultyButton(controller, 'easy', 'Facile'),
-                  const SizedBox(width: 10),
+                  const Gap(10),
                   _buildDifficultyButton(controller, 'medium', 'Moyen'),
-                  const SizedBox(width: 10),
+                  const Gap(10),
                   _buildDifficultyButton(controller, 'hard', 'Difficile'),
                 ],
-              )
+              ),
             ),
-            
-            const SizedBox(height: 15),
+
+            const Gap(15),
 
             Text(
               'Jeu du Serpent',
@@ -390,7 +395,7 @@ class SnakeGame extends StatelessWidget {
                 color: AppColors.white,
               ),
             ),
-            const SizedBox(height: 25),
+            const Gap(25),
             Center(
               child: GestureDetector(
                 onTap: controller.startGame,
@@ -402,8 +407,7 @@ class SnakeGame extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.secondary
-                            .withValues(alpha: 0.3),
+                        color: AppColors.secondary.withValues(alpha: 0.3),
                         spreadRadius: 1,
                         blurRadius: 5,
                         offset: const Offset(0, 3),
@@ -421,7 +425,7 @@ class SnakeGame extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const Gap(8),
                       const Icon(
                         Icons.play_arrow_outlined,
                         color: Colors.black,
@@ -437,24 +441,27 @@ class SnakeGame extends StatelessWidget {
       ),
     );
   }
-  
-  Widget _buildDifficultyButton(SnakeController controller, String value, String label) {
+
+  Widget _buildDifficultyButton(
+    SnakeController controller,
+    String value,
+    String label,
+  ) {
     // Individual reactive widget for each button - controller.difficulty is observed only in this context
     return Expanded(
       child: GestureDetector(
         onTap: () => controller.setDifficulty(value),
-        child: Obx(() => AnimatedContainer(
+        child: Obx(
+          () => AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
             height: 35,
             decoration: BoxDecoration(
-              border: Border.all(
-                color: AppColors.white,
-                width: 2,
-              ),
-              color: controller.difficulty.value == value
-                  ? Colors.white
-                  : AppColors.purple,
+              border: Border.all(color: AppColors.white, width: 2),
+              color:
+                  controller.difficulty.value == value
+                      ? Colors.white
+                      : AppColors.purple,
               borderRadius: BorderRadius.circular(15),
             ),
             child: Center(
@@ -463,13 +470,14 @@ class SnakeGame extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12,
                   fontFamily: 'BricolageGrotesque',
-                  color: controller.difficulty.value == value
-                      ? AppColors.purple
-                      : Colors.white,
+                  color:
+                      controller.difficulty.value == value
+                          ? AppColors.purple
+                          : Colors.white,
                 ),
               ),
             ),
-          )
+          ),
         ),
       ),
     );
@@ -480,77 +488,84 @@ void _showGameOverDialog(BuildContext context, SnakeController controller) {
   showDialog(
     context: context,
     barrierDismissible: false,
-    builder: (context) => AlertDialog(
-      backgroundColor: AppColors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      title: Text(
-        'Game Over!',
-        style: TextStyle(
-          fontFamily: 'BricolageGrotesque',
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-        ),
-        textAlign: TextAlign.center,
-      ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Score: ${controller.score.value}',
+    builder:
+        (context) => AlertDialog(
+          backgroundColor: AppColors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: Text(
+            'Game Over!',
             style: TextStyle(
               fontFamily: 'BricolageGrotesque',
-              fontSize: 18,
+              fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 20),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Score: ${controller.score.value}',
+                style: TextStyle(
+                  fontFamily: 'BricolageGrotesque',
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const Gap(20),
 
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              controller.startGame();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.accent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  controller.startGame();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.accent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                ),
+                child: Text(
+                  'Play Again',
+                  style: TextStyle(
+                    fontFamily: 'BricolageGrotesque',
+                    color: Colors.white,
+                  ),
+                ),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            ),
-            child: Text(
-              'Play Again',
-              style: TextStyle(
-                fontFamily: 'BricolageGrotesque',
-                color: Colors.white,
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  controller.returnToMenu();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.darkGrey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                ),
+                child: Text(
+                  'Menu',
+                  style: TextStyle(
+                    fontFamily: 'BricolageGrotesque',
+                    color: Colors.white,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              controller.returnToMenu();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.darkGrey,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            ),
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                fontFamily: 'BricolageGrotesque',
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
+        ),
   );
 }
 

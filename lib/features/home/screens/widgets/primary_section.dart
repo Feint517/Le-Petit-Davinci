@@ -95,7 +95,7 @@ class _PrimarySectionState extends State<PrimarySection> {
                       ),
                     ),
 
-                    const SizedBox(width: 16),
+                    const Gap(16),
 
                     //* Points
                     Expanded(
@@ -182,7 +182,7 @@ class _PrimarySectionState extends State<PrimarySection> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 12),
+                          const Gap(12),
                           const Text(
                             'Vocabulaire thématique',
                             style: TextStyle(
@@ -191,7 +191,7 @@ class _PrimarySectionState extends State<PrimarySection> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          const Gap(8),
                           Row(
                             children: [
                               Text(
@@ -201,7 +201,7 @@ class _PrimarySectionState extends State<PrimarySection> {
                                   fontSize: 10,
                                 ),
                               ),
-                              const SizedBox(width: 4),
+                              const Gap(4),
                               Container(
                                 height: 5,
                                 width: 5,
@@ -210,7 +210,7 @@ class _PrimarySectionState extends State<PrimarySection> {
                                   color: Color(0xffFDCFFE),
                                 ),
                               ),
-                              const SizedBox(width: 4),
+                              const Gap(4),
                               Text(
                                 '1 Heures 20 Minutes',
                                 style: TextStyle(
@@ -220,7 +220,7 @@ class _PrimarySectionState extends State<PrimarySection> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 16),
+                          const Gap(16),
                           // Continue button
                           SizedBox(
                             width: 165,

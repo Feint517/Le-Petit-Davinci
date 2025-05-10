@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 
@@ -15,7 +16,7 @@ class CustomPopupDialog extends StatelessWidget {
   /// [onSecondaryButtonPressed] - Callback function when secondary button is pressed
   /// [icon] - Optional icon to display above the title
   /// [iconColor] - Color for the icon
-  
+
   const CustomPopupDialog({
     super.key,
     required this.title,
@@ -44,9 +45,7 @@ class CustomPopupDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       elevation: 0,
       backgroundColor: Colors.transparent,
       child: _buildDialogContent(context),
@@ -75,12 +74,8 @@ class CustomPopupDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min, // To make the card compact
             children: [
               if (icon != null) ...[
-                Icon(
-                  icon,
-                  color: iconColor,
-                  size: 48,
-                ),
-                const SizedBox(height: AppSizes.sm),
+                Icon(icon, color: iconColor, size: 48),
+                const Gap(AppSizes.sm),
               ],
               Text(
                 title,
@@ -89,15 +84,13 @@ class CustomPopupDialog extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: AppSizes.sm),
+              const Gap(AppSizes.sm),
               Text(
                 content,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
+                style: const TextStyle(fontSize: 14),
               ),
-              const SizedBox(height: AppSizes.defaultSpace),
+              const Gap(AppSizes.defaultSpace),
               _buildButtons(context),
             ],
           ),
@@ -122,13 +115,14 @@ class CustomPopupDialog extends StatelessWidget {
         child: Text(primaryButtonText),
       );
     }
-    
+
     // If we have both primary and secondary buttons
     return Row(
       children: [
         Expanded(
           child: ElevatedButton(
-            onPressed: onSecondaryButtonPressed ?? () => Navigator.of(context).pop(),
+            onPressed:
+                onSecondaryButtonPressed ?? () => Navigator.of(context).pop(),
             style: ElevatedButton.styleFrom(
               backgroundColor: secondaryButtonColor,
               foregroundColor: Colors.black,
@@ -142,7 +136,7 @@ class CustomPopupDialog extends StatelessWidget {
             child: Text(secondaryButtonText!),
           ),
         ),
-        const SizedBox(width: AppSizes.sm),
+        const Gap(AppSizes.sm),
         Expanded(
           child: ElevatedButton(
             onPressed: onPrimaryButtonPressed,

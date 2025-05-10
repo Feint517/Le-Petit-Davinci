@@ -54,7 +54,8 @@ class ModeSelectionPopup extends GetView<TicTacToeController> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () => controller.setMultiplayer(false),
-                      child: Obx(() => AnimatedContainer(
+                      child: Obx(
+                        () => AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           height: 35,
@@ -104,7 +105,8 @@ class ModeSelectionPopup extends GetView<TicTacToeController> {
                   Expanded(
                     child: GestureDetector(
                       onTap: () => controller.setMultiplayer(true),
-                      child: Obx(() => AnimatedContainer(
+                      child: Obx(
+                        () => AnimatedContainer(
                           duration: const Duration(milliseconds: 300),
                           curve: Curves.easeInOut,
                           height: 35,
@@ -150,38 +152,41 @@ class ModeSelectionPopup extends GetView<TicTacToeController> {
                 ],
               ),
               const Gap(15),
-              
+
               // Only show difficulty selector in solo mode
-              Obx(() => !controller.isMultiplayer.value
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Difficulté',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: 'BricolageGrotesque',
-                            color: AppColors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
+              Obx(
+                () =>
+                    !controller.isMultiplayer.value
+                        ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            DifficultyButton('easy', 'Facile'),
+                            const Text(
+                              'Difficulté',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'BricolageGrotesque',
+                                color: AppColors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             const Gap(10),
-                            DifficultyButton('medium', 'Moyen'),
-                            const Gap(10),
-                            DifficultyButton('hard', 'Difficile'),
+                            Row(
+                              children: [
+                                DifficultyButton('easy', 'Facile'),
+                                const Gap(10),
+                                DifficultyButton('medium', 'Moyen'),
+                                const Gap(10),
+                                DifficultyButton('hard', 'Difficile'),
+                              ],
+                            ),
+                            const Gap(15),
                           ],
-                        ),
-                        const Gap(15),
-                      ],
-                    )
-                  : const SizedBox(),
+                        )
+                        : const SizedBox(),
               ),
 
-              Obx(() => Text(
+              Obx(
+                () => Text(
                   controller.isMultiplayer.value
                       ? 'Jouez contre un ami!'
                       : 'Jouez contre l\'ordinateur!',
@@ -213,7 +218,9 @@ class ModeSelectionPopup extends GetView<TicTacToeController> {
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.buttonSecondary.withValues(alpha: 0.3),
+                          color: AppColors.buttonSecondary.withValues(
+                            alpha: 0.3,
+                          ),
                           spreadRadius: 1,
                           blurRadius: 5,
                           offset: const Offset(0, 3),
@@ -231,7 +238,7 @@ class ModeSelectionPopup extends GetView<TicTacToeController> {
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        Gap(8),
                         Icon(
                           Icons.play_arrow_outlined,
                           color: Colors.black,

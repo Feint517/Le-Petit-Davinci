@@ -1,5 +1,6 @@
 // series_seven_content.dart
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/features/practice/models/counting_item.dart';
@@ -33,7 +34,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
                         color: AppColors.primary,
                         size: 30,
                       ),
-                      const SizedBox(height: 8),
+                      const Gap(8),
                       Text(
                         "Compter les objets",
                         style: const TextStyle(
@@ -115,7 +116,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
                           color: Colors.purple,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      const Gap(10),
 
                       // Image with objects to count
                       Expanded(
@@ -135,7 +136,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
                                       size: 40,
                                       color: Colors.grey[400],
                                     ),
-                                    const SizedBox(height: 8),
+                                    const Gap(8),
                                     Text(
                                       "Image non disponible",
                                       style: TextStyle(
@@ -197,8 +198,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
           scrollDirection: Axis.horizontal,
           itemCount: categories.length,
           separatorBuilder:
-              (context, index) =>
-                  SizedBox(width: itemWidth * 0.05), // Proportional spacing
+              (context, index) => Gap(itemWidth * 0.05), // Proportional spacing
           itemBuilder: (context, index) {
             final category = categories[index];
             return SizedBox(
@@ -259,7 +259,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
                       const Icon(Icons.image_not_supported, color: Colors.grey),
             ),
           ),
-          SizedBox(height: width * 0.08),
+          Gap(width * 0.08),
 
           // Category name - adaptive font size
           Text(
@@ -272,7 +272,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
               color: AppColors.primaryDeep,
             ),
           ),
-          SizedBox(height: width * 0.08),
+          Gap(width * 0.08),
 
           // Counter controls - more compact
           FittedBox(
@@ -380,7 +380,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
 
           // Correct/incorrect feedback
           if (controller.isAnswerValidated.value) ...[
-            SizedBox(height: width * 0.08),
+            Gap(width * 0.08),
             Icon(
               isCorrect ? Icons.check_circle : Icons.cancel,
               color: isCorrect ? Colors.green : Colors.red,

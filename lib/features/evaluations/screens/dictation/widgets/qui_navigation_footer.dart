@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class QuizNavigationFooter extends StatelessWidget {
   final VoidCallback onPreviousQuiz;
   final VoidCallback onNextQuiz;
-  
+
   const QuizNavigationFooter({
     super.key,
     required this.onPreviousQuiz,
@@ -27,12 +28,8 @@ class QuizNavigationFooter extends StatelessWidget {
             onTap: onPreviousQuiz,
             child: Row(
               children: [
-                Icon(
-                  Icons.arrow_back_ios,
-                  color: Color(0xFF272727),
-                  size: 18,
-                ),
-                const SizedBox(width: 2),
+                Icon(Icons.arrow_back_ios, color: Color(0xFF272727), size: 18),
+                const Gap(2),
                 Text(
                   "Quiz précédent",
                   style: TextStyle(
@@ -44,7 +41,7 @@ class QuizNavigationFooter extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // Next quiz button
           GestureDetector(
             onTap: onNextQuiz,
@@ -58,7 +55,7 @@ class QuizNavigationFooter extends StatelessWidget {
                     color: Color(0xFF272727),
                   ),
                 ),
-                const SizedBox(width: 2),
+                const Gap(2),
                 Icon(
                   Icons.arrow_forward_ios,
                   color: Color(0xFF272727),

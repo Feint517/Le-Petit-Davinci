@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/features/practice/models/color_combination_item.dart';
@@ -36,7 +37,7 @@ class SeriesThreeContent extends GetView<AssociationController> {
                           color: AppColors.primary,
                           size: 30,
                         ),
-                        const SizedBox(height: 8),
+                        const Gap(8),
                         Text(
                           "Combinaisons de Couleurs",
                           style: TextStyle(
@@ -138,7 +139,7 @@ class SeriesThreeContent extends GetView<AssociationController> {
                                       color: Colors.amber,
                                       size: 24,
                                     ),
-                                    const SizedBox(height: 8),
+                                    const Gap(8),
                                     Text(
                                       exercise.instruction,
                                       textAlign: TextAlign.center,
@@ -291,7 +292,7 @@ class SeriesThreeContent extends GetView<AssociationController> {
             ],
           ),
         ),
-        const SizedBox(height: 4),
+        const Gap(4),
         Text(
           colorName,
           style: const TextStyle(
@@ -363,7 +364,7 @@ class SeriesThreeContent extends GetView<AssociationController> {
             ),
           ),
         ),
-        const SizedBox(height: 4),
+        const Gap(4),
         Text(
           controller.selectedColorAnswer.value ?? "?",
           style: const TextStyle(
@@ -397,7 +398,7 @@ class SeriesThreeContent extends GetView<AssociationController> {
           child: Row(
             children: const [
               Icon(Icons.palette, color: Color(0xFFFF9E80), size: 14),
-              SizedBox(width: 4),
+              Gap(4),
               Text(
                 "Palette de couleurs",
                 style: TextStyle(
@@ -459,7 +460,8 @@ class SeriesThreeContent extends GetView<AssociationController> {
           color: color.withValues(alpha: 0.7),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isSelected ? Colors.black : Colors.black.withValues(alpha: 0.2),
+            color:
+                isSelected ? Colors.black : Colors.black.withValues(alpha: 0.2),
             width: isSelected ? 2.0 : 1.0,
           ),
           boxShadow:

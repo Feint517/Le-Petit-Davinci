@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class StatCard extends StatelessWidget {
@@ -9,7 +10,8 @@ class StatCard extends StatelessWidget {
   final String actionLabel;
   final Color actionColor;
 
-  const StatCard({super.key, 
+  const StatCard({
+    super.key,
     required this.title,
     required this.value,
     required this.icon,
@@ -30,9 +32,9 @@ class StatCard extends StatelessWidget {
             SvgPicture.asset(icon, height: 15),
           ],
         ),
-        const SizedBox(height: 12),
+        const Gap(12),
         value,
-        const SizedBox(height: 8),
+        const Gap(8),
         Row(
           children: [
             Text(
@@ -45,10 +47,7 @@ class StatCard extends StatelessWidget {
             ),
             SvgPicture.asset(
               SvgAssets.solar_arrow_right_up_linear,
-              colorFilter: ColorFilter.mode(
-                actionColor,
-                BlendMode.srcIn,
-              ),
+              colorFilter: ColorFilter.mode(actionColor, BlendMode.srcIn),
               height: 15,
             ),
           ],

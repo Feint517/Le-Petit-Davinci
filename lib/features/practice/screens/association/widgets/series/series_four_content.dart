@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
@@ -30,7 +31,7 @@ class SeriesFourContent extends GetView<AssociationController> {
                         ),
                         size: 30,
                       ),
-                      const SizedBox(height: 8),
+                      const Gap(8),
                       Text(
                         controller.currentExercise.targetColor,
                         style: const TextStyle(
@@ -213,7 +214,7 @@ class SeriesFourContent extends GetView<AssociationController> {
                           size: 40,
                           color: Colors.grey[400],
                         ),
-                        const SizedBox(height: 8),
+                        const Gap(8),
                         Text(
                           "Image non disponible",
                           textAlign: TextAlign.center,

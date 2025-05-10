@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/games/screens/snake/snake.dart';
-import 'package:kids_learning_app/features/games/screens/tic-tac-toe/tic_tac_toe(updated).dart';
+import 'package:kids_learning_app/features/games/screens/tic-tac-toe/tic_tac_toe.dart';
 import 'package:kids_learning_app/features/home/screens/widgets/game_card.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class GameCard extends StatelessWidget {
   const GameCard({
@@ -37,7 +38,7 @@ class GameCard extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(iconPath, height: 60, width: 60),
-            const SizedBox(width: 16),
+            const Gap(16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

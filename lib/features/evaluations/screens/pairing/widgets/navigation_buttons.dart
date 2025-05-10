@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class NavigationButtons extends StatelessWidget {
   final VoidCallback? onPrevious;
@@ -23,7 +24,9 @@ class NavigationButtons extends StatelessWidget {
           child: ElevatedButton(
             onPressed: isFirstQuestion ? null : onPrevious,
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF9281FF), // Main Color/Purple - Primary
+              backgroundColor: const Color(
+                0xFF9281FF,
+              ), // Main Color/Purple - Primary
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
@@ -37,7 +40,7 @@ class NavigationButtons extends StatelessWidget {
                   color: Color(0xFF272727),
                   size: 14,
                 ),
-                SizedBox(width: 6),
+                Gap(6),
                 Text(
                   "Précédent",
                   style: TextStyle(
@@ -50,9 +53,9 @@ class NavigationButtons extends StatelessWidget {
             ),
           ),
         ),
-        
-        const SizedBox(width: 10),
-        
+
+        const Gap(10),
+
         // Next button
         Expanded(
           child: ElevatedButton(
@@ -75,9 +78,11 @@ class NavigationButtons extends StatelessWidget {
                     color: Color(0xFF272727),
                   ),
                 ),
-                const SizedBox(width: 6),
+                const Gap(6),
                 Icon(
-                  isLastQuestion ? Icons.check_circle : Icons.arrow_forward_rounded,
+                  isLastQuestion
+                      ? Icons.check_circle
+                      : Icons.arrow_forward_rounded,
                   color: const Color(0xFF272727),
                   size: 14,
                 ),

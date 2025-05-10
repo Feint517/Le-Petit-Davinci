@@ -6,12 +6,12 @@ class CommonHeader extends StatelessWidget {
     super.key,
     this.pageTitle,
     this.trailing,
-    this.onTap,
+    this.onTapTrailing,
   });
 
   final String? pageTitle;
   final Widget? trailing;
-  final VoidCallback? onTap;
+  final VoidCallback? onTapTrailing;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class CommonHeader extends StatelessWidget {
         ),
         Spacer(),
         trailing != null
-            ? GestureDetector(onTap: onTap, child: trailing!)
+            ? GestureDetector(onTap: onTapTrailing, child: trailing!)
             : const SizedBox.shrink(),
       ],
     );

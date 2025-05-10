@@ -20,8 +20,7 @@ class GuideCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize:
-            MainAxisSize.min,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             children: const [
@@ -50,7 +49,7 @@ class GuideCard extends StatelessWidget {
               color: Color(0xFF4A5568),
             ),
           ),
-          const SizedBox(height: 12),
+          const Gap(12),
           // Align button to ensure proper sizing
           Align(
             alignment: Alignment.centerLeft,

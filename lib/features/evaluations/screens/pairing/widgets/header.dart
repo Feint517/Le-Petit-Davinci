@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 class Header extends StatelessWidget {
   final String title;
   final VoidCallback onBackPressed;
 
-  const Header({
-    super.key,
-    required this.title,
-    required this.onBackPressed,
-  });
+  const Header({super.key, required this.title, required this.onBackPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +25,7 @@ class Header extends StatelessWidget {
                     color: Color(0xFF6C6C6C),
                     size: 18,
                   ),
-                  SizedBox(width: 2),
+                  Gap(2),
                   Text(
                     "Retour",
                     style: TextStyle(
@@ -40,7 +37,7 @@ class Header extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 8),
+            const Gap(8),
             Text(
               title,
               style: const TextStyle(

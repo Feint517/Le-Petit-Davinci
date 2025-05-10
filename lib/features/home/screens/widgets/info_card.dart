@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class InfoCard extends StatelessWidget {
   final String title, mainText, subText;
@@ -25,7 +26,7 @@ class InfoCard extends StatelessWidget {
         children: [
           Text(title),
           Text(mainText, style: TextStyle(fontSize: 20, color: color)),
-          SizedBox(height: 4),
+          Gap(4),
           Text(
             subText,
             style: TextStyle(color: color, fontWeight: FontWeight.w600),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class QuestionBox extends StatelessWidget {
   final String imagePath;
@@ -34,7 +35,7 @@ class QuestionBox extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
-          
+
           // Decoration lines
           Center(
             child: Container(
@@ -43,7 +44,7 @@ class QuestionBox extends StatelessWidget {
               color: const Color(0xFF494949),
             ),
           ),
-          const SizedBox(height: 10),
+          const Gap(10),
           Center(
             child: Container(
               width: 95,
@@ -51,9 +52,9 @@ class QuestionBox extends StatelessWidget {
               color: const Color(0xFF494949),
             ),
           ),
-          
+
           const Spacer(),
-          
+
           // Options
           Padding(
             padding: const EdgeInsets.all(24.0),
@@ -61,32 +62,39 @@ class QuestionBox extends StatelessWidget {
               alignment: WrapAlignment.center,
               spacing: 16,
               runSpacing: 16,
-              children: options.map((option) {
-                final isSelected = option == selectedOption;
-                return ElevatedButton(
-                  onPressed: () => onOptionSelected(option),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.black,
-                    side: BorderSide(
-                      color: isSelected ? const Color(0xFF9281FF) : Colors.black,
-                      width: isSelected ? 2 : 1,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                  ),
-                  child: Text(
-                    option,
-                    style: const TextStyle(
-                      fontFamily: 'Bricolage Grotesque',
-                      fontSize: 12,
-                      color: Color(0xFF272727),
-                    ),
-                  ),
-                );
-              }).toList(),
+              children:
+                  options.map((option) {
+                    final isSelected = option == selectedOption;
+                    return ElevatedButton(
+                      onPressed: () => onOptionSelected(option),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                        side: BorderSide(
+                          color:
+                              isSelected
+                                  ? const Color(0xFF9281FF)
+                                  : Colors.black,
+                          width: isSelected ? 2 : 1,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 8,
+                        ),
+                      ),
+                      child: Text(
+                        option,
+                        style: const TextStyle(
+                          fontFamily: 'Bricolage Grotesque',
+                          fontSize: 12,
+                          color: Color(0xFF272727),
+                        ),
+                      ),
+                    );
+                  }).toList(),
             ),
           ),
         ],

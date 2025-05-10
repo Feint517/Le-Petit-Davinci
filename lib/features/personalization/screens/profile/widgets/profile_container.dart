@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class ProfileContainer extends StatelessWidget {
-  const ProfileContainer({
-    super.key,
-  });
+  const ProfileContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 90,
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 12,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -40,8 +36,8 @@ class ProfileContainer extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 15),
-    
+          const Gap(15),
+
           // User info
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +52,7 @@ class ProfileContainer extends StatelessWidget {
                   color: Color(0xFF1A202C),
                 ),
               ),
-              SizedBox(height: 5),
+              Gap(5),
               Text(
                 "Niveau 12 • 400 XP",
                 style: TextStyle(
@@ -67,9 +63,9 @@ class ProfileContainer extends StatelessWidget {
               ),
             ],
           ),
-    
+
           const Spacer(),
-    
+
           // Edit button
           Container(
             height: 32,

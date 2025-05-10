@@ -64,7 +64,7 @@ class PinSection extends StatelessWidget {
             enableActiveFill: true,
           ),
 
-          const SizedBox(height: 28),
+          const Gap(28),
 
           SizedBox(
             width: double.infinity,
@@ -89,7 +89,7 @@ class PinSection extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 12),
+          const Gap(12),
           Center(
             child: TextButton(
               onPressed: () {},

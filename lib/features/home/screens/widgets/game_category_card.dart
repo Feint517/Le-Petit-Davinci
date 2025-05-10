@@ -1,5 +1,6 @@
 // lib/features/home/screens/widgets/game_category_card.dart
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class GameCategoryCard extends StatelessWidget {
@@ -41,7 +42,7 @@ class GameCategoryCard extends StatelessWidget {
         child: Row(
           children: [
             Image.asset(iconPath, height: 60, width: 60),
-            const SizedBox(width: 16),
+            const Gap(16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,9 +59,12 @@ class GameCategoryCard extends StatelessWidget {
                     subtitle,
                     style: const TextStyle(color: Colors.white, fontSize: 10),
                   ),
-                  const SizedBox(height: 6),
+                  const Gap(6),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.25),
                       borderRadius: BorderRadius.circular(10),

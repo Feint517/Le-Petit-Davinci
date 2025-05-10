@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import '../../../models/multiple_choice/quiz_question.dart';
 import 'option_item.dart';
 import 'question_image.dart';
@@ -36,21 +37,25 @@ class QuestionBox extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          const SizedBox(height: 24),
-          
+          const Gap(24),
+
           // Question image
           QuestionImage(imagePath: question.imagePath),
-          const SizedBox(height: 24),
-          
+          const Gap(24),
+
           // Answer options
-          ...question.options.map((option) => OptionItem(
-            option: option,
-            isSelected: selectedAnswer == option,
-            onTap: () => onOptionSelected(option),
-          )).toList(),
-          
+          ...question.options
+              .map(
+                (option) => OptionItem(
+                  option: option,
+                  isSelected: selectedAnswer == option,
+                  onTap: () => onOptionSelected(option),
+                ),
+              )
+              .toList(),
+
           // Astuce (Tip)
-          const SizedBox(height: 24),
+          const Gap(24),
           const Text(
             '💡 Astuce : Ne te précipite pas ! Prends ton temps pour bien comprendre chaque question avant de choisir ta réponse.',
             style: TextStyle(
