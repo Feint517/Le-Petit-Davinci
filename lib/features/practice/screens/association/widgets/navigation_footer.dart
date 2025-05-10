@@ -9,41 +9,51 @@ class NavigationFooter extends GetView<AssociationController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 16),
-      width: double.infinity,
-      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       decoration: BoxDecoration(
         color: AppColors.secondary,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(80),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Previous exercise button
-          TextButton.icon(
-            onPressed: () => controller.navigateToPreviousExercise(),
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 12,
-            ),
-            label: const Text(
-              "Exercice précédent",
-              style: TextStyle(color: Colors.black, fontSize: 12),
+          GestureDetector(
+            onTap: () => controller.navigateToPreviousExercise(),
+            child: Row(
+              children: [
+                Icon(Icons.arrow_back_ios, color: Color(0xFF272727), size: 18),
+                const SizedBox(width: 2),
+                Text(
+                  "Quiz précédent",
+                  style: TextStyle(
+                    fontFamily: 'Archivo',
+                    fontSize: 12,
+                    color: Color(0xFF272727),
+                  ),
+                ),
+              ],
             ),
           ),
 
-          // Next exercise button
-          TextButton.icon(
-            onPressed: () => controller.navigateToNextExercise(),
-            label: const Text(
-              "Exercice suivant",
-              style: TextStyle(color: Colors.black, fontSize: 12),
-            ),
-            icon: const Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.black,
-              size: 12,
+          GestureDetector(
+            onTap: () => controller.navigateToNextExercise(),
+            child: Row(
+              children: [
+                Text(
+                  "Quiz suivant",
+                  style: TextStyle(
+                    fontFamily: 'Archivo',
+                    fontSize: 12,
+                    color: Color(0xFF272727),
+                  ),
+                ),
+                const SizedBox(width: 2),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  color: Color(0xFF272727),
+                  size: 18,
+                ),
+              ],
             ),
           ),
         ],

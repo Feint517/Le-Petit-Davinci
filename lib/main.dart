@@ -25,11 +25,3 @@ void main() async {
    );
   
 }
-
-//! known issues:
-
-//TODO:
-// 1. refactor all the widgets in evaluations folder.
-// 2. refactor all the widgets in games folder.
-// 3. refactor all the widgets in lessons folder.
-
