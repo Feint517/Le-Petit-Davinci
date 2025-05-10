@@ -13,7 +13,7 @@ class AppariementQuestion {
     required this.points,
   });
 
-  // Sample questions for demonstration purposes
+  //* Sample questions for demonstration purposes
   static List<AppariementQuestion> getSampleQuestions() {
     return [
       AppariementQuestion(

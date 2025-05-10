@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kids_learning_app/features/evaluations/models/dictation/dictee_question.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/answer_area.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/word_bank.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class QuestionCard extends StatelessWidget {
   final DicteeQuestion question;
@@ -22,10 +23,10 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Check if we need to adjust layout for small screens
+    //? Check if we need to adjust layout for small screens
     final screenHeight = MediaQuery.of(context).size.height;
     final isSmallScreen = screenHeight < 700;
-    
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -33,25 +34,25 @@ class QuestionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.purple.withValues(alpha: 0.1),
+            color: AppColors.primaryDeep.withValues(alpha: 0.1),
             blurRadius: 15,
             offset: const Offset(0, 8),
             spreadRadius: 2,
           ),
         ],
         border: Border.all(
-          color: Colors.purple.withValues(alpha: 0.2),
+          color: AppColors.primaryDeep.withValues(alpha: 0.2),
           width: 2,
         ),
       ),
       child: Column(
         children: [
-          // Content area with positioned audio icon - reduced height
+          //* Content area with positioned audio icon - reduced height
           SizedBox(
             height: isSmallScreen ? 110 : 130,
             child: Stack(
               children: [
-                // Character Image positioned in the center
+                //* Character Image positioned in the center
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
@@ -65,8 +66,8 @@ class QuestionCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                
-                // Audio icon positioned at the top right
+
+                //* Audio icon positioned at the top right
                 Positioned(
                   top: 10,
                   right: 10,
@@ -91,7 +92,7 @@ class QuestionCard extends StatelessWidget {
                           padding: EdgeInsets.all(8.0),
                           child: Icon(
                             Icons.volume_up_rounded,
-                            color: Colors.purple,
+                            color: AppColors.primaryDeep,
                             size: 22,
                           ),
                         ),
@@ -102,7 +103,7 @@ class QuestionCard extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // Flexible layout for answer and word bank areas
           Expanded(
             child: Column(
@@ -125,7 +126,7 @@ class QuestionCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+
                 // Word Bank - larger flex value to make it more prominent
                 Expanded(
                   flex: isSmallScreen ? 4 : 5,

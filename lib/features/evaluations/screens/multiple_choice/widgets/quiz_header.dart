@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class QuizHeader extends StatelessWidget {
   final String title;
 
-  const QuizHeader({
-    super.key,
-    required this.title,
-  });
+  const QuizHeader({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: const Color(0xFF9281FF), // Main Color/Purple - Primary
+        color: AppColors.primaryDeep,
         borderRadius: BorderRadius.circular(30),
       ),
       child: Row(

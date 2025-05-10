@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/evaluations/models/dictation/dictee_question.dart';
-import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/dictee_header.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/navigation_buttons.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/points_badge.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/question_card.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/question_progress.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/qui_navigation_footer.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/quiz_dropdown.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/popups/lesson_result_helper.dart';
 
 class DictationInteractiveScreen extends StatefulWidget {
@@ -188,8 +189,13 @@ class _DicteeInteractiveScreenState extends State<DictationInteractiveScreen>
               ),
               child: Column(
                 children: [
-                  // Header with back button and title (made more compact)
-                  DicteeHeader(onBackPressed: () => Navigator.pop(context)),
+                  CommonHeader(
+                    pageTitle: 'Dictées interactives',
+                    trailing: CircleAvatar(
+                      radius: 20,
+                      backgroundImage: AssetImage(IconAssets.avatar),
+                    ),
+                  ),
                   Gap(isSmallScreen ? 10 : 14),
 
                   // Combined row for quiz selection and progress/points

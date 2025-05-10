@@ -5,18 +5,18 @@ import 'package:kids_learning_app/features/evaluations/models/dictation/dictee_q
 import 'package:kids_learning_app/utils/popups/lesson_result_helper.dart';
 
 class DicteeInteractiveController extends GetxController with GetSingleTickerProviderStateMixin {
-  // Observable variables
+  //* Observable variables
   final RxList<DicteeQuestion> questions = <DicteeQuestion>[].obs;
   final RxInt currentQuestionIndex = 0.obs;
   final RxList<String> selectedWords = <String>[].obs;
   final RxInt score = 0.obs;
   final RxInt correctAnswers = 0.obs;
   
-  // Non-observable variables
+  //* Non-observable variables
   late AnimationController animationController;
   final AudioPlayer audioPlayer = AudioPlayer();
   
-  // Computed property for the current question
+  //* Computed property for the current question
   DicteeQuestion get currentQuestion => 
       questions.isNotEmpty ? questions[currentQuestionIndex.value] : DicteeQuestion.getSampleQuestions().first;
   
@@ -24,16 +24,16 @@ class DicteeInteractiveController extends GetxController with GetSingleTickerPro
   void onInit() {
     super.onInit();
     
-    // Load sample questions
+    //* Load sample questions
     questions.assignAll(DicteeQuestion.getSampleQuestions());
     
-    // Initialize animation controller
+    //* Initialize animation controller
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 20),
     )..repeat();
     
-    // Load audio for the first question
+    //* Load audio for the first question
     _loadAudio();
   }
   
@@ -44,7 +44,7 @@ class DicteeInteractiveController extends GetxController with GetSingleTickerPro
     super.onClose();
   }
   
-  // Audio handling methods
+  //* Audio handling methods
   Future<void> _loadAudio() async {
     try {
       await audioPlayer.setAsset(currentQuestion.audioPath);
@@ -62,20 +62,20 @@ class DicteeInteractiveController extends GetxController with GetSingleTickerPro
     }
   }
   
-  // Word selection methods
+  //* Word selection methods
   void addWord(String word) {
     selectedWords.add(word);
-    update(); // Force UI update if needed
+    update(); //? Force UI update if needed
   }
   
   void removeWord(String word) {
     selectedWords.remove(word);
-    update(); // Force UI update if needed
+    update(); //? Force UI update if needed
   }
   
-  // Answer checking methods
+  //* Answer checking methods
   bool checkAnswer() {
-    // Compare selected words with correct answer
+    //* Compare selected words with correct answer
     if (selectedWords.length != currentQuestion.correctAnswer.length) {
       return false;
     }
@@ -89,20 +89,20 @@ class DicteeInteractiveController extends GetxController with GetSingleTickerPro
     return true;
   }
   
-  // Navigation methods
+  //* Navigation methods
   void checkAndContinue(BuildContext context) {
     final isCorrect = checkAnswer();
     
-    // Update score and correct answers count if correct
+    //* Update score and correct answers count if correct
     if (isCorrect) {
       score.value += currentQuestion.points;
       correctAnswers.value++;
     }
     
-    // Calculate question XP
+    //* Calculate question XP
     final questionXp = isCorrect ? currentQuestion.points : 0;
     
-    // Show the lesson result screen
+    //* Show the lesson result screen
     LessonResultHelper.showResultScreen(
       context: context,
       isPerfect: isCorrect,
@@ -113,14 +113,14 @@ class DicteeInteractiveController extends GetxController with GetSingleTickerPro
           ? 'Tu as bien écrit la phrase correctement !' 
           : 'Essaie encore, tu as presque trouvé la bonne réponse !',
       onContinue: () {
-        // Move to next question or show completion
+        //* Move to next question or show completion
         if (currentQuestionIndex.value < questions.length - 1) {
-          // Move to next question
+          //* Move to next question
           currentQuestionIndex.value++;
           selectedWords.clear();
           _loadAudio();
         } else {
-          // Show final results
+          //* Show final results
           showFinalResults(context);
         }
       },
@@ -136,7 +136,7 @@ class DicteeInteractiveController extends GetxController with GetSingleTickerPro
   }
   
   void showFinalResults(BuildContext context) {
-    // Calculate overall performance
+    //* Calculate overall performance
     final bool isPerfect = correctAnswers.value == questions.length;
     final int percentage = (correctAnswers.value / questions.length * 100).toInt();
     
@@ -150,7 +150,7 @@ class DicteeInteractiveController extends GetxController with GetSingleTickerPro
           ? 'Tu as terminé toutes les dictées parfaitement !'
           : 'Tu as terminé les dictées avec $percentage% de réussite !',
       onContinue: () {
-        // Return to previous screen
+        //* Return to previous screen
         Get.back();
       },
     );

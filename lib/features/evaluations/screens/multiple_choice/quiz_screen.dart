@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:kids_learning_app/common/widgets/common_header.dart';
+import 'package:kids_learning_app/common/widgets/custom_dropdown.dart';
+import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/quiz_dropdown.dart';
+import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
+import 'package:kids_learning_app/utils/constants/sizes.dart';
 import '../../models/multiple_choice/quiz_question.dart';
 import 'widgets/quiz_header.dart';
 import 'widgets/question_counter.dart';
@@ -61,89 +67,57 @@ class _QuizScreenState extends State<QuizScreen> {
     final question = widget.questions[currentQuestionIndex];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFDF2FF), // Neutral Color/Background
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF6C6C6C)),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Retour',
-              style: TextStyle(
-                color: Color(0xFF6C6C6C),
-                fontSize: 12,
-                fontFamily: 'Archivo',
-                fontWeight: FontWeight.w400,
+      backgroundColor: AppColors.background,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSizes.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CommonHeader(pageTitle: 'Quiz à choix multiples'),
+              const Gap(24),
+              
+              QuizDropdown(title: '', onPressed: (){}),
+              const Gap(16),
+
+              //* Question number and points
+              QuestionCounter(
+                currentIndex: currentQuestionIndex,
+                totalQuestions: widget.questions.length,
+                points: question.points,
               ),
-            ),
-            Text(
-              widget.title,
-              style: const TextStyle(
-                color: Color(0xFFFC715A), // Main Color/Orange - Secondary
-                fontSize: 20,
-                fontFamily: 'Bricolage Grotesque',
-                fontWeight: FontWeight.w400,
+              const Gap(16),
+
+              //* Question box
+              QuestionBox(
+                question: question,
+                selectedAnswer: selectedAnswer,
+                onOptionSelected: _handleOptionSelected,
               ),
-            ),
-          ],
-        ),
-        actions: [
-          // Profile avatar could be added here
-          const CircleAvatar(radius: 20),
-          const Gap(24),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Quiz selection dropdown
-            QuizHeader(title: 'Quiz 1 - Quiz de correspondance image et mot'),
-            const Gap(16),
 
-            // Question number and points
-            QuestionCounter(
-              currentIndex: currentQuestionIndex,
-              totalQuestions: widget.questions.length,
-              points: question.points,
-            ),
-            const Gap(16),
+              const Spacer(),
 
-            // Question box
-            QuestionBox(
-              question: question,
-              selectedAnswer: selectedAnswer,
-              onOptionSelected: _handleOptionSelected,
-            ),
+              //* Navigation buttons
+              NavigationButtons(
+                canGoBack: currentQuestionIndex > 0,
+                canGoForward: selectedAnswer != null,
+                onPrevious: _goToPreviousQuestion,
+                onNext: _goToNextQuestion,
+              ),
 
-            const Spacer(),
+              const Gap(16),
 
-            // Navigation buttons
-            NavigationButtons(
-              canGoBack: currentQuestionIndex > 0,
-              canGoForward: selectedAnswer != null,
-              onPrevious: _goToPreviousQuestion,
-              onNext: _goToNextQuestion,
-            ),
-
-            const Gap(16),
-
-            // Quiz navigation
-            QuizNavigator(
-              onPreviousQuiz: () {
-                // Handle previous quiz logic
-              },
-              onNextQuiz: () {
-                // Handle next quiz logic
-              },
-            ),
-          ],
+              //* Quiz navigation
+              QuizNavigator(
+                onPreviousQuiz: () {
+                  // Handle previous quiz logic
+                },
+                onNextQuiz: () {
+                  // Handle next quiz logic
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

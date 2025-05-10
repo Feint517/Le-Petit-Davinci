@@ -1,5 +1,3 @@
-//import 'package:flutter/material.dart';
-
 class DicteeQuestion {
   final String id;
   final String audioPath;
@@ -17,7 +15,7 @@ class DicteeQuestion {
     required this.points,
   });
   
-  // Sample questions for demonstration purposes
+  //* Sample questions for demonstration purposes
   static List<DicteeQuestion> getSampleQuestions() {
     return [
       DicteeQuestion(

@@ -14,7 +14,6 @@ class AnswerArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Check for small screen to adjust spacing
     final isSmallScreen = MediaQuery.of(context).size.height < 700;
 
     return Container(

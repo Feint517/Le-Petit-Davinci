@@ -15,13 +15,13 @@ class QuizQuestion {
     required this.points,
   });
 
-  // Sample questions for demonstration purposes
+  //* Sample questions for demonstration purposes
   static List<QuizQuestion> getSampleQuestions() {
     return [
       QuizQuestion(
         id: '1',
         question: 'Devinez le mot correspondant à cette image !',
-        imagePath: 'assets/svgs/avion.svg', // Path to the airplane SVG image
+        imagePath: 'assets/svgs/avion.svg',
         options: ['Avion', 'Dauphin', 'Lampe'],
         correctAnswer: 'Avion',
         points: 10,
@@ -29,7 +29,7 @@ class QuizQuestion {
       QuizQuestion(
         id: '2',
         question: 'Quel animal est représenté sur cette image ?',
-        imagePath: 'assets/images/illustrations/lion.png', // Path to a lion image
+        imagePath: 'assets/images/illustrations/lion.png',
         options: ['Éléphant', 'Lion', 'Tigre'],
         correctAnswer: 'Lion',
         points: 10,
@@ -37,7 +37,7 @@ class QuizQuestion {
       QuizQuestion(
         id: '3',
         question: 'Quel est cet objet ?',
-        imagePath: 'assets/images/quiz/lampe.png', // Path to a lamp image
+        imagePath: 'assets/images/quiz/lampe.png',
         options: ['Télévision', 'Radio', 'Lampe'],
         correctAnswer: 'Lampe',
         points: 10,
