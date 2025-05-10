@@ -5,7 +5,7 @@ import 'package:kids_learning_app/features/evaluations/models/multiple_choice/qu
 import 'package:kids_learning_app/features/evaluations/screens/dictation/dictation_interactive_screen.dart';
 import 'package:kids_learning_app/features/evaluations/screens/multiple_choice/quiz_screen.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/exercices_appariement_screen.dart';
-import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_lesson.dart';
+import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_introduction.dart';
 import 'package:kids_learning_app/features/lessons/screens/construction/construction_lesson.dart';
 import 'package:kids_learning_app/features/lessons/screens/vocabulary/vocabulaire_lesson.dart';
 import 'package:kids_learning_app/features/practice/screens/association/association_practice.dart';
@@ -23,7 +23,7 @@ class SubjectDetailController extends GetxController {
       content: "5 Contenues",
       time: "2 Heures 30 Minutes",
       color: AppColors.purple,
-      onTap: () => Get.to(() => const AlphabetLessonScreen()),
+      onTap: () => Get.to(() => const AlphabetLessonIntroductionScreen()),
     ),
     const Gap(AppSizes.spaceBtwItems),
     CategoryCard(

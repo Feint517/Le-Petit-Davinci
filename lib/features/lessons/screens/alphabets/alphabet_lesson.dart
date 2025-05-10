@@ -1,172 +1,296 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gap/gap.dart';
-import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
-import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
+import 'package:kids_learning_app/features/lessons/controllers/alphabetController/alphabet_lesson_controller.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
-class AlphabetLessonScreen extends StatefulWidget {
-  const AlphabetLessonScreen({super.key});
+class AlphabetLesson extends StatefulWidget {
+  const AlphabetLesson({Key? key}) : super(key: key);
 
   @override
-  State<AlphabetLessonScreen> createState() => _AlphabetLessonScreenState();
+  State<AlphabetLesson> createState() => _AlphabetLessonState();
 }
 
-class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
-  TextStyle textStyle = TextStyle(fontSize: 12);
-  final List<String> tabs = ["Étude", "Exercices", "Animation", "Vidéo"];
+class _AlphabetLessonState extends State<AlphabetLesson>
+    with TickerProviderStateMixin {
+  // Animation controllers - reduced to only necessary ones
+  late AnimationController _instructionAnimController;
+  late List<AnimationController> _letterAnimControllers = [];
 
-  final List<String> letters = ["Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg", "Hh"];
-  final List<String> lesson = [
-    "Contenu 1 - Les Bases de l’Alphabet Français",
-    "Contenu 2 - Les Chiffres en Français",
-    "Contenu 3 - Les Jours de la Semaine",
-  ];
-  final List<Color> borderColors = [
-    Colors.deepPurpleAccent,
-    Colors.deepOrange,
-    Colors.teal,
-    Colors.amber,
-    Colors.amber,
-    Colors.teal,
-    Colors.deepOrange,
-    Colors.deepPurpleAccent,
-  ];
+  // Controller
+  late AlphabetLessonController controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Initialize the GetX controller
+    controller = Get.put(AlphabetLessonController());
+
+    // Only keep necessary animation controllers
+    _instructionAnimController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    )..forward();
+
+    // Create animation controllers for each letter's subtle pulse
+    _letterAnimControllers = List.generate(
+      controller.letters.length,
+      (index) =>
+          AnimationController(vsync: this, duration: const Duration(seconds: 2))
+            ..repeat(reverse: true),
+    );
+  }
+
+  @override
+  void dispose() {
+    _instructionAnimController.dispose();
+    for (var controller in _letterAnimControllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFDEFFF),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //* AppBar
-                CommonHeader(
-                  pageTitle: "Alphabet & Prononciation",
-                  trailing: CircleAvatar(
-                    backgroundImage: AssetImage(IconAssets.avatar),
-                    radius: 24,
-                  ),
-                ),
-
-                //* Section title dropdown
-                CustomDropdownButton(options: lesson, optionsList: []),
-
-                //* Tabs
-                //* Letter Grid
-                Container(
-                  margin: EdgeInsets.all(20),
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Toucher une lettre pour entendre son son.",
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      Gap(15),
-                      GridView.count(
-                        shrinkWrap: true,
-                        crossAxisCount: 4,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: List.generate(letters.length, (index) {
-                          return Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: borderColors[index],
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: Text(
-                              letters[index],
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          );
-                        }),
-                      ),
-                    ],
-                  ),
-                ),
-                // Points
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-                  decoration: BoxDecoration(
-                    color: Color(0xffFDCFFE),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Text(
-                    "Obtenez 4 points",
-                    style: TextStyle(
-                      color: Color(0xffFC715A),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-
-                Gap(15),
-
-                // Lesson Content
-                Text(
-                  "Les Bases de l’Alphabet Français",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    "L’alphabet français se compose de 26 lettres, divisées en voyelles et consonnes. Chaque lettre a un son spécifique qui peut varier selon les mots et les accents.",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.black87,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Dans cette leçon, tu apprendras :", style: textStyle),
-                    Gap(5),
-                    Text(
-                      "🔷 La prononciation correcte de chaque lettre.",
-                      style: textStyle,
-                    ),
-                    Text(
-                      "🔷 La différence entre voyelles et consonnes.",
-                      style: textStyle,
-                    ),
-                    Text(
-                      "🔷 Comment associer les lettres à des mots simples.",
-                      style: textStyle,
-                    ),
-                    Gap(10),
-                    Text(
-                      "💡 Astuce : Pratique régulièrement en lisant des mots simples à voix haute pour améliorer ton accent et ta fluidité.",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                  ],
-                ),
-
-                Gap(40),
-                ContenuPrecedantSuivant(),
-              ],
+      backgroundColor: AppColors.background,
+      body: Stack(
+        children: [
+          // Background decoration elements
+          Positioned(
+            top: -50,
+            right: -50,
+            child: Container(
+              height: 150,
+              width: 150,
+              decoration: BoxDecoration(
+                color: Colors.pink.withOpacity(0.2),
+                shape: BoxShape.circle,
+              ),
             ),
           ),
-        ),
+          Positioned(
+            bottom: -30,
+            left: -30,
+            child: Container(
+              height: 120,
+              width: 120,
+              decoration: BoxDecoration(
+                color: Colors.blue.withOpacity(0.2),
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
+
+          // Main content
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  // AppBar
+                  CommonHeader(
+                    pageTitle: "Alphabet & Prononciation",
+                    trailing: CircleAvatar(
+                      backgroundImage: AssetImage(IconAssets.avatar),
+                      radius: 24,
+                    ),
+                  ),
+
+                  Gap(10),
+
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          // Instruction text
+                          Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 15,
+                                  vertical: 10,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.05),
+                                      blurRadius: 10,
+                                      offset: Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.touch_app_rounded,
+                                      color: AppColors.textPrimary,
+                                      size: 20,
+                                    ),
+                                    SizedBox(width: 8),
+                                    Text(
+                                      "Toucher une lettre pour entendre son son!",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: "BricolageGrotesque",
+                                        color: AppColors.textPrimary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                              .animate(controller: _instructionAnimController)
+                              .fadeIn(duration: Duration(milliseconds: 600))
+                              .slideY(begin: -0.2, end: 0),
+
+                          Gap(10),
+
+                          // Letter Grid
+                          GridView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 4,
+                                  crossAxisSpacing: 30,
+                                  mainAxisSpacing: 30,
+                                  childAspectRatio: 1,
+                                ),
+                            itemCount: controller.letters.length,
+                            itemBuilder: (context, index) {
+                              // Create staggered entry animation
+                              final delay = Duration(milliseconds: index * 50);
+                              final entranceAnim = AnimationController(
+                                vsync: this,
+                                duration: Duration(milliseconds: 400),
+                              );
+
+                              // Start entrance animation after a delay
+                              Future.delayed(delay, () {
+                                if (mounted) entranceAnim.forward();
+                              });
+
+                              return Obx(() {
+                                // Reactive check if this letter is currently tapped
+                                final bool isTapped =
+                                    controller.tappedLetterIndex.value == index;
+
+                                return GestureDetector(
+                                  onTap:
+                                      () => controller.handleLetterTap(index),
+                                  child: Container(
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              controller.borderColors[index]
+                                                  .withOpacity(0.9),
+                                              controller.borderColors[index]
+                                                  .withOpacity(0.3),
+                                            ],
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            10,
+                                          ),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: controller
+                                                  .borderColors[index]
+                                                  .withOpacity(
+                                                    isTapped ? 0.5 : 0.3,
+                                                  ),
+                                              blurRadius: isTapped ? 12 : 8,
+                                              offset: Offset(0, 3),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Text(
+                                          controller.letters[index],
+                                          style: TextStyle(
+                                            fontSize: 24,
+                                            fontFamily: "BricolageGrotesque",
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      )
+                                      // Base subtle pulse animation (continuous)
+                                      .animate(
+                                        controller:
+                                            _letterAnimControllers[index],
+                                      )
+                                      .scale(
+                                        begin: Offset(1, 1),
+                                        end: Offset(1.05, 1.05),
+                                        duration: Duration(seconds: 2),
+                                        curve: Curves.easeInOut,
+                                      )
+                                      // Initial entry animation (one-time)
+                                      .animate(controller: entranceAnim)
+                                      .fadeIn(
+                                        duration: Duration(milliseconds: 400),
+                                      )
+                                      .slideY(
+                                        begin: 0.3,
+                                        end: 0,
+                                        duration: Duration(milliseconds: 400),
+                                      )
+                                      // Tap animation (conditional)
+                                      .animate(target: isTapped ? 1 : 0)
+                                      .scale(
+                                        begin: Offset(1, 1),
+                                        end: Offset(1.3, 1.3),
+                                        duration: Duration(milliseconds: 200),
+                                        curve: Curves.easeOut,
+                                      )
+                                      .then()
+                                      .scale(
+                                        begin: Offset(1.3, 1.3),
+                                        end: Offset(1, 1),
+                                        duration: Duration(milliseconds: 200),
+                                        curve: Curves.easeIn,
+                                      )
+                                      // Additional feedback animation for children
+                                      .then()
+                                      .rotate(
+                                        begin: 0,
+                                        end: 0.05,
+                                        duration: Duration(milliseconds: 100),
+                                      )
+                                      .then()
+                                      .rotate(
+                                        begin: 0.05,
+                                        end: -0.05,
+                                        duration: Duration(milliseconds: 100),
+                                      )
+                                      .then()
+                                      .rotate(
+                                        begin: -0.05,
+                                        end: 0,
+                                        duration: Duration(milliseconds: 100),
+                                      ),
+                                );
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

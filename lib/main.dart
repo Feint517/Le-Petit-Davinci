@@ -16,6 +16,6 @@ void main() async {
   await GetStorage.init();
 
   // Run the app
-  //runApp(DevicePreview(enabled: kDebugMode, builder: (context) => App()));
-  runApp(const App());
+  runApp(DevicePreview(enabled: kDebugMode, builder: (context) => App()));
+
 }

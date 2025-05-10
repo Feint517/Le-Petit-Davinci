@@ -106,7 +106,7 @@ class _VocabulaireLessonScreenState extends State<VocabularyLessonScreen> {
                   style: textStyle,
                 ),
                 Gap(40),
-                ContenuPrecedantSuivant(),
+                StartButton(onPressed: () {  },),
               ],
             ),
           ),

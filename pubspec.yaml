@@ -42,6 +42,8 @@ dependencies:
   tutorial_coach_mark: ^1.3.0
   shared_preferences: ^2.5.3
   flutter_colorpicker: ^1.1.0
+  flutter_animate: ^4.5.2
+  just_audio_web: ^0.4.15
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,7 @@ flutter:
     - assets/images/mascots/elephant/
     - assets/images/mascots/panda/
     - assets/sfx/
+    - assets/sfx/alphabet/
     - assets/icons/
     - assets/lottie/misc/
     - assets/svgs/

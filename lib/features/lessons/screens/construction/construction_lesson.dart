@@ -128,7 +128,7 @@ class _ConstructionLessonScreenState extends State<ConstructionLessonScreen> {
                   style: textStyle,
                 ),
                 Gap(40),
-                ContenuPrecedantSuivant(),
+                StartButton(onPressed: () {  },),
               ],
             ),
           ),
