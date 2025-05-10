@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
@@ -15,19 +16,17 @@ class MascotFeedbackDialog extends StatelessWidget {
   final String buttonText;
 
   const MascotFeedbackDialog({
-    Key? key,
+    super.key,
     required this.title,
     required this.message,
     required this.mascotType,
     required this.mascotMood,
     required this.onConfirm,
     this.buttonText = "OK",
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    // final screenHeight = MediaQuery.of(context).size.height;
-
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -38,7 +37,7 @@ class MascotFeedbackDialog extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+              color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
@@ -54,7 +53,7 @@ class MascotFeedbackDialog extends StatelessWidget {
                 width: 120,
                 fit: BoxFit.contain,
               ),
-              const SizedBox(width: 12),
+              const Gap(12),
 
               Expanded(
                 child: Column(
@@ -69,7 +68,7 @@ class MascotFeedbackDialog extends StatelessWidget {
                         color: AppColors.primaryDeep,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const Gap(8),
 
                     Text(
                       message,
@@ -78,7 +77,7 @@ class MascotFeedbackDialog extends StatelessWidget {
                         color: AppColors.grey,
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const Gap(12),
 
                     Align(
                       alignment: Alignment.centerRight,

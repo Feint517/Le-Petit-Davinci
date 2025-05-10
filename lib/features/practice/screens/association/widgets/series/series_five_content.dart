@@ -291,7 +291,7 @@ class SeriesFiveContent extends GetView<AssociationController> {
                     },
                     child: Container(
                       // Optional: for better tap area or visual debugging
-                      // color: Colors.black.withOpacity(0.1), // Debug tap area
+                      // color: Colors.black.withValues(alpha: 0.1), // Debug tap area
                       padding: const EdgeInsets.symmetric(
                         horizontal: 4,
                         vertical: 2,
@@ -357,7 +357,7 @@ class SeriesFiveContent extends GetView<AssociationController> {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: Colors.black.withValues(alpha: 0.2),
             blurRadius: 8,
             offset: const Offset(0, 3),
           ),
@@ -409,12 +409,12 @@ class SeriesFiveContent extends GetView<AssociationController> {
                             color: color,
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: Colors.black.withOpacity(0.2),
+                              color: Colors.black.withValues(alpha: 0.2),
                               width: 1,
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: color.withOpacity(0.3),
+                                color: color.withValues(alpha: 0.3),
                                 blurRadius: 3,
                                 spreadRadius: 0,
                                 offset: const Offset(0, 2),
@@ -542,7 +542,7 @@ class RainbowArcPainter extends CustomPainter {
 
       // 3. Draw selection highlight if selected and not yet completed
       if (isSelected) {
-        strokePaint.color = KColors.primary.withOpacity(
+        strokePaint.color = KColors.primary.withValues(alpha: 
           0.8,
         ); // Purple highlight
         strokePaint.strokeWidth = outlineThickness + 2.0; // Thicker highlight
@@ -561,3 +561,7 @@ class RainbowArcPainter extends CustomPainter {
         oldDelegate.centerOffset != centerOffset;
   }
 }
+
+
+
+//TODO: refactor this code to use a more generic approach

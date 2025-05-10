@@ -102,7 +102,7 @@ class OptionsGrid extends GetView<AssociationController> {
 
     // Add visual feedback
     Color borderColor =
-        isSelected ? Colors.black : Colors.black.withOpacity(0.2);
+        isSelected ? Colors.black : Colors.black.withValues(alpha: 0.2);
 
     if (isCorrect) {
       borderColor = Colors.green;
@@ -132,7 +132,7 @@ class OptionsGrid extends GetView<AssociationController> {
                 isSelected
                     ? [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withValues(alpha: 0.1),
                         offset: const Offset(0, 2),
                         blurRadius: 4,
                       ),
@@ -145,7 +145,7 @@ class OptionsGrid extends GetView<AssociationController> {
               fontFamily: 'Bricolage Grotesque',
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Colors.black.withOpacity(isSelected ? 1.0 : 0.7),
+              color: Colors.black.withValues(alpha: isSelected ? 1.0 : 0.7),
               letterSpacing: -0.5,
             ),
           ),
@@ -169,6 +169,6 @@ class OptionsGrid extends GetView<AssociationController> {
     final random = Random(seed);
     final baseColor = colors[random.nextInt(colors.length)];
 
-    return isSelected ? baseColor : baseColor.withOpacity(0.6);
+    return isSelected ? baseColor : baseColor.withValues(alpha: 0.6);
   }
 }

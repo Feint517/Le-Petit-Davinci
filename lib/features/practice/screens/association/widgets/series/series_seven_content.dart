@@ -63,7 +63,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
                         borderRadius: BorderRadius.circular(30),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.purple.withOpacity(0.2),
+                            color: Colors.purple.withValues(alpha: 0.2),
                             blurRadius: 5,
                             offset: const Offset(0, 2),
                           ),
@@ -240,12 +240,12 @@ class SeriesSevenContent extends GetView<AssociationController> {
                         ? Colors.green
                         : isIncorrect
                         ? Colors.red
-                        : Colors.grey.withOpacity(0.3),
+                        : Colors.grey.withValues(alpha: 0.3),
                 width: (isCorrect || isIncorrect) ? 2 : 1,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -295,7 +295,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
                     decoration: BoxDecoration(
                       color:
                           controller.isAnswerValidated.value
-                              ? Colors.grey.withOpacity(0.3)
+                              ? Colors.grey.withValues(alpha: 0.3)
                               : AppColors.primaryLight,
                       shape: BoxShape.circle,
                     ),
@@ -317,9 +317,9 @@ class SeriesSevenContent extends GetView<AssociationController> {
                   decoration: BoxDecoration(
                     color:
                         isCorrect
-                            ? Colors.green.withOpacity(0.2)
+                            ? Colors.green.withValues(alpha: 0.2)
                             : isIncorrect
-                            ? Colors.red.withOpacity(0.2)
+                            ? Colors.red.withValues(alpha: 0.2)
                             : Colors.white,
                     borderRadius: BorderRadius.circular(width * 0.1),
                     border: Border.all(
@@ -328,7 +328,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
                               ? Colors.green
                               : isIncorrect
                               ? Colors.red
-                              : AppColors.primaryDeep.withOpacity(0.3),
+                              : AppColors.primaryDeep.withValues(alpha: 0.3),
                       width: 1,
                     ),
                   ),
@@ -363,7 +363,7 @@ class SeriesSevenContent extends GetView<AssociationController> {
                     decoration: BoxDecoration(
                       color:
                           controller.isAnswerValidated.value
-                              ? Colors.grey.withOpacity(0.3)
+                              ? Colors.grey.withValues(alpha: 0.3)
                               : AppColors.primaryLight,
                       shape: BoxShape.circle,
                     ),

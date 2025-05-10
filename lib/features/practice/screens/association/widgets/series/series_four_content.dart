@@ -58,7 +58,7 @@ class SeriesFourContent extends GetView<AssociationController> {
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.purple.withOpacity(0.2),
+                        color: Colors.purple.withValues(alpha: 0.2),
                         blurRadius: 5,
                         offset: const Offset(0, 2),
                       ),
@@ -172,11 +172,11 @@ class SeriesFourContent extends GetView<AssociationController> {
               color:
                   isSelected
                       ? isWrong
-                          ? Colors.red.withOpacity(0.5)
+                          ? Colors.red.withValues(alpha: 0.5)
                           : controller.isAnswerValidated.value && isCorrect
-                          ? Colors.green.withOpacity(0.5)
-                          : AppColors.primary.withOpacity(0.5)
-                      : Colors.grey.withOpacity(0.1),
+                          ? Colors.green.withValues(alpha: 0.5)
+                          : AppColors.primary.withValues(alpha: 0.5)
+                      : Colors.grey.withValues(alpha: 0.1),
               blurRadius: isSelected ? 10 : 3,
               spreadRadius: isSelected ? 2 : 0,
               offset: isSelected ? const Offset(0, 0) : const Offset(0, 2),
@@ -190,7 +190,7 @@ class SeriesFourContent extends GetView<AssociationController> {
                         : controller.isAnswerValidated.value && isCorrect
                         ? Colors.green
                         : AppColors.primary
-                    : Colors.grey.withOpacity(0.3),
+                    : Colors.grey.withValues(alpha: 0.3),
             width: isSelected ? 2 : 1,
           ),
         ),
@@ -239,7 +239,7 @@ class SeriesFourContent extends GetView<AssociationController> {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withValues(alpha: 0.2),
                           blurRadius: 3,
                           offset: const Offset(0, 1),
                         ),
@@ -257,7 +257,7 @@ class SeriesFourContent extends GetView<AssociationController> {
               if (controller.selectedColorImageIndex.value != null &&
                   !isSelected &&
                   !controller.isAnswerValidated.value)
-                Container(color: Colors.white.withOpacity(0.5)),
+                Container(color: Colors.white.withValues(alpha: 0.5)),
             ],
           ),
         ),

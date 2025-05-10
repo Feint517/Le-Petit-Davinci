@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/features/practice/screens/association/association_practice.dart';
-import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/subject_deatils/controllers/subject_detail_controller.dart';
 import 'package:kids_learning_app/features/subject_deatils/detail_introduction_screen.dart';

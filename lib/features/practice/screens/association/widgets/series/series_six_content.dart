@@ -1,5 +1,3 @@
-import 'dart:math'
-    as math; // For Random in shuffle if needed, and for pi in painters
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
@@ -86,7 +84,7 @@ class SeriesSixContent extends GetView<AssociationController> {
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.purple.withOpacity(0.2),
+                        color: Colors.purple.withValues(alpha: 0.2),
                         blurRadius: 5,
                         offset: const Offset(0, 2),
                       ),
@@ -330,7 +328,7 @@ class SeriesSixContent extends GetView<AssociationController> {
                   decoration:
                       isSelectedForHighlight
                           ? BoxDecoration(
-                            color: AppColors.primary.withOpacity(0.15),
+                            color: AppColors.primary.withValues(alpha: 0.15),
                             border: Border.all(
                               color: AppColors.primary,
                               width: 2.5,
@@ -340,7 +338,7 @@ class SeriesSixContent extends GetView<AssociationController> {
                             ), // Outer radius
                             boxShadow: [
                               BoxShadow(
-                                color: AppColors.primary.withOpacity(0.3),
+                                color: AppColors.primary.withValues(alpha: 0.3),
                                 blurRadius: 6,
                                 spreadRadius: 1,
                               ),
@@ -416,12 +414,12 @@ class SeriesSixContent extends GetView<AssociationController> {
       decoration: BoxDecoration(
         color:
             isSelectedForHighlight
-                ? AppColors.primary.withOpacity(0.1)
-                : Colors.white.withOpacity(0.7),
+                ? AppColors.primary.withValues(alpha: 0.1)
+                : Colors.white.withValues(alpha: 0.7),
         borderRadius: BorderRadius.circular(8),
         border:
             isSelectedForHighlight
-                ? Border.all(color: AppColors.primary.withOpacity(0.5))
+                ? Border.all(color: AppColors.primary.withValues(alpha: 0.5))
                 : Border.all(color: Colors.grey.shade300),
       ),
       child: Text(
@@ -447,11 +445,11 @@ class SeriesSixContent extends GetView<AssociationController> {
     required bool isCorrect,
     required bool isError,
   }) {
-    Color borderColor = Colors.grey.withOpacity(0.4);
+    Color borderColor = Colors.grey.withValues(alpha: 0.4);
     double borderWidth = 1.5;
     List<BoxShadow>? boxShadow = [
       BoxShadow(
-        color: Colors.black.withOpacity(0.08),
+        color: Colors.black.withValues(alpha: 0.08),
         blurRadius: 5,
         offset: const Offset(0, 2),
       ),
@@ -463,18 +461,18 @@ class SeriesSixContent extends GetView<AssociationController> {
         borderWidth = 2.5;
         boxShadow = [
           BoxShadow(
-            color: (isCorrect ? Colors.green : Colors.red).withOpacity(0.3),
+            color: (isCorrect ? Colors.green : Colors.red).withValues(alpha: 0.3),
             blurRadius: 6,
             spreadRadius: 1,
           ),
         ];
       } else {
         // Connected, but not yet validated
-        borderColor = AppColors.primaryDeep.withOpacity(0.7);
+        borderColor = AppColors.primaryDeep.withValues(alpha: 0.7);
         borderWidth = 2.0;
         boxShadow = [
           BoxShadow(
-            color: AppColors.primaryDeep.withOpacity(0.25),
+            color: AppColors.primaryDeep.withValues(alpha: 0.25),
             blurRadius: 5,
             offset: const Offset(0, 2),
           ),
@@ -563,7 +561,7 @@ class DottedBackgroundPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint =
         Paint()
-          ..color = Colors.grey.withOpacity(0.15) // Softer dots
+          ..color = Colors.grey.withValues(alpha: 0.15) // Softer dots
           ..strokeWidth = 1.0;
     const spacing = 25.0; // Wider spacing
     for (double i = 0; i < size.width; i += spacing) {
@@ -587,7 +585,7 @@ class ConnectionsPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final defaultPaint =
         Paint()
-          ..color = AppColors.primaryDeep.withOpacity(0.8)
+          ..color = AppColors.primaryDeep.withValues(alpha: 0.8)
           ..strokeWidth = 2.5
           ..style = PaintingStyle.stroke
           ..strokeCap = StrokeCap.round;
@@ -664,7 +662,7 @@ class AnimatedConnectionPainter extends CustomPainter {
 
     final paint =
         Paint()
-          ..color = AppColors.primary.withOpacity(0.9) // Animation line color
+          ..color = AppColors.primary.withValues(alpha: 0.9) // Animation line color
           ..strokeWidth =
               3.5 // Prominent during animation
           ..style = PaintingStyle.stroke

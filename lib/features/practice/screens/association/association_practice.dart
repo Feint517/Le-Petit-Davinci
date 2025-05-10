@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/question_progress.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
-import 'package:kids_learning_app/features/practice/screens/association/widgets/control_button.dart';
-import 'package:kids_learning_app/features/practice/screens/association/widgets/description_section.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/exercise_content.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/exercise_dropdown.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/navigation_footer.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/points_indicator.dart';
-import 'package:kids_learning_app/features/practice/screens/writing/widgets/control_buttons.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
-import 'package:kids_learning_app/utils/constants/sizes.dart';
 
 class AssociationActivitiesScreen extends StatelessWidget {
   const AssociationActivitiesScreen({super.key});
@@ -25,7 +22,7 @@ class AssociationActivitiesScreen extends StatelessWidget {
     final isNarrowScreen = screenSize.width < 360;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFDF2FF),
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -34,125 +31,63 @@ class AssociationActivitiesScreen extends StatelessWidget {
           ),
           child: Column(
             children: [
-              const CommonHeader(),
+              const CommonHeader(pageTitle: "Exercices d'Association"),
+              Gap(isSmallScreen ? 10 : 14),
 
-              //* ==========================
-            _buildHeader(),
-              SizedBox(height: isSmallScreen ? 10 : 14),
-
-              isNarrowScreen
-                  ? _buildNarrowSelectionRow(context)
-                  : _buildWideSelectionRow(context),
-              SizedBox(height: isSmallScreen ? 8 : 12),
+              isNarrowScreen ? NarrowSelectionRow() : WideSelectionRow(),
+              Gap(isSmallScreen ? 8 : 12),
 
               Expanded(child: const ExerciseContent()),
-              SizedBox(height: isSmallScreen ? 8 : 12),
-
-              //const ControlButtons(),
-              SizedBox(height: isSmallScreen ? 8 : 12),
+              Gap(isSmallScreen ? 8 : 12),
 
               const NavigationFooter(),
 
-
               //* ==================
 
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSizes.md,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        ExerciseDropdown(),
+              // Expanded(
+              //   child: SingleChildScrollView(
+              //     child: Padding(
+              //       padding: const EdgeInsets.symmetric(
+              //         horizontal: AppSizes.md,
+              //       ),
+              //       child: Column(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: const [
+              //           ExerciseDropdown(),
 
-                        ExerciseContent(),
+              //           ExerciseContent(),
 
-                        //ControlButtons(),
+              //           //ControlButtons(),
 
-                        PointsIndicator(),
+              //           PointsIndicator(),
 
-                        DescriptionWidget(),
+              //           DescriptionWidget(),
 
-                        NavigationFooter(),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              //           NavigationFooter(),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
               const PointsIndicator(),
             ],
           ),
         ),
-      )
-    );
-  }
-
-
-  Widget _buildHeader() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () => Get.back(),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back_ios,
-                        color: Color(0xFF6C6C6C),
-                        size: 18,
-                      ),
-                      const SizedBox(width: 2),
-                      Text(
-                        "Retour",
-                        style: TextStyle(
-                          fontFamily: 'Archivo',
-                          fontSize: 12,
-                          color: Color(0xFF6C6C6C),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 8),
-
-                Text(
-                  "Exercices d'Association",
-                  style: TextStyle(
-                    fontFamily: 'Bricolage Grotesque',
-                    fontSize: 20,
-                    letterSpacing: -0.06 * 20,
-                    color: AppColors.secondary,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          CircleAvatar(
-            radius: 20,
-            backgroundImage: AssetImage(
-              'assets/images/illustrations/avatar.png',
-            ),
-          ),
-        ],
       ),
     );
   }
+}
 
-  Widget _buildNarrowSelectionRow(BuildContext context) {
+class NarrowSelectionRow extends StatelessWidget {
+  const NarrowSelectionRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const ExerciseDropdown(),
-        const SizedBox(height: 8),
+        const Gap(8),
 
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -170,13 +105,17 @@ class AssociationActivitiesScreen extends StatelessWidget {
       ],
     );
   }
+}
 
-  // For the wide layout in _buildWideSelectionRow method:
-  Widget _buildWideSelectionRow(BuildContext context) {
+class WideSelectionRow extends StatelessWidget {
+  const WideSelectionRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       children: [
         const Expanded(flex: 3, child: ExerciseDropdown()),
-        const SizedBox(width: 10),
+        const Gap(10),
 
         Expanded(
           flex: 4,

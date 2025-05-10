@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_data.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
@@ -67,7 +68,7 @@ class ExerciseDropdown extends GetView<AssociationController> {
                     color: AppColors.primaryDeep,
                   ),
                 ),
-                const SizedBox(height: 15),
+                const Gap(15),
                 Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,

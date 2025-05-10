@@ -190,10 +190,10 @@ class _HomeScreenState extends State<HomeScreen> {
       paddingFocus: 10,
       opacityShadow: 0.8,
       onFinish: () {
-        print("Tutoriel terminé");
+        debugPrint("Tutoriel terminé");
       },
       onSkip: () {
-        print("Tutoriel ignoré");
+        debugPrint("Tutoriel ignoré");
         return true;
       },
     ).show(context: context);

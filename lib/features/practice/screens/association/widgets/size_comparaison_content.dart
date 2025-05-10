@@ -33,7 +33,7 @@ class SizeComparisonContent extends GetView<AssociationController> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: BoxDecoration(
-                color: AppColors.primaryLight.withOpacity(0.3),
+                color: AppColors.primaryLight.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Text(
@@ -50,17 +50,17 @@ class SizeComparisonContent extends GetView<AssociationController> {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: AppColors.orange.withOpacity(0.3),
+                color: AppColors.orange.withValues(alpha: 0.3),
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: AppColors.orange.withOpacity(0.3),
+                  color: AppColors.orange.withValues(alpha: 0.3),
                   width: 1,
                 ),
               ),
               child: Row(
                 children: [
                   Icon(Icons.info_outline, color: Colors.orange, size: 18),
-                  const SizedBox(width: 8),
+                  const Gap(8),
                   Expanded(
                     child: Text(
                       "Sélectionne l'image la plus grande.",
@@ -86,7 +86,7 @@ class SizeComparisonContent extends GetView<AssociationController> {
                   color: AppColors.primaryDeep,
                   size: 22,
                 ),
-                const SizedBox(width: 8),
+                const Gap(8),
                 Text(
                   controller.currentExercise.itemGroup.groupName,
                   style: TextStyle(
@@ -125,7 +125,7 @@ class SizeComparisonContent extends GetView<AssociationController> {
               value:
                   (controller.currentExerciseIndex.value + 1) /
                   controller.currentExercises.length,
-              backgroundColor: Colors.grey.withOpacity(0.2),
+              backgroundColor: Colors.grey.withValues(alpha: 0.2),
               valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
               borderRadius: BorderRadius.circular(10),
             ),

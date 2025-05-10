@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/features/practice/models/size_comparison_item.dart';
@@ -31,7 +32,7 @@ class SeriesTwoContent extends GetView<AssociationController> {
                         color: AppColors.primaryDeep,
                         size: 30,
                       ),
-                      const SizedBox(height: 8),
+                      const Gap(8),
                       Text(
                         controller.currentExercise.itemGroup.groupName,
                         style: const TextStyle(
@@ -59,7 +60,7 @@ class SeriesTwoContent extends GetView<AssociationController> {
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.purple.withOpacity(0.2),
+                        color: Colors.purple.withValues(alpha: 0.2),
                         blurRadius: 5,
                         offset: const Offset(0, 2),
                       ),
@@ -216,7 +217,7 @@ class SeriesTwoContent extends GetView<AssociationController> {
                         isSelected.value
                             ? [
                               BoxShadow(
-                                color: AppColors.primary.withOpacity(0.6),
+                                color: AppColors.primary.withValues(alpha: 0.6),
                                 blurRadius: 12,
                                 spreadRadius: 2,
                                 offset: const Offset(0, 0),
@@ -260,7 +261,7 @@ class SeriesTwoContent extends GetView<AssociationController> {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withValues(alpha: 0.2),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     ),

@@ -9,13 +9,13 @@ class AppStyles {
     borderRadius: BorderRadius.circular(30),
     boxShadow: [
       BoxShadow(
-        color: AppColors.primary.withOpacity(0.1),
+        color: AppColors.primary.withValues(alpha: 0.1),
         blurRadius: 15,
         offset: const Offset(0, 8),
         spreadRadius: 2,
       ),
     ],
-    border: Border.all(color: AppColors.primary.withOpacity(0.2), width: 2),
+    border: Border.all(color: AppColors.primary.withValues(alpha: 0.2), width: 2),
   );
 
   // Inner content area

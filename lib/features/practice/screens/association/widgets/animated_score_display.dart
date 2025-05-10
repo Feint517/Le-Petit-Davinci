@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class AnimatedScoreDisplay extends StatelessWidget {
   final int points;
   final bool showAnimation;
 
   const AnimatedScoreDisplay({
-    Key? key,
+    super.key,
     required this.points,
     this.showAnimation = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class AnimatedScoreDisplay extends StatelessWidget {
             )
           else
             const Icon(Icons.star, color: Colors.amber, size: 16),
-          const SizedBox(width: 4),
+          const Gap(4),
 
           Text(
             "$points points",

@@ -1,9 +1,6 @@
-// Update to exercise_content.dart
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
-import 'package:kids_learning_app/features/practice/screens/association/widgets/animated_score_display.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_eight_content.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_five_content.dart';
 import 'package:kids_learning_app/features/practice/screens/association/widgets/series/series_one_content.dart';
@@ -25,17 +22,20 @@ class ExerciseContent extends GetView<AssociationController> {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.purple.withOpacity(0.1),
+            color: Colors.purple.withValues(alpha: 0.1),
             blurRadius: 15,
             offset: const Offset(0, 8),
             spreadRadius: 2,
           ),
         ],
-        border: Border.all(color: Colors.purple.withOpacity(0.2), width: 2),
+        border: Border.all(
+          color: Colors.purple.withValues(alpha: 0.2),
+          width: 2,
+        ),
       ),
       duration: const Duration(milliseconds: 300),
       child: Obx(() {
-        // Show the appropriate content based on the series
+        //* Show the appropriate content based on the series
         if (controller.isInSeriesEight) {
           return const SeriesEightContent();
         } else if (controller.isInSeries7) {

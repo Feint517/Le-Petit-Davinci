@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -43,7 +44,7 @@ class CategoryCard extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const SizedBox(width: 16),
+            const Gap(16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +63,7 @@ class CategoryCard extends StatelessWidget {
                       style: TextStyle(color: AppColors.orange, fontSize: 10),
                     ),
                   ),
-                  const SizedBox(height: 6),
+                  const Gap(6),
                   Text(
                     title,
                     style: const TextStyle(
@@ -72,7 +73,7 @@ class CategoryCard extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  const SizedBox(height: 2),
+                  const Gap(2),
                   Row(
                     spacing: 8,
                     children: [

@@ -68,7 +68,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.purple.withOpacity(0.2),
+                          color: Colors.purple.withValues(alpha: 0.2),
                           blurRadius: 5,
                           offset: const Offset(0, 2),
                         ),
@@ -135,7 +135,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.1),
+                        color: Colors.grey.withValues(alpha: 0.1),
                         blurRadius: 4,
                         offset: const Offset(0, 2),
                       ),
@@ -296,7 +296,7 @@ class SeriesEightContent extends GetView<AssociationController> {
       positions.add(Offset(x, y));
     }
 
-    print(
+    debugPrint(
       "Building scattered layout with ${exercise.correctCount} images",
     ); // Debug print
 
@@ -363,7 +363,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
+                            color: Colors.black.withValues(alpha: 0.2),
                             blurRadius: 4,
                             offset: const Offset(0, 2),
                           ),
@@ -418,7 +418,7 @@ class SeriesEightContent extends GetView<AssociationController> {
     }
 
     // Create a much more prominent selection state
-    final backgroundColor = isSelected ? baseColor : baseColor.withOpacity(0.5);
+    final backgroundColor = isSelected ? baseColor : baseColor.withValues(alpha: 0.5);
 
     // Border color based on validation state - more prominent when selected
     Color borderColor = Colors.transparent;
@@ -466,8 +466,8 @@ class SeriesEightContent extends GetView<AssociationController> {
                 BoxShadow(
                   color:
                       isSelected
-                          ? AppColors.primary.withOpacity(0.4)
-                          : Colors.black.withOpacity(0.1),
+                          ? AppColors.primary.withValues(alpha: 0.4)
+                          : Colors.black.withValues(alpha: 0.1),
                   offset: isSelected ? const Offset(0, 4) : const Offset(0, 2),
                   blurRadius: isSelected ? 10 : 3,
                   spreadRadius: isSelected ? 2 : 0,
@@ -492,7 +492,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                       shape: BoxShape.circle,
                       gradient: RadialGradient(
                         colors: [
-                          Colors.white.withOpacity(0.8),
+                          Colors.white.withValues(alpha: 0.8),
                           Colors.transparent,
                         ],
                         stops: const [0.0, 0.7],
@@ -514,7 +514,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                         color:
                             isSelected
                                 ? Colors.black
-                                : Colors.black.withOpacity(0.7),
+                                : Colors.black.withValues(alpha: 0.7),
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -527,8 +527,8 @@ class SeriesEightContent extends GetView<AssociationController> {
                             isSelected ? FontWeight.w600 : FontWeight.normal,
                         color:
                             isSelected
-                                ? Colors.black.withOpacity(0.8)
-                                : Colors.black.withOpacity(0.6),
+                                ? Colors.black.withValues(alpha: 0.8)
+                                : Colors.black.withValues(alpha: 0.6),
                       ),
                     ),
                   ],
@@ -573,7 +573,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.green.withOpacity(0.3),
+                                  color: Colors.green.withValues(alpha: 0.3),
                                   blurRadius: 5,
                                   spreadRadius: 1,
                                 ),
@@ -607,7 +607,7 @@ class SeriesEightContent extends GetView<AssociationController> {
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.red.withOpacity(0.3),
+                                  color: Colors.red.withValues(alpha: 0.3),
                                   blurRadius: 5,
                                   spreadRadius: 1,
                                 ),

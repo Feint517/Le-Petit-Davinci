@@ -54,7 +54,7 @@ class _DicteeInteractiveScreenState extends State<DictationInteractiveScreen>
     try {
       await _audioPlayer.setAsset(_currentQuestion.audioPath);
     } catch (e) {
-      print('Error loading audio: $e');
+      debugPrint('Error loading audio: $e');
     }
   }
 
@@ -63,7 +63,7 @@ class _DicteeInteractiveScreenState extends State<DictationInteractiveScreen>
       await _audioPlayer.seek(Duration.zero);
       await _audioPlayer.play();
     } catch (e) {
-      print('Error playing audio: $e');
+      debugPrint('Error playing audio: $e');
     }
   }
 

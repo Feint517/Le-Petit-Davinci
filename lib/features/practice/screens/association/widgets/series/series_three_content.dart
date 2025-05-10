@@ -65,7 +65,7 @@ class SeriesThreeContent extends GetView<AssociationController> {
                           borderRadius: BorderRadius.circular(30),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.purple.withOpacity(0.2),
+                              color: Colors.purple.withValues(alpha: 0.2),
                               blurRadius: 5,
                               offset: const Offset(0, 2),
                             ),
@@ -284,7 +284,7 @@ class SeriesThreeContent extends GetView<AssociationController> {
             border: Border.all(color: Colors.black, width: 1),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2),
+                color: Colors.black.withValues(alpha: 0.2),
                 blurRadius: 4,
                 offset: const Offset(0, 2),
               ),
@@ -327,7 +327,7 @@ class SeriesThreeContent extends GetView<AssociationController> {
               border: Border.all(color: Colors.black, width: 1),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
+                  color: Colors.black.withValues(alpha: 0.2),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -456,17 +456,17 @@ class SeriesThreeContent extends GetView<AssociationController> {
         margin: const EdgeInsets.only(right: 6, bottom: 6),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.7),
+          color: color.withValues(alpha: 0.7),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isSelected ? Colors.black : Colors.black.withOpacity(0.2),
+            color: isSelected ? Colors.black : Colors.black.withValues(alpha: 0.2),
             width: isSelected ? 2.0 : 1.0,
           ),
           boxShadow:
               isSelected
                   ? [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       offset: const Offset(0, 2),
                       blurRadius: 4,
                     ),

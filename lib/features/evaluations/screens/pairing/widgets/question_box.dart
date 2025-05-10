@@ -7,12 +7,12 @@ class QuestionBox extends StatelessWidget {
   final String? selectedOption;
 
   const QuestionBox({
-    Key? key,
+    super.key,
     required this.imagePath,
     required this.options,
     required this.onOptionSelected,
     this.selectedOption,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

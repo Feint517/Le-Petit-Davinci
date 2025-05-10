@@ -97,7 +97,7 @@
     "**/.metadata": true,
     "**pubspec.lock": true,
     "**README.md": true,
-    "**/test": true,
+    "**/test": false,
     "**.flutter-plugins": true,
     "**.flutter-plugins-dependencies": true
   }

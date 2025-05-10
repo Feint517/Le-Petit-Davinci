@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/features/practice/controllers/association/association_controller.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
@@ -25,7 +26,7 @@ class ControlButtons extends GetView<AssociationController> {
                   BoxShadow(
                     color:
                         controller.isAnswerValidated.value
-                            ? AppColors.primaryDeep.withOpacity(0.3)
+                            ? AppColors.primaryDeep.withValues(alpha: 0.3)
                             : Colors.transparent,
                     blurRadius: 8,
                     offset: const Offset(0, 4),
@@ -42,7 +43,7 @@ class ControlButtons extends GetView<AssociationController> {
                   backgroundColor:
                       controller.isAnswerValidated.value
                           ? AppColors.primaryDeep
-                          : AppColors.primaryDeep.withOpacity(0.3),
+                          : AppColors.primaryDeep.withValues(alpha: 0.3),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -75,7 +76,7 @@ class ControlButtons extends GetView<AssociationController> {
             ),
           ),
 
-          const SizedBox(width: 12),
+          const Gap( 12),
 
           
           Expanded(
@@ -84,7 +85,7 @@ class ControlButtons extends GetView<AssociationController> {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.accent.withOpacity(0.3),
+                    color: AppColors.accent.withValues(alpha: 0.3),
                     blurRadius: 8,
                     offset: const Offset(0, 4),
                     spreadRadius: 0,

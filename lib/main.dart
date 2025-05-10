@@ -8,20 +8,14 @@ import 'package:flutter/foundation.dart';
 void main() async {
   //* Ensure Flutter is initialized
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   //* Set preferred orientations
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
-  
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   // Initialize GetStorage
   await GetStorage.init();
-  
+
   // Run the app
-   runApp(DevicePreview(
-       enabled: kDebugMode,
-       builder: (context) => App(),
-     ),
-   );
-  
+  //runApp(DevicePreview(enabled: kDebugMode, builder: (context) => App()));
+  runApp(const App());
 }

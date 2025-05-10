@@ -8,6 +8,7 @@ import 'package:kids_learning_app/features/evaluations/screens/pairing/exercices
 import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_lesson.dart';
 import 'package:kids_learning_app/features/lessons/screens/construction/construction_lesson.dart';
 import 'package:kids_learning_app/features/lessons/screens/vocabulary/vocabulaire_lesson.dart';
+import 'package:kids_learning_app/features/practice/screens/association/association_practice.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/features/subject_deatils/widgets/category_card.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
@@ -56,13 +57,14 @@ class SubjectDetailController extends GetxController {
       onTap: () => Get.to(() => const WritingPracticeScreen()),
     ),
     const Gap(AppSizes.spaceBtwItems),
-    const CategoryCard(
+    CategoryCard(
       number: "02",
       title: "Activités d'association",
       content: "5 Contenu",
       time: "3 Heures 45 Minutes",
       points: '15',
       color: AppColors.secondary,
+      onTap: () => Get.to(() => AssociationActivitiesScreen()),
     ),
     const Gap(AppSizes.spaceBtwItems),
     const CategoryCard(
@@ -111,6 +113,4 @@ class SubjectDetailController extends GetxController {
       onTap: () => Get.to(() => const ExercicesAppariementScreen()),
     ),
   ];
-
-  
 }
