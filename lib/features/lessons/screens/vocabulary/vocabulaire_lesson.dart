@@ -106,7 +106,20 @@ class _VocabulaireLessonScreenState extends State<VocabularyLessonScreen> {
                   style: textStyle,
                 ),
                 Gap(40),
-                ContenuPrecedantSuivant(),
+                ContenuPrecedantSuivant(
+                  onPreviousPressed: () {
+                    // Navigation to previous content
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Navigation vers le contenu précédent')),
+                    );
+                  },
+                  onNextPressed: () {
+                    // Navigation to next content
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Navigation vers le contenu suivant')),
+                    );
+                  },
+                ),
               ],
             ),
           ),

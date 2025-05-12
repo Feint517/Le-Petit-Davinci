@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/custom_app_bar.dart';
+import 'package:kids_learning_app/common/widgets/mascot/mascot_controller.dart';
+import 'package:kids_learning_app/common/widgets/mascot/mascot_helper.dart';
+import 'package:kids_learning_app/common/widgets/mascot/mascot_state.dart';
 import 'package:kids_learning_app/features/home/controllers/home_controller.dart';
 import 'package:kids_learning_app/features/home/screens/widgets/games_section.dart';
 import 'package:kids_learning_app/features/home/screens/widgets/primary_section.dart';
@@ -173,13 +176,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> checkFirstLaunch() async {
-    final prefs = await SharedPreferences.getInstance();
-    bool isFirstLaunch = prefs.getBool('is_first_launch') ?? true;
+    // Toujours afficher le tutoriel, quelle que soit la valeur de is_first_launch
+    showTutorial();
 
-    if (isFirstLaunch) {
-      showTutorial();
-      await prefs.setBool('is_first_launch', false);
-    }
+    // On ne met pas à jour la valeur pour qu'elle reste true
+    // Cela permet d'afficher le tutoriel à chaque démarrage
   }
 
   void showTutorial() {
@@ -203,33 +204,74 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.md),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //* Profile and Progress
-              CustomAppBar(key: _appBarKey),
-              const Gap(24),
+      body: Stack(
+        children: [
+          SafeArea(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.md),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //* Profile and Progress
+                  CustomAppBar(key: _appBarKey),
+                  const Gap(24),
 
-              //* Welcome Text
-              PrimarySection(key: _primarySectionKey),
-              const Gap(AppSizes.spaceBtwSections),
+                  //* Welcome Text
+                  PrimarySection(key: _primarySectionKey),
 
-              //* Matières
-              SubjectsSection(key: _subjectsSectionKey),
-              const Gap(AppSizes.spaceBtwSections),
+                  // Conseil avec mascotte interactive
+                  MascotHelper.buildMascotTip(
+                    message: "Clique sur une matière pour commencer à apprendre, ou sur un jeu pour t'amuser !",
+                    state: MascotState.question,
+                    mascotType: MascotType.owl,
+                    onTap: () {
+                      // Changer l'état de la mascotte quand on tape dessus
+                      MascotController.to.changeState(MascotState.happy);
 
-              //* Jeux éducatifs
-              GamesSection(key: _gamesSectionKey),
-              const Gap(AppSizes.spaceBtwSections),
+                      // Afficher un message différent
+                      MascotHelper.showMascotDialog(
+                        title: "Astuce",
+                        message: "Tu peux continuer ton apprentissage où tu t'étais arrêté. Choisis une matière pour commencer !",
+                        state: MascotState.thinking,
+                        mascotType: MascotType.owl,
+                      );
+                    },
+                  ),
 
-              //* Matériaux
-              //const MaterialsSection(),
-            ],
+                  const Gap(AppSizes.spaceBtwSections),
+
+                  //* Matières
+                  SubjectsSection(key: _subjectsSectionKey),
+                  const Gap(AppSizes.spaceBtwSections),
+
+                  //* Jeux éducatifs
+                  GamesSection(key: _gamesSectionKey),
+                  const Gap(AppSizes.spaceBtwSections),
+
+                  //* Matériaux
+                  //const MaterialsSection(),
+                ],
+              ),
+            ),
           ),
-        ),
+
+          // Mascotte flottante
+          MascotHelper.buildFloatingMascot(
+            context: context,
+            initialState: MascotState.idle,
+            mascotType: MascotType.elephant,
+            onTap: () {
+              // Changer l'état de la mascotte et afficher un dialogue
+              MascotController.to.celebrate();
+
+              // Afficher un toast avec la mascotte
+              MascotHelper.showSuccessToast(
+                message: "Tu progresses bien ! Continue comme ça !",
+                mascotType: MascotType.elephant,
+              );
+            },
+          ),
+        ],
       ),
     );
   }

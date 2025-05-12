@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:kids_learning_app/features/evaluations/controllers/multiple_choice/quiz_interactive_controller.dart';
 import 'package:kids_learning_app/features/evaluations/models/multiple_choice/quiz_question.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/dictation_interactive_screen.dart';
-import 'package:kids_learning_app/features/evaluations/screens/multiple_choice/quiz_screen.dart';
+import 'package:kids_learning_app/features/evaluations/screens/multiple_choice/quiz_interactive_screen.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/exercices_appariement_screen.dart';
 import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_lesson.dart';
 import 'package:kids_learning_app/features/lessons/screens/construction/construction_lesson.dart';
@@ -49,7 +50,7 @@ class SubjectDetailController extends GetxController {
   final List<Widget> practiceCards = [
     CategoryCard(
       number: "01",
-      title: "Exercices d’écriture et de lecture",
+      title: "Exercices d'écriture et de lecture",
       content: "5 Contenu",
       time: "2 Heures 30 Minutes",
       points: '20',
@@ -90,17 +91,16 @@ class SubjectDetailController extends GetxController {
     CategoryCard(
       number: "02",
       points: "35",
-      title: "Quiz à choix multiples",
+      title: "Quiz Interactifs",
       content: "4 Contenues",
       time: "1 Heure 20 minutes",
       color: AppColors.orange,
-      onTap:
-          () => Get.to(
-            () => QuizScreen(
-              title: "Quiz à choix multiples",
-              questions: QuizQuestion.getSampleQuestions(),
-            ),
-          ),
+      onTap: () {
+        // Enregistrer le contrôleur de quiz interactif
+        Get.put(QuizInteractiveController());
+        // Naviguer vers l'écran de quiz interactif
+        Get.to(() => const QuizInteractiveScreen());
+      },
     ),
     const Gap(AppSizes.spaceBtwItems),
     CategoryCard(

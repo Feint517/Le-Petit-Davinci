@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:kids_learning_app/features/authentication/controllers/login/login_controller.dart';
 import 'package:kids_learning_app/features/authentication/screens/login/widgets/login_form.dart';
 import 'package:kids_learning_app/features/authentication/screens/login/widgets/login_heading.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
@@ -12,7 +14,10 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Get.put(LoginController());
+    // S'assurer que le contrôleur de login est initialisé
+    if (!Get.isRegistered<LoginController>()) {
+      Get.put(LoginController());
+    }
 
     return Scaffold(
       backgroundColor: AppColors.background,

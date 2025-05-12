@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:kids_learning_app/features/authentication/controllers/login/login_controller.dart';
+import 'package:kids_learning_app/features/authentication/controllers/signup/signup_controller.dart';
 import 'package:kids_learning_app/features/authentication/screens/login/login_screen.dart';
 import 'package:kids_learning_app/features/authentication/screens/signup/signup_screen.dart';
 import 'package:kids_learning_app/features/authentication/screens/welcome/widgets/logo_header.dart';
@@ -14,6 +16,14 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Initialiser les contrôleurs nécessaires
+    if (!Get.isRegistered<LoginController>()) {
+      Get.put(LoginController());
+    }
+    if (!Get.isRegistered<SignupController>()) {
+      Get.put(SignupController());
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

@@ -26,23 +26,16 @@ class OnBoardingController extends GetxController {
   void nextPage() {
     //! change the value depending on how many pages we do have
     if (currentPageIndex.value == 2) {
-      final storage = GetStorage();
+      // Ne pas mettre à jour le statut isFirstTime pour qu'il reste vrai
+      // et que l'onboarding s'affiche à chaque fois
       if (kDebugMode) {
         print("================ Get Storage NEXT BUTTON ================");
-        print(storage.read('isFirstTime'));
-      }
-
-      storage.write('isFirstTime',
-          false);   //? mark that this is not the user's first time anymore
-
-      if (kDebugMode) {
-        print("================ Get Storage NEXT BUTTON ================");
-        print(storage.read('isFirstTime'));
+        print("Redirection vers WelcomeScreen sans mettre à jour isFirstTime");
       }
 
       //?  Using a widget function instead of a widget fully guarantees that the widget and its controllers will be removed from memory when they are no longer used.
-      Get.offAll(() => const WelcomeScreen());   
-      
+      Get.offAll(() => const WelcomeScreen());
+
     } else {
       int page = currentPageIndex.value + 1;
       pageController.jumpToPage(page);

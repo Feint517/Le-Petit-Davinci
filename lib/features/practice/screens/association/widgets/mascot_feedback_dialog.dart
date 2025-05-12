@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:kids_learning_app/common/widgets/mascot/interactive_mascot.dart';
+import 'package:kids_learning_app/common/widgets/mascot/mascot_controller.dart';
+import 'package:kids_learning_app/common/widgets/mascot/mascot_state.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 
-enum MascotType { owl, elephant, panda }
-
+// Ces enums sont conservés pour maintenir la compatibilité avec le code existant
 enum MascotMood { happy, sad, question }
 
 class MascotFeedbackDialog extends StatelessWidget {
   final String title;
   final String message;
   final MascotType mascotType;
-  final MascotMood mascotMood;
+  final MascotState mascotState;
   final VoidCallback onConfirm;
   final String buttonText;
 
@@ -20,13 +22,22 @@ class MascotFeedbackDialog extends StatelessWidget {
     required this.title,
     required this.message,
     required this.mascotType,
-    required this.mascotMood,
+    required this.mascotState,
     required this.onConfirm,
     this.buttonText = "OK",
   });
 
   @override
   Widget build(BuildContext context) {
+    // S'assurer que le contrôleur est initialisé
+    if (!Get.isRegistered<MascotController>()) {
+      Get.put(MascotController());
+    }
+
+    // Mettre à jour l'état de la mascotte dans le contrôleur
+    MascotController.to.changeMascot(mascotType);
+    MascotController.to.changeState(mascotState);
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -37,7 +48,7 @@ class MascotFeedbackDialog extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
+              color: Colors.black.withOpacity(0.2),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
@@ -47,11 +58,18 @@ class MascotFeedbackDialog extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                _getMascotImagePath(),
-                height: 120,
-                width: 120,
-                fit: BoxFit.contain,
+              InteractiveMascot(
+                mascotType: mascotType,
+                initialState: mascotState,
+                size: 120,
+                onTap: () {
+                  // Changer l'état de la mascotte quand on tape dessus
+                  if (mascotState == MascotState.sad) {
+                    MascotController.to.askQuestion();
+                  } else if (mascotState == MascotState.happy) {
+                    MascotController.to.celebrate();
+                  }
+                },
               ),
               const Gap(12),
 
@@ -110,24 +128,37 @@ class MascotFeedbackDialog extends StatelessWidget {
     );
   }
 
-  String _getMascotImagePath() {
-    String mascot = mascotType.toString().split('.').last;
-    String mood = mascotMood.toString().split('.').last;
-    return 'assets/images/mascots/$mascot/${mood}_$mascot.png';
-  }
-
   Color _getButtonColor() {
-    switch (mascotMood) {
-      case MascotMood.happy:
+    switch (mascotState) {
+      case MascotState.happy:
+      case MascotState.celebrating:
         return AppColors.accent;
-      case MascotMood.sad:
+      case MascotState.sad:
         return AppColors.secondary;
-      case MascotMood.question:
+      case MascotState.question:
+      case MascotState.thinking:
         return AppColors.primary;
+      default:
+        return AppColors.primaryDeep;
     }
   }
 }
 
+// Convertir d'un ancien MascotMood vers le nouveau MascotState
+MascotState _convertMoodToState(MascotMood mood) {
+  switch (mood) {
+    case MascotMood.happy:
+      return MascotState.happy;
+    case MascotMood.sad:
+      return MascotState.sad;
+    case MascotMood.question:
+      return MascotState.question;
+    default:
+      return MascotState.idle;
+  }
+}
+
+// Fonction pour afficher un dialogue avec la mascotte
 void showMascotFeedback({
   required String title,
   required String message,
@@ -137,6 +168,7 @@ void showMascotFeedback({
 }) {
   final mascots = [MascotType.owl, MascotType.elephant, MascotType.panda];
   final randomMascot = mascots[DateTime.now().millisecond % mascots.length];
+  final mascotState = _convertMoodToState(mood);
 
   try {
     if (Get.isDialogOpen ?? false) {
@@ -149,7 +181,7 @@ void showMascotFeedback({
       title: title,
       message: message,
       mascotType: randomMascot,
-      mascotMood: mood,
+      mascotState: mascotState,
       onConfirm: onConfirm ?? () {},
       buttonText: buttonText,
     ),

@@ -2,9 +2,11 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:kids_learning_app/features/home/screens/home_sceen.dart';
+import 'package:kids_learning_app/common/widgets/mascot/mascot_controller.dart';
+import 'package:kids_learning_app/features/splash/screens/splash_screen.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/font_manager.dart';
 import 'package:kids_learning_app/utils/theme/theme.dart';
@@ -33,6 +35,11 @@ class App extends StatelessWidget {
       }
     }
 
+    // Initialiser le contrôleur de mascotte
+    if (!Get.isRegistered<MascotController>()) {
+      Get.put(MascotController(), permanent: true);
+    }
+
     if (kDebugMode) {
       print("Initializing app with SplashScreen as home");
     }
@@ -53,7 +60,7 @@ class App extends StatelessWidget {
       darkTheme: CustomAppTheme.darkTheme,
 
       //* Explicitly set home to SplashScreen and prevent any automatic redirects
-      home: const HomeScreen(),
+      home: const SplashScreen(),
 
       //* Disable any initial route bindings that might override the home screen
       initialRoute: null,

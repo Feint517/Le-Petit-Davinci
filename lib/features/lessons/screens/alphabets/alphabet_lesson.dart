@@ -1,172 +1,457 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
+import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
+import 'package:kids_learning_app/common/widgets/custom_progress_bar.dart';
+import 'package:kids_learning_app/features/lessons/controllers/alphabet_lesson_controller.dart';
+import 'package:kids_learning_app/features/lessons/models/alphabet_model.dart';
+import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_card.dart';
 import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
+import 'package:lottie/lottie.dart';
 
-class AlphabetLessonScreen extends StatefulWidget {
+class AlphabetLessonScreen extends StatelessWidget {
   const AlphabetLessonScreen({super.key});
 
   @override
-  State<AlphabetLessonScreen> createState() => _AlphabetLessonScreenState();
-}
-
-class _AlphabetLessonScreenState extends State<AlphabetLessonScreen> {
-  TextStyle textStyle = TextStyle(fontSize: 12);
-  final List<String> tabs = ["Étude", "Exercices", "Animation", "Vidéo"];
-
-  final List<String> letters = ["Aa", "Bb", "Cc", "Dd", "Ee", "Ff", "Gg", "Hh"];
-  final List<String> lesson = [
-    "Contenu 1 - Les Bases de l’Alphabet Français",
-    "Contenu 2 - Les Chiffres en Français",
-    "Contenu 3 - Les Jours de la Semaine",
-  ];
-  final List<Color> borderColors = [
-    Colors.deepPurpleAccent,
-    Colors.deepOrange,
-    Colors.teal,
-    Colors.amber,
-    Colors.amber,
-    Colors.teal,
-    Colors.deepOrange,
-    Colors.deepPurpleAccent,
-  ];
-
-  @override
   Widget build(BuildContext context) {
+    // Initialisation du contrôleur
+    final controller = Get.put(AlphabetLessonController());
+
     return Scaffold(
-      backgroundColor: Color(0xFFFDEFFF),
+      backgroundColor: const Color(0xFFFDEFFF),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //* AppBar
-                CommonHeader(
+        child: Obx(() {
+          // Afficher un écran de chargement si nécessaire
+          if (!controller.isLoaded.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          
+          return Column(
+            children: [
+              // Header
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: CommonHeader(
                   pageTitle: "Alphabet & Prononciation",
                   trailing: CircleAvatar(
                     backgroundImage: AssetImage(IconAssets.avatar),
                     radius: 24,
                   ),
                 ),
-
-                //* Section title dropdown
-                CustomDropdownButton(options: lesson, optionsList: []),
-
-                //* Tabs
-                //* Letter Grid
-                Container(
-                  margin: EdgeInsets.all(20),
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Toucher une lettre pour entendre son son.",
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      Gap(15),
-                      GridView.count(
-                        shrinkWrap: true,
-                        crossAxisCount: 4,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: List.generate(letters.length, (index) {
-                          return Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: borderColors[index],
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: Text(
-                              letters[index],
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          );
-                        }),
-                      ),
-                    ],
-                  ),
-                ),
-                // Points
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-                  decoration: BoxDecoration(
-                    color: Color(0xffFDCFFE),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Text(
-                    "Obtenez 4 points",
-                    style: TextStyle(
-                      color: Color(0xffFC715A),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-
-                Gap(15),
-
-                // Lesson Content
-                Text(
-                  "Les Bases de l’Alphabet Français",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    "L’alphabet français se compose de 26 lettres, divisées en voyelles et consonnes. Chaque lettre a un son spécifique qui peut varier selon les mots et les accents.",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.black87,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              
+              // Progression
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
                   children: [
-                    Text("Dans cette leçon, tu apprendras :", style: textStyle),
-                    Gap(5),
-                    Text(
-                      "🔷 La prononciation correcte de chaque lettre.",
-                      style: textStyle,
+                    Expanded(
+                      child: CustomProgressBar(
+                        progress: controller.progression.value,
+                      ),
                     ),
-                    Text(
-                      "🔷 La différence entre voyelles et consonnes.",
-                      style: textStyle,
-                    ),
-                    Text(
-                      "🔷 Comment associer les lettres à des mots simples.",
-                      style: textStyle,
-                    ),
-                    Gap(10),
-                    Text(
-                      "💡 Astuce : Pratique régulièrement en lisant des mots simples à voix haute pour améliorer ton accent et ta fluidité.",
-                      style: TextStyle(fontSize: 12),
+                    const Gap(12),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12, 
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xffFDCFFE),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Color(0xffFC715A),
+                            size: 16,
+                          ),
+                          const Gap(4),
+                          Text(
+                            "${controller.points.value} pts",
+                            style: const TextStyle(
+                              color: Color(0xffFC715A),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
+              ),
+              
+              const Gap(12),
+              
+              // Section title
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        controller.currentSection.title,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primaryDeep,
+                        ),
+                      ),
+                    ),
+                    if (!controller.isLetterExpanded.value)
+                      TextButton.icon(
+                        onPressed: controller.toggleLetterExpanded,
+                        icon: const Icon(Icons.grid_view, size: 16),
+                        label: const Text("Voir tout"),
+                        style: ButtonStyle(
+                          foregroundColor: MaterialStateProperty.all(AppColors.purple),
+                          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          )),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              
+              // Description de la section
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  controller.currentSection.description,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              
+              const Gap(16),
+              
+              // Tabs
+              TabBar(
+                controller: controller.tabController,
+                indicatorColor: AppColors.primaryDeep,
+                indicatorSize: TabBarIndicatorSize.label,
+                labelColor: AppColors.primaryDeep,
+                unselectedLabelColor: Colors.grey,
+                tabs: const [
+                  Tab(text: "Étude"),
+                  Tab(text: "Exercices"),
+                  Tab(text: "Animation"),
+                  Tab(text: "Vidéo"),
+                ],
+              ),
+              
+              // Tab content
+              Expanded(
+                child: TabBarView(
+                  controller: controller.tabController,
+                  children: [
+                    // Tab 1: Étude des lettres
+                    _buildStudyTab(controller),
+                    
+                    // Tab 2: Exercices
+                    _buildExercisesTab(controller),
+                    
+                    // Tab 3: Animation
+                    _buildAnimationTab(controller),
+                    
+                    // Tab 4: Vidéo
+                    _buildVideoTab(controller),
+                  ],
+                ),
+              ),
+              
+              // Navigation buttons
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: ContenuPrecedantSuivant(
+                  onPreviousPressed: controller.previousSection,
+                  onNextPressed: controller.nextSection,
+                ),
+              ),
+            ],
+          );
+        }),
+      ),
+    );
+  }
+  
+  // Tab 1: Étude des lettres
+  Widget _buildStudyTab(AlphabetLessonController controller) {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Obx(() {
+        // Vérifier si la section contient des lettres pour éviter les erreurs
+        if (controller.currentSection.letters.isEmpty) {
+          return const Center(
+            child: Text("Aucune lettre disponible dans cette section"),
+          );
+        }
 
-                Gap(40),
-                ContenuPrecedantSuivant(),
-              ],
+        // Si une lettre est agrandie, afficher sa carte détaillée
+        if (controller.isLetterExpanded.value) {
+          return Column(
+            children: [
+              Expanded(
+                child: AlphabetCard(
+                  letter: controller.currentLetter,
+                  index: controller.currentLetterIndex.value,
+                  isExpanded: true,
+                  isSelected: true,
+                  isPlaying: controller.isPlaying.value,
+                  onTap: () {
+                    if (!controller.isPlaying.value) {
+                      controller.playLetterSound(controller.currentLetter);
+                    }
+                  },
+                  animation: controller.letterScaleAnimation,
+                ),
+              ),
+              
+              // Navigation des lettres
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: controller.previousLetter,
+                    icon: const Icon(Icons.arrow_back_ios, size: 16),
+                    label: const Text("Précédente"),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(AppColors.purple),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () => controller.toggleLetterExpanded(),
+                    icon: const Icon(Icons.grid_view, size: 16),
+                    label: const Text("Voir tout"),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.grey.shade200),
+                      foregroundColor: MaterialStateProperty.all(Colors.black87),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: controller.nextLetter,
+                    icon: const Icon(Icons.arrow_forward_ios, size: 16),
+                    label: const Text("Suivante"),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(AppColors.accent),
+                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        }
+        
+        // Sinon, afficher la grille de lettres
+        return Column(
+          children: [
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  childAspectRatio: 1.0,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                ),
+                itemCount: controller.currentSection.letters.length,
+                itemBuilder: (context, index) {
+                  final letter = controller.currentSection.letters[index];
+                  final isSelected = controller.currentLetterIndex.value == index;
+                  
+                  return AlphabetCard(
+                    letter: letter,
+                    index: index,
+                    isSelected: isSelected,
+                    isPlaying: isSelected && controller.isPlaying.value,
+                    onTap: () {
+                      controller.currentLetterIndex.value = index;
+                      controller.toggleLetterExpanded();
+                    },
+                    animation: isSelected ? controller.letterScaleAnimation : null,
+                  );
+                },
+              ),
+            ),
+            
+            // Instructions
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Text(
+                "Touchez une lettre pour voir plus de détails et entendre sa prononciation.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey[600],
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ),
+          ],
+        );
+      }),
+    );
+  }
+  
+  // Tab 2: Exercices d'alphabet
+  Widget _buildExercisesTab(AlphabetLessonController controller) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            IconAssets.abc,
+            height: 100,
+          ),
+          const Gap(20),
+          const Text(
+            "Exercices de prononciation",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
           ),
-        ),
+          const Gap(10),
+          const Text(
+            "Pratique la prononciation des lettres et mots",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+            ),
+          ),
+          const Gap(20),
+          ElevatedButton.icon(
+            onPressed: () {
+              // TODO: Naviguer vers les exercices
+            },
+            icon: const Icon(Icons.play_arrow),
+            label: const Text("Commencer les exercices"),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(AppColors.accent),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 12,
+              )),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  
+  // Tab 3: Animation des lettres
+  Widget _buildAnimationTab(AlphabetLessonController controller) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Lottie.asset(
+            LottieAssets.confetti,
+            height: 150,
+            repeat: true,
+          ),
+          const Gap(20),
+          const Text(
+            "Animation des lettres",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const Gap(10),
+          const Text(
+            "Regarde comment les lettres sont formées",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+            ),
+          ),
+          const Gap(20),
+          ElevatedButton.icon(
+            onPressed: () {
+              // TODO: Lancer l'animation
+            },
+            icon: const Icon(Icons.play_circle_outline),
+            label: const Text("Voir l'animation"),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(AppColors.primaryDeep),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 12,
+              )),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+  
+  // Tab 4: Vidéo éducative
+  Widget _buildVideoTab(AlphabetLessonController controller) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 180,
+            width: 320,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Icon(
+              Icons.video_library,
+              size: 60,
+              color: Colors.grey,
+            ),
+          ),
+          const Gap(20),
+          const Text(
+            "Vidéo éducative",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const Gap(10),
+          const Text(
+            "Regarde une vidéo sur l'alphabet français",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+            ),
+          ),
+          const Gap(20),
+          ElevatedButton.icon(
+            onPressed: () {
+              // TODO: Lancer la vidéo
+            },
+            icon: const Icon(Icons.play_arrow),
+            label: const Text("Regarder la vidéo"),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.red),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 12,
+              )),
+            ),
+          ),
+        ],
       ),
     );
   }

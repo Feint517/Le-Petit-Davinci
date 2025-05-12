@@ -14,6 +14,10 @@ class SignupScreen extends GetView<SignupController> {
 
   @override
   Widget build(BuildContext context) {
+    // S'assurer que le contrôleur de signup est initialisé
+    if (!Get.isRegistered<SignupController>()) {
+      Get.put(SignupController());
+    }
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
