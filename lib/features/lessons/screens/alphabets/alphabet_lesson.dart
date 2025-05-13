@@ -3,9 +3,10 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/common/widgets/custom_progress_bar.dart';
-import 'package:kids_learning_app/features/lessons/controllers/alphabet_lesson_controller.dart';
+import 'package:kids_learning_app/features/lessons/controllers/alphabetController/alphabet_lesson_controller.dart';
 import 'package:kids_learning_app/features/lessons/models/alphabet_model.dart';
 import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_card.dart';
+import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_prononciation.dart';
 import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
@@ -140,10 +141,15 @@ class AlphabetLessonScreen extends StatelessWidget {
                 indicatorSize: TabBarIndicatorSize.label,
                 labelColor: AppColors.primaryDeep,
                 unselectedLabelColor: Colors.grey,
+                labelStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'BricolageGrotesque'
+                ),
                 tabs: const [
+                  Tab(text: "Diction"),
                   Tab(text: "Étude"),
-                  Tab(text: "Exercices"),
-                  Tab(text: "Animation"),
+                  Tab(text: "Exercices"), 
                   Tab(text: "Vidéo"),
                 ],
               ),
@@ -153,6 +159,7 @@ class AlphabetLessonScreen extends StatelessWidget {
                 child: TabBarView(
                   controller: controller.tabController,
                   children: [
+                    AlphabetPrononciation(),
                     // Tab 1: Étude des lettres
                     _buildStudyTab(controller),
                     
@@ -169,13 +176,7 @@ class AlphabetLessonScreen extends StatelessWidget {
               ),
               
               // Navigation buttons
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: ContenuPrecedantSuivant(
-                  onPreviousPressed: controller.previousSection,
-                  onNextPressed: controller.nextSection,
-                ),
-              ),
+             
             ],
           );
         }),
@@ -219,14 +220,13 @@ class AlphabetLessonScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton.icon(
-                    onPressed: controller.previousLetter,
-                    icon: const Icon(Icons.arrow_back_ios, size: 16),
-                    label: const Text("Précédente"),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(AppColors.purple),
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
-                    ),
+                  IconButton(
+                      onPressed: controller.previousLetter,
+                      icon: const Icon(Icons.arrow_back_ios, size: 16), 
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(AppColors.purple),
+                        foregroundColor: MaterialStateProperty.all(Colors.white),
+                      ), 
                   ),
                   ElevatedButton.icon(
                     onPressed: () => controller.toggleLetterExpanded(),
@@ -237,12 +237,11 @@ class AlphabetLessonScreen extends StatelessWidget {
                       foregroundColor: MaterialStateProperty.all(Colors.black87),
                     ),
                   ),
-                  ElevatedButton.icon(
+                  IconButton(
                     onPressed: controller.nextLetter,
-                    icon: const Icon(Icons.arrow_forward_ios, size: 16),
-                    label: const Text("Suivante"),
+                    icon: const Icon(Icons.arrow_forward_ios, size: 16), 
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(AppColors.accent),
+                      backgroundColor: MaterialStateProperty.all(AppColors.orange),
                       foregroundColor: MaterialStateProperty.all(Colors.white),
                     ),
                   ),
