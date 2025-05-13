@@ -8,7 +8,7 @@ import 'package:kids_learning_app/features/home/screens/home_sceen.dart';
 import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_introduction.dart';
 import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_lesson.dart';
 import 'package:kids_learning_app/features/lessons/screens/construction/construction_exercice.dart';
-import 'package:kids_learning_app/features/lessons/screens/construction/construction_learn.dart';
+import 'package:kids_learning_app/features/lessons/screens/construction/construction_lesson.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/font_manager.dart';
 import 'package:kids_learning_app/utils/theme/theme.dart';
@@ -57,7 +57,7 @@ class App extends StatelessWidget {
       darkTheme: CustomAppTheme.darkTheme,
 
       //* Explicitly set home to SplashScreen and prevent any automatic redirects
-      home: const ExercisePage(day: 1),
+      home: const HomeScreen(),
 
       //* Disable any initial route bindings that might override the home screen
       initialRoute: null,

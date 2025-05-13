@@ -1,38 +1,117 @@
 import 'package:flutter/material.dart';
-import 'package:kids_learning_app/features/lessons/data/sentence_translation.dart';
-import 'package:kids_learning_app/features/lessons/models/english_to_french.dart'; 
+import 'package:get/get.dart';
+import 'dart:async';
+import 'package:kids_learning_app/features/lessons/data/french_words_suggestions.dart';
+import 'package:kids_learning_app/features/lessons/data/sentence_translation.dart'; 
+import 'package:kids_learning_app/features/lessons/models/english_to_french.dart';
+import 'package:kids_learning_app/features/lessons/screens/construction/construction_introduction_lesson.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart'; 
 
-class ExercisePage extends StatefulWidget {
+class ConstructionExercice extends StatefulWidget {
   final int day;
 
-  const ExercisePage({Key? key, required this.day}) : super(key: key);
+  const ConstructionExercice({Key? key, required this.day}) : super(key: key);
 
   @override
-  _ExercisePageState createState() => _ExercisePageState();
+  _ConstructionExerciceState createState() => _ConstructionExerciceState();
 }
 
-class _ExercisePageState extends State<ExercisePage> {
+class _ConstructionExerciceState extends State<ConstructionExercice> {
   late List<EnglishToFrench> _sentences;
   int _currentIndex = 0;
-  final TextEditingController _answerController = TextEditingController();
   bool _showResult = false;
   bool _isCorrect = false;
   int _score = 0;
+  
+  // For multiple choice options
+  late List<String> _currentOptions = [];
+  String? _selectedAnswer;
+  
+  // Timer related variables
+  late Timer _timer;
+  int _remainingSeconds = 10;
+  bool _timerActive = false;
 
   @override
   void initState() {
     super.initState();
     _sentences = SentencesData.getSentencesByDay(widget.day);
-    // Optional: shuffle sentences for more challenge
-    // _sentences.shuffle();
+    _generateOptions();
+    _startTimer();
+  }
+  
+  @override
+  void dispose() {
+    _cancelTimer();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    _remainingSeconds = 10;
+    _timerActive = true;
+    
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_remainingSeconds > 0) {
+          _remainingSeconds--;
+        } else {
+          // Time's up - mark as incorrect
+          _timer.cancel();
+          _timerActive = false;
+          _showResult = true;
+          _isCorrect = false;
+          // Auto-proceed to next question after a delay
+          Future.delayed(Duration(seconds: 2), () {
+            if (mounted) {
+              _nextQuestion();
+            }
+          });
+        }
+      });
+    });
+  }
+
+  void _cancelTimer() {
+    if (_timerActive) {
+      _timer.cancel();
+      _timerActive = false;
+    }
+  }
+
+  // Generate 6 options - 1 correct and 5 incorrect answers
+  void _generateOptions() {
+    _currentOptions = [];
+    // Add the correct answer
+    _currentOptions.add(_sentences[_currentIndex].frenchSentence);
+    
+    // Create a copy of the suggestions list to avoid duplicates
+    final suggestions = List<String>.from(FrenchSentenceSuggestions.frenchSentenceSuggestions);
+    
+    // Remove the correct answer from suggestions if it exists there
+    suggestions.remove(_sentences[_currentIndex].frenchSentence);
+    
+    // Shuffle the suggestions and pick 5 random words
+    suggestions.shuffle();
+    for (int i = 0; i < 5 && i < suggestions.length; i++) {
+      _currentOptions.add(suggestions[i]);
+    }
+    
+    // Shuffle the options so the correct answer isn't always first
+    _currentOptions.shuffle();
+    
+    // Reset selection state
+    _selectedAnswer = null;
+    _showResult = false;
   }
 
   void _checkAnswer() {
+    if (_selectedAnswer == null) return;
+    
+    _cancelTimer();
+    
     setState(() {
       _showResult = true;
-      // Simple comparison - you might want to improve this
-      _isCorrect = _answerController.text.trim().toLowerCase() == 
-                  _sentences[_currentIndex].frenchSentence.toLowerCase();
+      _isCorrect = _selectedAnswer == _sentences[_currentIndex].frenchSentence;
       
       if (_isCorrect) {
         _score++;
@@ -41,11 +120,15 @@ class _ExercisePageState extends State<ExercisePage> {
   }
 
   void _nextQuestion() {
+    _cancelTimer();
+    
     setState(() {
       if (_currentIndex < _sentences.length - 1) {
         _currentIndex++;
-        _answerController.clear();
+        _generateOptions();
         _showResult = false;
+        _selectedAnswer = null;
+        _startTimer();
       } else {
         // Show final score or navigate to results page
         _showCompletionDialog();
@@ -58,15 +141,18 @@ class _ExercisePageState extends State<ExercisePage> {
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: Text('Exercise Complete!'),
-        content: Text('Your score: $_score/${_sentences.length}'),
+        title: Text('Exercise Complete!', style: TextStyle(fontFamily: 'BricolageGrotesque')),
+        content: Text('Your score: $_score/${_sentences.length}', style: TextStyle(fontFamily: 'BricolageGrotesque')),
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop(); // Return to previous screen
+               Get.to(
+                        () => ConstructionIntroductionLesson(),
+                        transition: Transition.leftToRight,
+                        duration: Duration(milliseconds: 500),
+                      );
             },
-            child: Text('OK'),
+            child: Text('OK', style: TextStyle(fontFamily: 'BricolageGrotesque')),
           ),
         ],
       ),
@@ -77,14 +163,14 @@ class _ExercisePageState extends State<ExercisePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Day ${widget.day} - Exercise'),
+        title: Text('Jour ${widget.day} - Exercice', style: TextStyle(fontFamily: 'BricolageGrotesque')),
         actions: [
           Center(
             child: Padding(
               padding: const EdgeInsets.only(right: 16.0),
               child: Text(
                 'Score: $_score/${_sentences.length}',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,fontFamily: 'BricolageGrotesque',),
               ),
             ),
           ),
@@ -95,64 +181,131 @@ class _ExercisePageState extends State<ExercisePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Timer display
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: _remainingSeconds > 3 ? AppColors.purple : Colors.red,
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.timer, color: Colors.white),
+                      SizedBox(width: 8),
+                      Text(
+                        '$_remainingSeconds',
+                        style: TextStyle(
+                          color: Colors.white, 
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          fontFamily: 'BricolageGrotesque',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            
             Text(
               'Translate to French:',
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 18, fontFamily: 'BricolageGrotesque'),
             ),
             SizedBox(height: 20),
             Text(
               _sentences[_currentIndex].englishSentence,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,fontFamily: 'BricolageGrotesque',),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 40),
-            TextField(
-              controller: _answerController,
-              decoration: InputDecoration(
-                labelText: 'Your Translation',
-                border: OutlineInputBorder(),
-                suffixIcon: _showResult
-                    ? Icon(
-                        _isCorrect ? Icons.check_circle : Icons.cancel,
-                        color: _isCorrect ? Colors.green : Colors.red,
-                      )
-                    : null,
+            SizedBox(height: 30),
+            
+            // Multiple choice options
+            Expanded(
+              child: ListView.builder(
+                itemCount: _currentOptions.length,
+                itemBuilder: (context, index) {
+                  final option = _currentOptions[index];
+                  final isCorrectOption = option == _sentences[_currentIndex].frenchSentence;
+                  final isSelected = option == _selectedAnswer;
+                  
+                  // Determine color based on selection and correctness
+                  Color? cardColor;
+                  if (_showResult) {
+                    if (isCorrectOption) {
+                      cardColor = Colors.green.shade100;
+                    } else if (isSelected && !isCorrectOption) {
+                      cardColor = Colors.red.shade100;
+                    }
+                  } else if (isSelected) {
+                    cardColor = AppColors.purple;
+                  }
+                  
+                  return Card(
+                    color: cardColor,
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    child: InkWell(
+                      onTap: _showResult ? null : () {
+                        setState(() {
+                          _selectedAnswer = option;
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                option,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                  fontFamily: 'BricolageGrotesque',
+                                ),
+                              ),
+                            ),
+                            if (_showResult && isCorrectOption)
+                              Icon(Icons.check_circle, color: Colors.green),
+                            if (_showResult && isSelected && !isCorrectOption)
+                              Icon(Icons.cancel, color: Colors.red),
+                            if (!_showResult && isSelected)
+                              Icon(Icons.radio_button_checked, color: Colors.blue),
+                            if (!_showResult && !isSelected)
+                              Icon(Icons.radio_button_unchecked, color: Colors.grey),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
-              enabled: !_showResult,
-              onSubmitted: (_) => _checkAnswer(),
             ),
+            
             SizedBox(height: 20),
-            if (_showResult)
-              Text(
-                _isCorrect 
-                    ? 'Correct!' 
-                    : 'Not quite. The correct answer is: ${_sentences[_currentIndex].frenchSentence}',
-                style: TextStyle(
-                  color: _isCorrect ? Colors.green : Colors.red,
-                  fontSize: 16,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 if (!_showResult)
                   ElevatedButton(
-                    onPressed: _checkAnswer,
-                    child: Text('Check Answer'),
+                    onPressed: _selectedAnswer != null ? _checkAnswer : null,
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     ),
+                    child: Text('Verifier la Réponse', style: TextStyle(color: Colors.white,fontFamily: 'BricolageGrotesque')),
                   )
                 else
                   ElevatedButton(
                     onPressed: _nextQuestion,
-                    child: Text(_currentIndex < _sentences.length - 1 
-                        ? 'Next Question' 
-                        : 'Finish'),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    ),
+                    child: Text(_currentIndex < _sentences.length - 1 
+                        ? 'Question Suivante' 
+                        : 'Terminer',
+                        style: TextStyle(fontFamily: 'BricolageGrotesque', color: Colors.white),
                     ),
                   ),
               ],
@@ -161,16 +314,11 @@ class _ExercisePageState extends State<ExercisePage> {
             Text(
               'Question ${_currentIndex + 1} of ${_sentences.length}',
               textAlign: TextAlign.center,
+              style: TextStyle(fontFamily: 'BricolageGrotesque'),
             ),
           ],
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _answerController.dispose();
-    super.dispose();
   }
 }

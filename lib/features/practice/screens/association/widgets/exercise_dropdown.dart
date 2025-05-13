@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/features/practice/controllers/association/association_data.dart';
+import 'package:kids_learning_app/features/lessons/data/association_data.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import '../../../controllers/association/association_controller.dart';
 
@@ -29,7 +29,7 @@ class ExerciseDropdown extends GetView<AssociationController> {
                       .take(2)
                       .join(' '),
                   style: const TextStyle(
-                    fontFamily: 'Archivo',
+                    fontFamily: 'BricolageGrotesque',
                     fontSize: 10,
                     color: Colors.white,
                   ),
@@ -62,7 +62,7 @@ class ExerciseDropdown extends GetView<AssociationController> {
                 Text(
                   "Sélectionnez un exercice",
                   style: TextStyle(
-                    fontFamily: 'Bricolage Grotesque',
+                    fontFamily: 'BricolageGrotesque',
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: AppColors.primaryDeep,
@@ -106,7 +106,7 @@ class ExerciseDropdown extends GetView<AssociationController> {
         child: Text(
           exercise,
           style: TextStyle(
-            fontFamily: 'Archivo',
+            fontFamily: 'BricolageGrotesque',
             fontSize: 12,
             color:
                 controller.selectedExercise.value == exercise

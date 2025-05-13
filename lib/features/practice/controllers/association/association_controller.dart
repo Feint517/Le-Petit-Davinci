@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/features/practice/controllers/association/association_data.dart';
+import 'package:kids_learning_app/features/lessons/data/association_data.dart';
 import 'package:kids_learning_app/features/practice/models/association_item.dart';
 import 'package:kids_learning_app/features/practice/models/color_combination_item.dart';
 import 'package:kids_learning_app/features/practice/models/color_identification_item.dart';

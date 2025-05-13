@@ -1,139 +1,136 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:kids_learning_app/common/widgets/common_header.dart';
-import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
-import 'package:kids_learning_app/utils/constants/assets_manager.dart';
-import 'package:kids_learning_app/utils/constants/sizes.dart';
+import 'package:get/get.dart';
+import 'package:kids_learning_app/features/lessons/controllers/constructionController/construction_lesson_controller.dart'; 
+import 'package:kids_learning_app/features/lessons/screens/construction/construction_exercice.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
 
-class ConstructionLessonScreen extends StatefulWidget {
-  const ConstructionLessonScreen({super.key});
-
-  @override
-  State<ConstructionLessonScreen> createState() =>
-      _ConstructionLessonScreenState();
-}
-
-class _ConstructionLessonScreenState extends State<ConstructionLessonScreen> {
-  TextStyle textStyle = TextStyle(fontSize: 12);
-  final List<String> vocabulaire = [
-    "Contenu 1 - Phrases Simples",
-    "Contenu 2 - Phrases Complexes",
-    "Contenu 3 - Phrases Interrogatives",
-  ];
-
+class ConstructionLesson extends StatelessWidget {
+  final int day;
+  
+  ConstructionLesson({Key? key, required this.day}) : super(key: key) {
+    print('ConstructionLesson initialized with day: $day');
+  }
   @override
   Widget build(BuildContext context) {
+    // Initialize controller with dependency injection
+    final controller = Get.put(ConstructionLessonController());
+    controller.day.value = day;
+    controller.loadSentences();
+    
     return Scaffold(
-      backgroundColor: Color(0xFFFDEFFF),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //* AppBar
-                CommonHeader(
-                  pageTitle: "Vocabulaire Thématique",
-                  trailing: CircleAvatar(
-                    backgroundImage: AssetImage(IconAssets.avatar),
-                    radius: 24,
-                  ),
-                ),
-                const Gap(AppSizes.defaultSpace),
-
-                //* Section title dropdown
-                //CustomDropdownButton(options: vocabulaire, optionsList: []),
-                //* Tabs
-                //* Letter Grid
-                Container(
-                  margin: EdgeInsets.all(20),
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                        offset: Offset(0, 5),
+      appBar: AppBar(
+        title: Obx(() => Text(
+          'Jour ${controller.day.value} - Apprendre les phrases', 
+          style: TextStyle(fontFamily: 'BricolageGrotesque')
+        )),
+        actions: [
+          Obx(() => IconButton(
+            icon: Icon(controller.showFrench.value ? Icons.visibility : Icons.visibility_off),
+            onPressed: controller.toggleFrench,
+            tooltip: 'Show/Hide French',
+          )),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Obx(() => Text(
+                      controller.getCurrentEnglishSentence(),
+                      style: TextStyle(
+                        fontSize: 24, 
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'BricolageGrotesque'
                       ),
-                    ],
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Container(
-                    height: 300,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/illustrations/sorry.png',
-                          fit: BoxFit.cover,
-                        ),
-                        Gap(50),
-                        Image.asset(
-                          'assets/images/illustrations/dsl.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ],
-                    ),
-                  ),
+                      textAlign: TextAlign.center,
+                    )),
+                    SizedBox(height: 30),
+                    Obx(() => AnimatedOpacity(
+                      opacity: controller.showFrench.value ? 1.0 : 0.0,
+                      duration: Duration(milliseconds: 300),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              controller.getCurrentFrenchSentence(),
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'BricolageGrotesque',
+                                color: AppColors.primaryDeep,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.volume_up),
+                            onPressed: controller.speakFrenchSentence,
+                            tooltip: 'Listen to pronunciation',
+                          ),
+                        ],
+                      ),
+                    )),
+                    SizedBox(height: 20),
+                    Obx(() => Text(
+                      '${controller.currentIndex.value + 1}/${controller.getTotalSentences()}',
+                      style: TextStyle(fontSize: 16, fontFamily: 'BricolageGrotesque'),
+                    )),
+                  ],
                 ),
-                // Points
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 8, horizontal: 15),
-                  decoration: BoxDecoration(
-                    color: Color(0xffFDCFFE),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Text(
-                    "Obtenez 4 points",
-                    style: TextStyle(
-                      color: Color(0xffFC715A),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-
-                Gap(15),
-
-                // Lesson Content
-                Text(
-                  "Construction De Phrases Simples",
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    "Phrases Simples : Je suis désolé.",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.black87,
-                      fontFamily: 'BricolageGrotesque',
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-
-                Text(
-                  "L’expression « Je suis désolé » sert à présenter ses excuses ou exprimer son regret après avoir fait ou dit quelque chose qui a pu blesser, déranger ou décevoir quelqu’un. On l’emploie dans des contextes formels et informels pour montrer que l’on reconnaît une erreur ou une maladresse.",
-                  style: textStyle,
-                ),
-                Gap(40),
-                StartButton(onPressed: () {  },),
-              ],
+              ),
             ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Obx(() => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: controller.currentIndex.value > 0 
+                      ? controller.previousSentence 
+                      : null,
+                  child: Icon(Icons.arrow_back),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  ),
+                ),
+                if (controller.isLastSentence())
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(
+                        () => ConstructionExercice(day: controller.day.value),
+                        transition: Transition.rightToLeft,
+                        duration: Duration(milliseconds: 500),
+                      );
+                    },
+                    child: Text('Exercise', style: TextStyle(fontFamily: 'BricolageGrotesque')),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15), 
+                    ),
+                  )
+                else
+                  ElevatedButton(
+                    onPressed: !controller.isLastSentence() 
+                        ? controller.nextSentence 
+                        : null,
+                    child: Icon(Icons.arrow_forward),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    ),
+                  ),
+              ],
+            )),
+          ),
+        ],
       ),
     );
   }
+  
+
 }

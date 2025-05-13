@@ -6,7 +6,7 @@ import 'package:kids_learning_app/features/evaluations/screens/dictation/dictati
 import 'package:kids_learning_app/features/evaluations/screens/multiple_choice/quiz_screen.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/exercices_appariement_screen.dart';
 import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_introduction.dart';
-import 'package:kids_learning_app/features/lessons/screens/construction/construction_lesson.dart';
+import 'package:kids_learning_app/features/lessons/screens/construction/construction_introduction_lesson.dart';
 import 'package:kids_learning_app/features/lessons/screens/vocabulary/vocabulaire_lesson.dart';
 import 'package:kids_learning_app/features/practice/screens/association/association_practice.dart';
 import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
@@ -43,7 +43,7 @@ class SubjectDetailController extends GetxController {
       content: "6 Contenues",
       time: "1 Heure 45 minutes",
       color: AppColors.accent,
-      onTap: () => Get.to(() => const ConstructionLessonScreen()),
+      onTap: () => Get.to(() =>   ConstructionIntroductionLesson()),
     ),
   ];
   final List<Widget> practiceCards = [

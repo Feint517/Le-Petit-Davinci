@@ -86,11 +86,6 @@ class SentencesData {
       englishSentence: "May I sit here?",
       frenchSentence: "Puis-je m'asseoir ici",
     ),
-    
-    // Continue with days 3-14 sentences...
-    // For brevity, I've included just Days 1-2, but you should add all sentences from the PDF
-    // sentences_data.dart (continued)
-
 // Day 3
 EnglishToFrench(
   englishSentence: "Have a good time",
@@ -599,6 +594,7 @@ EnglishToFrench(
   // Get sentences by day (1-indexed)
   static List<EnglishToFrench> getSentencesByDay(int day) {
     if (day < 1 || day > 14) {
+      print(day);
       throw ArgumentError('Day must be between 1 and 14');
     }
     
