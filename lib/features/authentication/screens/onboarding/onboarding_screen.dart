@@ -7,6 +7,7 @@ import 'package:kids_learning_app/features/authentication/screens/onboarding/wid
 import 'package:kids_learning_app/features/authentication/screens/onboarding/widgets/onboarding_previous_button.dart';
 import 'package:kids_learning_app/features/authentication/screens/welcome/widgets/logo_header.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
+import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/text_strings.dart';
 
 class OnBoardingScreen extends GetView<OnBoardingController> {
@@ -17,6 +18,7 @@ class OnBoardingScreen extends GetView<OnBoardingController> {
     Get.put(OnBoardingController());
 
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: Stack(
         children: [
           //* horizontal scrollable pages

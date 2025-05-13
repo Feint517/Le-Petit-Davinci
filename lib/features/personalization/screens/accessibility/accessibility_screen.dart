@@ -71,3 +71,6 @@ class _AccessibilityScreenState extends State<AccessibilityScreen> {
     );
   }
 }
+
+
+//TODO: Switch to stateless widget and use Getx for state management

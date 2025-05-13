@@ -48,3 +48,5 @@ class _LanguageScreenState extends State<LanguageScreen> {
     );
   }
 }
+
+//TODO: Switch to stateless widget and use Getx for state management

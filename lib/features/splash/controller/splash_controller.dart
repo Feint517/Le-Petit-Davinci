@@ -161,24 +161,15 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
   }
   
   void navigateToNextScreen() {
-    //* Check if it's the first time launching the app
-    final storage = GetStorage();
-    final isFirstTime = storage.read('isFirstTime') ?? true;
-    
+    // Pour afficher l'onboarding à chaque démarrage, on ignore le statut isFirstTime
     if (kDebugMode) {
-      print("isFirstTime: $isFirstTime");
+      print("Redirection vers l'onboarding à chaque démarrage");
     }
-    
-    //* Navigate to the appropriate screen
-    if (isFirstTime) {
-      Get.offAll(() => const OnBoardingScreen(), transition: Transition.fade);
-      Get.put(LoginController());
-      Get.put(SignupController(), permanent: true);
-    } else {
-      Get.offAll(() => const WelcomeScreen(), transition: Transition.fade);
-      Get.put(LoginController());
-      Get.put(SignupController(), permanent: true);
-    }
+
+    // Toujours naviguer vers l'écran d'onboarding
+    Get.offAll(() => const OnBoardingScreen(), transition: Transition.fade);
+    Get.put(LoginController());
+    Get.put(SignupController(), permanent: true);
   }
 
   //* Calculate current scale based on animation states

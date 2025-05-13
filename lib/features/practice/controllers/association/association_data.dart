@@ -507,7 +507,6 @@ final Map<String, dynamic> allExercises = {
   ],
 
   // Series 5 - Rainbow Colors
-  // Update to data.dart
   "Serie 5 - Arc-en-ciel 1": [
     RainbowColorsItem(
       instruction:
@@ -567,7 +566,6 @@ final Map<String, dynamic> allExercises = {
       ],
     ),
   ],
-
   "Serie 6 - Connecter en Français 2": [
     MatchingItem(
       title: "Plus d'Animaux (More Animals)",
@@ -597,7 +595,6 @@ final Map<String, dynamic> allExercises = {
       ],
     ),
   ],
-
   "Serie 6 - Connecter en Français 3": [
     MatchingItem(
       title: "Connecter les Moitiés (Connect the Halves)",
@@ -634,6 +631,7 @@ final Map<String, dynamic> allExercises = {
       ],
     ),
   ],
+  
   // Add Series 7 exercises
   "Serie 7 - Compter les objets 1": [
     CountingItem(
@@ -759,7 +757,6 @@ final Map<String, dynamic> allExercises = {
       ],
     ),
   ],
-  // todo: add
   "Serie 8 - Compter les objets 5": [
     CountingExerciseItem(
       instruction: "Compte les cerises et entoure le bon nombre.",
@@ -786,7 +783,6 @@ final Map<String, dynamic> allExercises = {
       ],
     ),
   ],
-  // TODO: add
   "Serie 8 - Compter les objets 7": [
     CountingExerciseItem(
       instruction: "Compte les chapeaux et entoure le bon nombre.",

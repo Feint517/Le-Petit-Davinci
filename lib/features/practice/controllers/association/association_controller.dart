@@ -34,16 +34,16 @@ class AssociationController extends GetxController {
   /// Flag indicating whether the current exercise set is completed
   var isExerciseCompleted = false.obs;
 
-  //=========================================================================
-  // SERIES 1 - ASSOCIATION PROPERTIES
-  //=========================================================================
+  //*=========================================================================
+  //* SERIES 1 - ASSOCIATION PROPERTIES
+  //*=========================================================================
 
   /// Selected answer for association exercises (Series 1)
   var selectedAnswer = Rxn<String>();
 
-  //=========================================================================
-  // SERIES 2 - SIZE COMPARISON PROPERTIES
-  //=========================================================================
+  //*=========================================================================
+  //* SERIES 2 - SIZE COMPARISON PROPERTIES
+  //*=========================================================================
 
   /// Currently selected largest item in size comparison (Series 2)
   var selectedLargest = Rxn<String>();

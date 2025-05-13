@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
-import 'package:kids_learning_app/common/widgets/custom_dropdown.dart';
 import 'package:kids_learning_app/features/evaluations/screens/dictation/widgets/quiz_dropdown.dart';
-import 'package:kids_learning_app/features/practice/screens/writing/writing_practice.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 import '../../models/multiple_choice/quiz_question.dart';
-import 'widgets/quiz_header.dart';
 import 'widgets/question_counter.dart';
 import 'widgets/question_box.dart';
 import 'widgets/navigation_buttons.dart';

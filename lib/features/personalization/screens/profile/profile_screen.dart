@@ -88,3 +88,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+//TODO: Switch to stateless widget and use Getx for state management

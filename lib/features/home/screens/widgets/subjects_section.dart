@@ -11,7 +11,6 @@ class SubjectsSection extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-
     final HomeController homeController = Get.find<HomeController>();
     return Column(
       children: [
@@ -26,7 +25,7 @@ class SubjectsSection extends GetView<HomeController> {
                 fontFamily: 'BricolageGrotesque',
               ),
             ),
-            ShowAllButton(callback: () {}),
+            //ShowAllButton(callback: () {}),
           ],
         ),
         const Gap(AppSizes.spaceBtwItems),

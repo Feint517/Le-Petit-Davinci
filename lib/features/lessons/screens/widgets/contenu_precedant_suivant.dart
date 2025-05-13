@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ContenuPrecedantSuivant extends StatelessWidget {
-  const ContenuPrecedantSuivant({super.key});
+  final VoidCallback onPreviousPressed;
+  final VoidCallback onNextPressed;
+
+  const ContenuPrecedantSuivant({
+    super.key,
+    required this.onPreviousPressed,
+    required this.onNextPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,7 @@ class ContenuPrecedantSuivant extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: onPreviousPressed,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -37,7 +44,7 @@ class ContenuPrecedantSuivant extends StatelessWidget {
                             ),
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: onNextPressed,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

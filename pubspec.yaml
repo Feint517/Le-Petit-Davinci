@@ -37,6 +37,8 @@ dependencies:
   audioplayers: ^6.4.0
   gif: ^2.3.0
   just_audio: ^0.10.2
+  flutter_tts: ^3.8.3  # Pour la synthèse vocale
+  path_provider: ^2.1.2  # Pour gérer les fichiers
   flutter_native_splash: ^2.4.6
   device_preview: ^1.2.0
   tutorial_coach_mark: ^1.3.0
