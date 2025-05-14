@@ -84,19 +84,46 @@ class OperationCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _buildNumberBlock(question.firstNumber),
-                          const SizedBox(width: 20),
-                          _buildOperationSymbol(question.operationType),
-                          const SizedBox(width: 20),
-                          _buildNumberBlock(question.secondNumber),
-                          const SizedBox(width: 20),
-                          _buildEqualSign(),
-                          const SizedBox(width: 20),
-                          _buildQuestionMark(),
-                        ],
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          // Calculate available width to determine if we need to adjust sizing
+                          final availableWidth = constraints.maxWidth;
+                          final isNarrowScreen = availableWidth < 320;
+                          
+                          // Adjust sizes for narrow screens
+                          final spacing = isNarrowScreen ? 10.0 : 20.0;
+                          
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                _buildNumberBlock(
+                                  question.firstNumber,
+                                  size: isNarrowScreen ? 40.0 : 50.0,
+                                ),
+                                SizedBox(width: spacing),
+                                _buildOperationSymbol(
+                                  question.operationType,
+                                  size: isNarrowScreen ? 30.0 : 40.0,
+                                ),
+                                SizedBox(width: spacing),
+                                _buildNumberBlock(
+                                  question.secondNumber,
+                                  size: isNarrowScreen ? 40.0 : 50.0,
+                                ),
+                                SizedBox(width: spacing),
+                                _buildEqualSign(
+                                  size: isNarrowScreen ? 30.0 : 40.0,
+                                ),
+                                SizedBox(width: spacing),
+                                _buildQuestionMark(
+                                  size: isNarrowScreen ? 40.0 : 50.0,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
@@ -234,13 +261,13 @@ class OperationCard extends StatelessWidget {
     );
   }
 
-  Widget _buildNumberBlock(int number) {
+  Widget _buildNumberBlock(int number, {double size = 50.0}) {
     return Container(
-      width: 50,
-      height: 50,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         color: AppColors.orange.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(size * 0.24), // Scale with size
         border: Border.all(
           color: AppColors.orange.withValues(alpha: 0.5),
           width: 1.5,
@@ -250,7 +277,7 @@ class OperationCard extends StatelessWidget {
         child: Text(
           number.toString(),
           style: TextStyle(
-            fontSize: 24,
+            fontSize: size * 0.48, // Scale font size with container size
             fontWeight: FontWeight.bold,
             fontFamily: 'BricolageGrotesque',
             color: AppColors.orange,
@@ -260,14 +287,14 @@ class OperationCard extends StatelessWidget {
     );
   }
 
-  Widget _buildOperationSymbol(OperationType type) {
+  Widget _buildOperationSymbol(OperationType type, {double size = 40.0}) {
     final String symbol = type == OperationType.addition ? '+' : '-';
     final Color color =
         type == OperationType.addition ? AppColors.orange : Colors.red;
 
     return Container(
-      width: 40,
-      height: 40,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
         shape: BoxShape.circle,
@@ -277,7 +304,7 @@ class OperationCard extends StatelessWidget {
         child: Text(
           symbol,
           style: TextStyle(
-            fontSize: 24,
+            fontSize: size * 0.6, // Scale font size with container size
             fontWeight: FontWeight.bold,
             color: color,
           ),
@@ -286,10 +313,10 @@ class OperationCard extends StatelessWidget {
     );
   }
 
-  Widget _buildEqualSign() {
+  Widget _buildEqualSign({double size = 40.0}) {
     return Container(
-      width: 40,
-      height: 40,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         color: Colors.blue.withValues(alpha: 0.1),
         shape: BoxShape.circle,
@@ -298,11 +325,11 @@ class OperationCard extends StatelessWidget {
           width: 1.5,
         ),
       ),
-      child: const Center(
+      child: Center(
         child: Text(
           '=',
           style: TextStyle(
-            fontSize: 24,
+            fontSize: size * 0.6, // Scale font size with container size
             fontWeight: FontWeight.bold,
             color: Colors.blue,
           ),
@@ -311,23 +338,23 @@ class OperationCard extends StatelessWidget {
     );
   }
 
-  Widget _buildQuestionMark() {
+  Widget _buildQuestionMark({double size = 50.0}) {
     return Container(
-      width: 50,
-      height: 50,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         color: Colors.purple.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(size * 0.24), // Scale with size
         border: Border.all(
           color: Colors.purple.withValues(alpha: 0.5),
           width: 1.5,
         ),
       ),
-      child: const Center(
+      child: Center(
         child: Text(
           '?',
           style: TextStyle(
-            fontSize: 24,
+            fontSize: size * 0.48, // Scale font size with container size
             fontWeight: FontWeight.bold,
             fontFamily: 'BricolageGrotesque',
             color: Colors.purple,
