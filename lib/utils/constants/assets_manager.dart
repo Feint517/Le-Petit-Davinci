@@ -19,10 +19,25 @@ class ImageAssets {
   static const String giraffe = '$IMAGE_PATH/misc/giraffe.png';
   
   // Shape images for exercises
-  static const String green_triangle = '$IMAGE_PATH/exercises/green_triangle.png';
-  static const String red_circle = '$IMAGE_PATH/exercises/red_circle.png';
-  static const String blue_square = '$IMAGE_PATH/exercises/blue_square.png';
-  static const String yellow_rectangle = '$IMAGE_PATH/exercises/yellow_rectangle.png';
+  static const String circle = 'assets/images/exercises/shapes/circle.png';
+  static const String square = 'assets/images/exercises/shapes/square.png';
+  static const String triangle = 'assets/images/exercises/shapes/triangle.png';
+  static const String rectangle = 'assets/images/exercises/shapes/rectangle.png';
+  
+  // Colored shapes for exercises
+  static const String green_triangle = 'assets/images/exercises/colors/green_triangle.png';
+  static const String red_circle = 'assets/images/exercises/colors/red_circle.png';
+  static const String blue_square = 'assets/images/exercises/colors/blue_square.png';
+  static const String yellow_rectangle = 'assets/images/exercises/colors/yellow_rectangle.png';
+  
+  // Colored objects for exercises
+  static const String pink_butterfly = 'assets/images/exercises/colors/pink_butterfly.png';
+  static const String green_mug = 'assets/images/exercises/colors/green_mug.png';
+  static const String brown_book = 'assets/images/exercises/colors/brown_book.png';
+  static const String blue_elephant = 'assets/images/exercises/colors/blue_elephant.png';
+  
+  // Multiple shapes image
+  static const String multiple_shapes = 'assets/images/exercises/shapes_colors/multiple_shapes.png';
   
   // Mascot images
   static const String happy_owl = '$IMAGE_PATH/mascots/owl/happy_owl.png';

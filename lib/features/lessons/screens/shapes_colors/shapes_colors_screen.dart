@@ -5,6 +5,7 @@ import 'package:kids_learning_app/common/widgets/mascot/mascot_controller.dart';
 import 'package:kids_learning_app/common/widgets/mascot/mascot_helper.dart';
 import 'package:kids_learning_app/common/widgets/mascot/mascot_state.dart';
 import 'package:kids_learning_app/features/lessons/controllers/shapes_colors_controller.dart';
+import 'package:kids_learning_app/features/lessons/screens/shapes_colors/debug_image_test.dart';
 import 'package:kids_learning_app/features/lessons/screens/shapes_colors/widgets/shapes_colors_card.dart';
 import 'package:kids_learning_app/features/lessons/screens/shapes_colors/widgets/shapes_colors_header.dart';
 import 'package:kids_learning_app/features/lessons/screens/shapes_colors/widgets/navigation_buttons.dart';
@@ -20,6 +21,13 @@ class ShapesColorsScreen extends GetView<ShapesColorsController> {
   Widget build(BuildContext context) {
     // Initialize controller
     Get.put(ShapesColorsController());
+    
+    // Add debug action
+    void _openDebugScreen() {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const DebugImageTest())
+      );
+    }
 
     // Get screen dimensions for responsive layout
     final screenSize = MediaQuery.of(context).size;
@@ -132,6 +140,31 @@ class ShapesColorsScreen extends GetView<ShapesColorsController> {
                                     child: const Icon(
                                       Icons.lightbulb_outline,
                                       color: AppColors.orange,
+                                      size: 20,
+                                    ),
+                                  ),
+                                ),
+                                // Debug button (long press to avoid accidentally activating)
+                                InkWell(
+                                  onLongPress: _openDebugScreen,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withValues(
+                                            alpha: 0.05,
+                                          ),
+                                          blurRadius: 8,
+                                          offset: const Offset(0, 2),
+                                        ),
+                                      ],
+                                    ),
+                                    child: const Icon(
+                                      Icons.bug_report,
+                                      color: Colors.grey,
                                       size: 20,
                                     ),
                                   ),

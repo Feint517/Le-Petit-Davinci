@@ -76,6 +76,8 @@ flutter:
     - assets/images/exercises/size/
     - assets/images/exercises/
     - assets/images/exercises/colors/
+    - assets/images/exercises/shapes/
+    - assets/images/exercises/shapes_colors/
 
 
   fonts:

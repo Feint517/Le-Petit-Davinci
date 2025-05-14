@@ -146,7 +146,7 @@ class _ShapesColorsCardState extends State<ShapesColorsCard>
                       onTap: _toggleImageSize,
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
-                        height: _isImageEnlarged ? 240 : 200,
+                        height: _isImageEnlarged ? 280 : 240,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: const Color(0xFFF8F8F8),
@@ -186,19 +186,38 @@ class _ShapesColorsCardState extends State<ShapesColorsCard>
                                 },
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(14),
-                                  child: Image.asset(
-                                    widget.question.imagePath,
-                                    fit: BoxFit.contain,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      // Fallback for missing images
-                                      return const Center(
-                                        child: Icon(
-                                          Icons.image_not_supported_outlined,
-                                          size: 64,
-                                          color: Colors.grey,
-                                        ),
-                                      );
-                                    },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Image.asset(
+                                      widget.question.imagePath,
+                                      fit: BoxFit.contain,
+                                      errorBuilder: (context, error, stackTrace) {
+                                        // Fallback for missing images with debug info
+                                        debugPrint('Error loading image: ${widget.question.imagePath}');
+                                        debugPrint('Error details: $error');
+                                        return Center(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              const Icon(
+                                                Icons.image_not_supported_outlined,
+                                                size: 48,
+                                                color: Colors.grey,
+                                              ),
+                                              const SizedBox(height: 8),
+                                              Text(
+                                                widget.question.imagePath,
+                                                style: const TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.grey,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
