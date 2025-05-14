@@ -61,7 +61,7 @@ class CountingCard extends StatelessWidget {
                   // Image area
                   Center(
                     child: Container(
-                      height: 200,
+                      height: 250,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: const Color(0xFFF8F8F8),
@@ -73,9 +73,24 @@ class CountingCard extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
-                        child: Image.asset(
-                          question.imagePath,
-                          fit: BoxFit.contain,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Wrap(
+                            alignment: WrapAlignment.center,
+                            spacing: 15,
+                            runSpacing: 15,
+                            children: List.generate(
+                              question.correctAnswer,
+                              (index) => SizedBox(
+                                width: 100,
+                                height: 100,
+                                child: Image.asset(
+                                  question.imagePath,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
