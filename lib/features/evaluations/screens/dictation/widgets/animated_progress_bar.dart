@@ -11,7 +11,7 @@ class AnimatedProgressBar extends StatelessWidget {
   final int currentStep;
 
   const AnimatedProgressBar({
-    Key? key,
+    super.key,
     required this.progress,
     this.backgroundColor = const Color(0xFFEBE4F2),
     this.progressColor = const Color(0xFF9C27B0),
@@ -20,7 +20,7 @@ class AnimatedProgressBar extends StatelessWidget {
     this.showPercentage = false,
     this.totalSteps = 0,
     this.currentStep = 0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

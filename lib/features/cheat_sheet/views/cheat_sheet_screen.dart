@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/cheat_sheet/controllers/cheat_sheet_controller.dart';
-import 'package:kids_learning_app/features/cheat_sheet/models/cheat_sheet_model.dart';
 import 'package:kids_learning_app/features/cheat_sheet/views/widgets/category_chip.dart';
 import 'package:kids_learning_app/features/cheat_sheet/views/widgets/cheat_sheet_card.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';

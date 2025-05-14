@@ -12,7 +12,7 @@ class AlphabetCard extends StatelessWidget {
   final Animation<double>? animation;
 
   const AlphabetCard({
-    Key? key,
+    super.key,
     required this.letter,
     required this.index,
     required this.onTap,
@@ -20,7 +20,7 @@ class AlphabetCard extends StatelessWidget {
     this.isSelected = false,
     this.isPlaying = false,
     this.animation,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

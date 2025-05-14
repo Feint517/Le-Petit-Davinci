@@ -10,7 +10,7 @@ class InteractiveAnswerArea extends StatelessWidget {
   final Map<String, Color> wordColors;
 
   const InteractiveAnswerArea({
-    Key? key,
+    super.key,
     required this.selectedWords,
     required this.onWordRemoved,
     this.isCheckingAnswer = false,
@@ -18,7 +18,7 @@ class InteractiveAnswerArea extends StatelessWidget {
     this.showCelebration = false,
     required this.correctWords,
     required this.wordColors,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

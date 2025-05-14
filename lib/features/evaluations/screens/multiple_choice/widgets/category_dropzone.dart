@@ -43,8 +43,8 @@ class CategoryDropzone extends StatelessWidget {
 
           // Dropzone area
           DragTarget<String>(
-            onAccept: (data) {
-              onItemAdded(data);
+            onAcceptWithDetails: (data) {
+              onItemAdded(data as String);
             },
             builder: (context, candidateData, rejectedData) {
               return Container(

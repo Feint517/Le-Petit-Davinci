@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kids_learning_app/common/widgets/mascot/mascot_controller.dart';
 import 'package:kids_learning_app/features/splash/screens/splash_screen.dart';

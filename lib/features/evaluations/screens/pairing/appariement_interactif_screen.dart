@@ -8,6 +8,8 @@ import 'package:kids_learning_app/common/widgets/mascot/mascot_state.dart';
 import 'package:kids_learning_app/features/evaluations/controllers/pairing/appariement_interactif_controller.dart';
 import 'package:kids_learning_app/features/evaluations/models/pairing/appariement_interactif_model.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/compatibility.dart';
+import 'package:kids_learning_app/features/evaluations/screens/pairing/image_test_screen.dart';
+import 'package:kids_learning_app/features/evaluations/screens/pairing/simple_image_test.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/widgets/appariement_progres.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/widgets/connexion_line_painter.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/widgets/element_appariement_card.dart';
@@ -192,6 +194,70 @@ class AppariementInteractifScreen
             ),
           ),
         ),
+        
+        // Test button - DEBUG ONLY
+        Container(
+          margin: const EdgeInsets.only(left: 8),
+          decoration: BoxDecoration(
+            color: Colors.amber.shade100,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.amber),
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () {
+                // Navigate to test screen
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const ImageTestScreen(),
+                  ),
+                );
+              },
+              borderRadius: BorderRadius.circular(12),
+              child: const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Icon(
+                  Icons.image_search,
+                  color: Colors.amber,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+        ),
+        
+        // Simple test button - DEBUG ONLY
+        Container(
+          margin: const EdgeInsets.only(left: 8),
+          decoration: BoxDecoration(
+            color: Colors.green.shade100,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.green),
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: () {
+                // Navigate to simple test screen
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const SimpleImageTestScreen(),
+                  ),
+                );
+              },
+              borderRadius: BorderRadius.circular(12),
+              child: const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Icon(
+                  Icons.bug_report,
+                  color: Colors.green,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+        ),
         const Gap(16),
 
         // Titre de la section
@@ -254,6 +320,24 @@ class AppariementInteractifScreen
 
   // Construction du contenu pour le mode "glisserDeposer"
   Widget _buildDragDropContent(AppariementInteractifModel exercice) {
+    // DEBUG INFO FOR EXERCISE
+    debugPrint('EXERCISE INFO - ID: ${exercice.id}, Title: ${exercice.titre}');
+    debugPrint('EXERCISE INFO - Description: ${exercice.description}');
+    debugPrint('EXERCISE INFO - Type: ${exercice.type}');
+    
+    // Print image paths for all pairs
+    for (var i = 0; i < exercice.paires.length; i++) {
+      final pair = exercice.paires[i];
+      debugPrint('EXERCISE PAIR $i - Left ID: ${pair.gauche.id}, Text: ${pair.gauche.texte}');
+      if (pair.gauche.imagePath != null) {
+        debugPrint('EXERCISE PAIR $i - Left Image Path: ${pair.gauche.imagePath}');
+      }
+      debugPrint('EXERCISE PAIR $i - Right ID: ${pair.droite.id}, Text: ${pair.droite.texte}');
+      if (pair.droite.imagePath != null) {
+        debugPrint('EXERCISE PAIR $i - Right Image Path: ${pair.droite.imagePath}');
+      }
+    }
+    
     final leftElements = exercice.paires.map((p) => p.gauche).toList();
     final rightElements = exercice.paires.map((p) => p.droite).toList();
 
@@ -427,8 +511,8 @@ class AppariementInteractifScreen
                                   );
                                 });
                               },
-                              onAccept: (dragged) {
-                                controller.handleDrop(dragged.id, element.id);
+                              onAcceptWithDetails: (dragged) {
+                                controller.handleDrop(dragged.data.id, element.id);
                               },
                             );
                           }).toList(),

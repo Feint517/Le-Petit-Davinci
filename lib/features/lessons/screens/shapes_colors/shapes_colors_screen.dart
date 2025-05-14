@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/common/widgets/mascot/interactive_mascot.dart';
 import 'package:kids_learning_app/common/widgets/mascot/mascot_controller.dart';
 import 'package:kids_learning_app/common/widgets/mascot/mascot_helper.dart';
 import 'package:kids_learning_app/common/widgets/mascot/mascot_state.dart';

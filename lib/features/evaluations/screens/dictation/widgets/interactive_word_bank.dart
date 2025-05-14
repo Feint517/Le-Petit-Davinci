@@ -8,13 +8,13 @@ class InteractiveWordBank extends StatelessWidget {
   final Map<String, Color> wordColors;
 
   const InteractiveWordBank({
-    Key? key,
+    super.key,
     required this.words,
     required this.selectedWords,
     required this.onWordSelected,
     this.isCheckingAnswer = false,
     required this.wordColors,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

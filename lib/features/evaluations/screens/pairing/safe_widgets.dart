@@ -13,13 +13,13 @@ class SafeImageAsset extends StatelessWidget {
   final Widget? fallbackWidget;
 
   const SafeImageAsset({
-    Key? key,
+    super.key,
     required this.imagePath,
     this.width,
     this.height,
     this.fit = BoxFit.contain,
     this.fallbackWidget,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class SafeContainer extends StatelessWidget {
   final AlignmentGeometry? alignment;
 
   const SafeContainer({
-    Key? key,
+    super.key,
     this.child,
     this.decoration,
     this.color,
@@ -69,7 +69,7 @@ class SafeContainer extends StatelessWidget {
     this.width,
     this.height,
     this.alignment,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -101,11 +101,11 @@ class SafeButton extends StatelessWidget {
   final ButtonStyle? style;
 
   const SafeButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.child,
     this.style,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

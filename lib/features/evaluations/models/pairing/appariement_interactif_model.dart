@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 
 /// Types d'exercices d'appariement
 enum AppariementType {
@@ -95,7 +96,7 @@ class AppariementInteractifModel {
             gauche: ElementAppariement(
               id: 'cercle_rouge',
               texte: 'Cercle Rouge',
-              imagePath: 'assets/images/exercises/colors/red_circle.png',
+              imagePath: ImageAssets.red_circle, // Use the asset constant
             ),
             droite: ElementAppariement(
               id: 'rouge',
@@ -107,7 +108,7 @@ class AppariementInteractifModel {
             gauche: ElementAppariement(
               id: 'carre_bleu',
               texte: 'Carré Bleu',
-              imagePath: 'assets/images/exercises/colors/blue_square.png',
+              imagePath: ImageAssets.blue_square, // Use the asset constant
             ),
             droite: ElementAppariement(
               id: 'bleu',
@@ -119,7 +120,7 @@ class AppariementInteractifModel {
             gauche: ElementAppariement(
               id: 'triangle_vert',
               texte: 'Triangle Vert',
-              imagePath: 'assets/images/exercises/colors/green_triangle.png',
+              imagePath: ImageAssets.green_triangle, // Use the asset constant
             ),
             droite: ElementAppariement(
               id: 'vert',
@@ -131,12 +132,70 @@ class AppariementInteractifModel {
             gauche: ElementAppariement(
               id: 'rectangle_jaune',
               texte: 'Rectangle Jaune',
-              imagePath: 'assets/images/exercises/colors/yellow_rectangle.png',
+              imagePath: ImageAssets.yellow_rectangle, // Use the asset constant
             ),
             droite: ElementAppariement(
               id: 'jaune',
               texte: 'Jaune',
               couleur: Colors.yellow,
+            ),
+          ),
+        ],
+      ),
+      
+      // Nouvel exercice: Formes géométriques simples - Niveau Facile
+      AppariementInteractifModel(
+        id: 'appariement_formes_simples_1',
+        titre: 'Formes Géométriques',
+        description: 'Associe chaque forme à son nom',
+        type: AppariementType.imageMot,
+        difficulte: NiveauDifficulte.facile,
+        mode: ModeAppariement.glisserDeposer,
+        points: 10,
+        mascotMessage: "Relie chaque forme à son nom!",
+        paires: [
+          PaireAppariement(
+            gauche: ElementAppariement(
+              id: 'cercle_simple',
+              texte: 'Cercle',
+              imagePath: ImageAssets.red_circle, // Use the asset constant
+            ),
+            droite: ElementAppariement(
+              id: 'nom_cercle',
+              texte: 'Cercle',
+            ),
+          ),
+          PaireAppariement(
+            gauche: ElementAppariement(
+              id: 'carre_simple',
+              texte: 'Carré',
+              imagePath: ImageAssets.blue_square, // Use the asset constant
+            ),
+            droite: ElementAppariement(
+              id: 'nom_carre',
+              texte: 'Carré',
+            ),
+          ),
+          PaireAppariement(
+            gauche: ElementAppariement(
+              id: 'triangle_simple',
+              texte: 'Triangle',
+              imagePath: ImageAssets.green_triangle, // Use the asset constant
+            ),
+            droite: ElementAppariement(
+              id: 'nom_triangle',
+              texte: 'Triangle',
+            ),
+          ),
+          PaireAppariement(
+            gauche: ElementAppariement(
+              id: 'rectangle_simple',
+              texte: 'Rectangle',
+              imagePath: ImageAssets.yellow_rectangle, // Use the asset constant
+            ),
+            droite: ElementAppariement(
+              id: 'nom_rectangle',
+              texte: 'Rectangle',
             ),
           ),
         ],

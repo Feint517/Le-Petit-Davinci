@@ -4,14 +4,13 @@ import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/features/lessons/controllers/constructionController/construction_introduction_lesson_controller.dart'; 
 import 'package:kids_learning_app/features/lessons/screens/construction/construction_lesson.dart';
-import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
 import 'package:kids_learning_app/features/lessons/screens/widgets/start_button.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart'; 
 import 'package:kids_learning_app/utils/constants/sizes.dart';
 
 class ConstructionIntroductionLesson extends StatelessWidget {
-  ConstructionIntroductionLesson({Key? key}) : super(key: key);
+  ConstructionIntroductionLesson({super.key});
 
   // Get reference to our controller
   final controller = Get.put(ConstructionIntroductionLessonController());

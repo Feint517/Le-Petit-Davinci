@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/appariement_interactif_fixed.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/compatibility.dart';
 

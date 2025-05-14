@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gap/gap.dart';
-import 'package:kids_learning_app/common/widgets/common_header.dart';
-import 'package:kids_learning_app/features/lessons/controllers/alphabetController/alphabet_lesson_controller.dart'; 
 import 'package:kids_learning_app/features/lessons/controllers/alphabetController/alphabet_prononciation_controller.dart';
-import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class AlphabetPrononciation extends StatefulWidget {
-  const AlphabetPrononciation({Key? key}) : super(key: key);
+  const AlphabetPrononciation({super.key});
 
   @override
   State<AlphabetPrononciation> createState() => _AlphabetPrononciationState();

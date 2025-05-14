@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:kids_learning_app/features/evaluations/screens/pairing/widgets/navigation_buttons.dart';
 
 /// Version compatible de NavigationButtons pour maintenir la rétrocompatibilité

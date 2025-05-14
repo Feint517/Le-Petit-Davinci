@@ -52,7 +52,7 @@ class QuestionBox extends StatelessWidget {
                   onTap: () => onOptionSelected(option),
                 ),
               )
-              .toList(),
+              ,
 
           // Astuce (Tip)
           const Gap(24),

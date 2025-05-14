@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:kids_learning_app/features/authentication/controllers/login/login_controller.dart';
 import 'package:kids_learning_app/features/authentication/controllers/signup/signup_controller.dart';
 import 'package:kids_learning_app/features/authentication/screens/onboarding/onboarding_screen.dart';
-import 'package:kids_learning_app/features/authentication/screens/welcome/welcome_screen.dart';
 
 class SplashController extends GetxController with GetTickerProviderStateMixin {
   //* Animation controllers

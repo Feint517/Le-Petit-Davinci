@@ -59,9 +59,9 @@ class DicteeInteractiveModel {
     required this.fullPhrase,
     List<DicteeWord>? wordsList,
   }) : 
-    this.wordBank = wordBank ?? correctWords,
-    this.distractors = distractors ?? [],
-    this.wordsList = wordsList ?? [];
+    wordBank = wordBank ?? correctWords,
+    distractors = distractors ?? [],
+    wordsList = wordsList ?? [];
   
   /// Vérifie si la réponse fournie est correcte
   bool checkAnswer(List<String> selectedWords) {

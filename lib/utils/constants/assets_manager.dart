@@ -17,9 +17,18 @@ class ImageAssets {
   static const String avatar7 = '$IMAGE_PATH/avatars/Avatar-6.png';
   static const String avatar8 = '$IMAGE_PATH/avatars/Avatar-7.png';
   static const String giraffe = '$IMAGE_PATH/misc/giraffe.png';
+  
+  // Shape images for exercises
+  static const String green_triangle = '$IMAGE_PATH/exercises/green_triangle.png';
+  static const String red_circle = '$IMAGE_PATH/exercises/red_circle.png';
+  static const String blue_square = '$IMAGE_PATH/exercises/blue_square.png';
+  static const String yellow_rectangle = '$IMAGE_PATH/exercises/yellow_rectangle.png';
+  
+  // Mascot images
   static const String happy_owl = '$IMAGE_PATH/mascots/owl/happy_owl.png';
   static const String sad_owl = '$IMAGE_PATH/mascots/owl/sad_owl.png';
   static const String chat_character = '$IMAGE_PATH/misc/chat_character.png';
+  
   static const String onBoarding1 =
       '$IMAGE_PATH/illustrations/onBoarding_giraffe1.png';
   static const String onBoarding2 =
@@ -30,7 +39,7 @@ class ImageAssets {
   static const String learn = '$IMAGE_PATH/misc/learn.png';
   static const String practice = '$IMAGE_PATH/misc/practice.png';
   static const String evaluate = '$IMAGE_PATH/misc/evaluate.png';
-    static const String cheat = '$IMAGE_PATH/misc/cheat.png';
+  static const String cheat = '$IMAGE_PATH/misc/cheat.png';
   static const String illustration_kid =
       '$IMAGE_PATH/misc/illustration-kid.png';
   static const String splashLogo = '$IMAGE_PATH/illustrations/splash.png';

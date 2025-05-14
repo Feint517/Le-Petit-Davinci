@@ -1,6 +1,9 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:kids_learning_app/features/evaluations/models/pairing/appariement_interactif_model.dart';
+import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
+import 'package:kids_learning_app/utils/helpers/asset_helper.dart';
 
 class ElementAppariementCard extends StatelessWidget {
   final ElementAppariement element;
@@ -12,7 +15,7 @@ class ElementAppariementCard extends StatelessWidget {
   final double opacity;
 
   const ElementAppariementCard({
-    Key? key,
+    super.key,
     required this.element,
     this.isSelected = false,
     this.isCorrect = false,
@@ -20,7 +23,7 @@ class ElementAppariementCard extends StatelessWidget {
     this.isGlowing = false,
     this.size,
     this.opacity = 1.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -91,28 +94,89 @@ class ElementAppariementCard extends StatelessWidget {
                       padding: const EdgeInsets.all(2.0),
                       child: Builder(
                         builder: (context) {
+                          // Debug print to track image path
+                          debugPrint('Loading image: ${element.imagePath}');
+                          
+                          // Check if imagePath is valid
+                          if (element.imagePath == null || element.imagePath!.isEmpty) {
+                            debugPrint('CRITICAL ERROR: Image path is null or empty');
+                            return const Icon(
+                              Icons.error_outline,
+                              color: Colors.red,
+                              size: 40,
+                            );
+                          }
+                          
+                          // No need to validate path format as AssetHelper will handle normalization
+                          
                           try {
-                            return Image.asset(
-                              element.imagePath!,
+                            // Add more debugging info
+                            debugPrint('ElementAppariementCard - Element ID: ${element.id}');
+                            debugPrint('ElementAppariementCard - Element Text: ${element.texte}');
+                            
+                            // First exercise fix - use the ImageAssets constants for more reliable loading
+                            if (element.id == 'cercle_rouge' || element.id == 'cercle_simple') {
+                              debugPrint('Using constants for red circle');
+                              return AssetHelper.loadFromImageAssets(
+                                imageConstant: ImageAssets.red_circle,
+                                fit: BoxFit.contain,
+                              );
+                            } else if (element.id == 'carre_bleu' || element.id == 'carre_simple') {
+                              debugPrint('Using constants for blue square');
+                              return AssetHelper.loadFromImageAssets(
+                                imageConstant: ImageAssets.blue_square,
+                                fit: BoxFit.contain,
+                              );
+                            } else if (element.id == 'triangle_vert' || element.id == 'triangle_simple') {
+                              debugPrint('Using constants for green triangle');
+                              return AssetHelper.loadFromImageAssets(
+                                imageConstant: ImageAssets.green_triangle,
+                                fit: BoxFit.contain,
+                              );
+                            } else if (element.id == 'rectangle_jaune' || element.id == 'rectangle_simple') {
+                              debugPrint('Using constants for yellow rectangle');
+                              return AssetHelper.loadFromImageAssets(
+                                imageConstant: ImageAssets.yellow_rectangle,
+                                fit: BoxFit.contain,
+                              );
+                            }
+                            
+                            // Use AssetHelper to load image with proper path handling
+                            return AssetHelper.loadImageAsset(
+                              path: element.imagePath!,
                               fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) {
-                                debugPrint(
-                                  'Erreur chargement image ${element.imagePath}: $error',
-                                );
-                                // Fallback avec une icône
-                                return Icon(
-                                  Icons.image_not_supported_outlined,
-                                  color: AppColors.grey,
-                                  size: 40,
-                                );
-                              },
+                              placeholder: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.image_not_supported_outlined,
+                                    color: Colors.red,
+                                    size: 30,
+                                  ),
+                                  Text(
+                                    'Path: ${element.imagePath}',
+                                    style: const TextStyle(fontSize: 8, color: Colors.red),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
                             );
                           } catch (e) {
-                            debugPrint('Exception chargement image: $e');
-                            return Icon(
-                              Icons.broken_image_outlined,
-                              color: AppColors.grey,
-                              size: 40,
+                            debugPrint('EXCEPTION loading image: $e');
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(
+                                  Icons.broken_image_outlined,
+                                  color: Colors.red,
+                                  size: 30,
+                                ),
+                                Text(
+                                  'Exception: ${e.toString().substring(0, math.min(e.toString().length, 30))}',
+                                  style: const TextStyle(fontSize: 6, color: Colors.red),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
                             );
                           }
                         },

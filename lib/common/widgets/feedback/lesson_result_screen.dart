@@ -60,11 +60,11 @@ class SparkleWidget extends StatelessWidget {
   final Animation<double> animation;
   
   const SparkleWidget({
-    Key? key,
+    super.key,
     required this.size,
     required this.color,
     required this.animation,
-  }) : super(key: key);
+  });
   
   @override
   Widget build(BuildContext context) {
@@ -150,7 +150,7 @@ class LessonResultScreen extends StatefulWidget {
 class _LessonResultScreenState extends State<LessonResultScreen>
     with TickerProviderStateMixin {
   // Static flag to track initialization across all instances
-  static bool _hasInitialized = false;
+  static final bool _hasInitialized = false;
   
   late AnimationController _animationController;
   late AnimationController _progressController;
@@ -412,7 +412,7 @@ class _LessonResultScreenState extends State<LessonResultScreen>
         
     return Scaffold(
       backgroundColor: Colors.white, // Clean white background
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Stack(

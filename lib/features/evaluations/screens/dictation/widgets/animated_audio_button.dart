@@ -6,11 +6,11 @@ class AnimatedAudioButton extends StatefulWidget {
   final int repeatCount;
 
   const AnimatedAudioButton({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.isPlaying,
     this.repeatCount = 0,
-  }) : super(key: key);
+  });
 
   @override
   State<AnimatedAudioButton> createState() => _AnimatedAudioButtonState();

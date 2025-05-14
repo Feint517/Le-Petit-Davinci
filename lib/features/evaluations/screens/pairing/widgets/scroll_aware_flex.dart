@@ -13,14 +13,14 @@ class ScrollAwareFlex extends StatelessWidget {
   final bool scrollable;
   
   const ScrollAwareFlex({
-    Key? key,
+    super.key,
     required this.children,
     this.direction = Axis.horizontal,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.mainAxisSize = MainAxisSize.max,
     this.scrollable = true,
-  }) : super(key: key);
+  });
   
   @override
   Widget build(BuildContext context) {

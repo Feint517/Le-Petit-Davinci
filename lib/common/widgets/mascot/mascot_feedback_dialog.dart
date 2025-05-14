@@ -15,14 +15,14 @@ class MascotFeedbackDialog extends StatelessWidget {
   final MascotType? mascotType;
 
   const MascotFeedbackDialog({
-    Key? key,
+    super.key,
     required this.title,
     required this.message,
     required this.mood,
     this.buttonText = "OK",
     this.onConfirm,
     this.mascotType,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

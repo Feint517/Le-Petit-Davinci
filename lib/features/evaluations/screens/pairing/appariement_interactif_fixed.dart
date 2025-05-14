@@ -298,33 +298,34 @@ class AppariementInteractifScreen
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children:
-                          leftElements.map((element) {
-                            return Draggable<ElementAppariement>(
-                              data: element,
-                              feedback: ElementAppariementCard(
-                                element: element,
-                                isGlowing: true,
-                                size: 100,
-                              ),
-                              childWhenDragging: ElementAppariementCard(
-                                element: element,
-                                isGlowing: false,
-                                opacity: 0.3,
-                              ),
-                              child: Obx(
-                                () => ElementAppariementCard(
-                                  element: element,
-                                  isCorrect: controller.correctElements
-                                      .contains(element.id),
-                                  isIncorrect: controller.incorrectElements
-                                      .contains(element.id),
-                                  isGlowing: controller.elementsWithGlow
-                                      .contains(element.id),
-                                ),
-                              ),
-                            );
-                          }).toList(),
+                      children: leftElements.map((element) {
+                        // Use Obx to observe reactive changes
+                        return Obx(() {
+                          final correctItems = controller.correctElements;
+                          final incorrectItems = controller.incorrectElements;
+                          final glowingItems = controller.elementsWithGlow;
+                          
+                          return Draggable<ElementAppariement>(
+                            data: element,
+                            feedback: ElementAppariementCard(
+                              element: element,
+                              isGlowing: true,
+                              size: 100,
+                            ),
+                            childWhenDragging: ElementAppariementCard(
+                              element: element,
+                              isGlowing: false,
+                              opacity: 0.3,
+                            ),
+                            child: ElementAppariementCard(
+                              element: element,
+                              isCorrect: correctItems.contains(element.id),
+                              isIncorrect: incorrectItems.contains(element.id),
+                              isGlowing: glowingItems.contains(element.id),
+                            ),
+                          );
+                        });
+                      }).toList(),
                     ),
                   ),
 
@@ -344,94 +345,77 @@ class AppariementInteractifScreen
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children:
-                          rightElements.map((element) {
-                            return DragTarget<ElementAppariement>(
-                              builder: (context, candidateData, rejectedData) {
-                                final bool isTargeted =
-                                    candidateData.isNotEmpty;
-                                return Obx(() {
-                                  final String? droppedId =
-                                      controller.dropTargetValues[element.id];
-                                  final bool hasItem = droppedId != null;
-
-                                  return Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      // Zone de dépôt
-                                      Container(
-                                        height: 100,
-                                        decoration: BoxDecoration(
-                                          color:
-                                              isTargeted
-                                                  ? AppColors.purple.withValues(
-                                                    alpha: 0.1,
-                                                  )
-                                                  : Colors.grey.withValues(
-                                                    alpha: 0.05,
-                                                  ),
-                                          borderRadius: BorderRadius.circular(
-                                            16,
-                                          ),
-                                          border: Border.all(
-                                            color:
-                                                isTargeted
-                                                    ? AppColors.purple
-                                                    : Colors.grey.withValues(
-                                                      alpha: 0.3,
-                                                    ),
-                                            width: isTargeted ? 2 : 1,
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child:
-                                              hasItem
-                                                  ? const SizedBox.shrink()
-                                                  : ElementAppariementCard(
-                                                    element: element,
-                                                    isCorrect: controller
-                                                        .correctElements
-                                                        .contains(element.id),
-                                                    isIncorrect: controller
-                                                        .incorrectElements
-                                                        .contains(element.id),
-                                                    isGlowing: controller
-                                                        .elementsWithGlow
-                                                        .contains(element.id),
-                                                  ),
-                                        ),
+                      children: rightElements.map((element) {
+                        return Obx(() {
+                          // Listen to the specific values we need from the controller
+                          final dropped = controller.dropTargetValues[element.id];
+                          final correctItems = controller.correctElements;
+                          final incorrectItems = controller.incorrectElements;
+                          final glowingItems = controller.elementsWithGlow;
+                          
+                          return DragTarget<ElementAppariement>(
+                            builder: (context, candidateData, rejectedData) {
+                              final bool isTargeted = candidateData.isNotEmpty;
+                              final String? droppedId = dropped;
+                              final bool hasItem = droppedId != null;
+                              
+                              return Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  // Zone de dépôt
+                                  Container(
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                      color: isTargeted
+                                          ? AppColors.purple.withValues(alpha: 0.1)
+                                          : Colors.grey.withValues(alpha: 0.05),
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(
+                                        color: isTargeted
+                                            ? AppColors.purple
+                                            : Colors.grey.withValues(alpha: 0.3),
+                                        width: isTargeted ? 2 : 1,
                                       ),
-
-                                      // Élément déposé
-                                      if (hasItem)
-                                        Positioned.fill(
-                                          child: Center(
-                                            child: ElementAppariementCard(
-                                              element: exercice.paires
-                                                  .expand(
-                                                    (p) => [p.gauche, p.droite],
-                                                  )
-                                                  .firstWhere(
-                                                    (e) => e.id == droppedId,
-                                                  ),
-                                              isCorrect: controller
-                                                  .correctElements
-                                                  .contains(droppedId),
-                                              isIncorrect: controller
-                                                  .incorrectElements
-                                                  .contains(droppedId),
+                                    ),
+                                    child: Center(
+                                      child: hasItem
+                                          ? const SizedBox.shrink()
+                                          : ElementAppariementCard(
+                                              element: element,
+                                              isCorrect: correctItems.contains(element.id),
+                                              isIncorrect: incorrectItems.contains(element.id),
+                                              isGlowing: glowingItems.contains(element.id),
                                             ),
-                                          ),
-                                        ),
-                                    ],
-                                  );
-                                });
-                              },
-                              onAccept: (dragged) {
-                                controller.handleDrop(dragged.id, element.id);
-                              },
-                            );
-                          }).toList(),
+                                    ),
+                                  ),
+                                  
+                                  // Élément déposé
+                                  if (hasItem)
+                                    Positioned.fill(
+                                      child: Builder(builder: (context) {
+                                        final droppedElement = exercice.paires
+                                            .expand((p) => [p.gauche, p.droite])
+                                            .firstWhere(
+                                              (e) => e.id == droppedId,
+                                              orElse: () => exercice.paires[0].gauche,
+                                            );
+                                        
+                                        return ElementAppariementCard(
+                                          element: droppedElement,
+                                          isCorrect: correctItems.contains(droppedId),
+                                          isIncorrect: incorrectItems.contains(droppedId),
+                                        );
+                                      }),
+                                    ),
+                                ],
+                              );
+                            },
+                            onAccept: (dragged) {
+                              controller.handleDrop(dragged.id, element.id);
+                            },
+                          );
+                        });
+                      }).toList(),
                     ),
                   ),
                 ],
@@ -482,77 +466,82 @@ class AppariementInteractifScreen
 
             // Contenu de l'exercice avec Custom Paint pour les lignes
             Expanded(
-              child: Obx(
-                () => CustomPaint(
-                  painter: ConnexionLinePainter(
-                    connections: controller.connections,
-                  ),
-                  child: Row(
-                    children: [
-                      // Éléments de gauche
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children:
-                              leftElements.map((element) {
+              child: GetBuilder<AppariementInteractifController>(
+                id: 'line_connections',
+                builder: (_) {
+                  return Obx(() {
+                    // Make sure we're listening to the right observables
+                    final connections = controller.connections;
+                    final selected = controller.selectedLeftElement.value;
+                    final correctItems = controller.correctElements;
+                    final incorrectItems = controller.incorrectElements;
+                    final glowingItems = controller.elementsWithGlow;
+                    
+                    return CustomPaint(
+                      painter: ConnexionLinePainter(
+                        connections: connections,
+                      ),
+                      child: Row(
+                        children: [
+                          // Éléments de gauche
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: leftElements.map((element) {
+                                final isSelected = selected?.id == element.id;
+                                final isCorrect = correctItems.contains(element.id);
+                                final isIncorrect = incorrectItems.contains(element.id);
+                                final isGlowing = glowingItems.contains(element.id);
+                                
                                 return GestureDetector(
-                                  onTap:
-                                      () =>
-                                          controller.selectLeftElement(element),
+                                  onTap: () => controller.selectLeftElement(element),
                                   child: ElementAppariementCard(
                                     element: element,
-                                    isSelected:
-                                        controller
-                                            .selectedLeftElement
-                                            .value
-                                            ?.id ==
-                                        element.id,
-                                    isCorrect: controller.correctElements
-                                        .contains(element.id),
-                                    isIncorrect: controller.incorrectElements
-                                        .contains(element.id),
-                                    isGlowing: controller.elementsWithGlow
-                                        .contains(element.id),
+                                    isSelected: isSelected,
+                                    isCorrect: isCorrect,
+                                    isIncorrect: isIncorrect,
+                                    isGlowing: isGlowing,
                                     key: ValueKey('left_${element.id}'),
                                   ),
                                 );
                               }).toList(),
-                        ),
-                      ),
-
-                      // Espace central
-                      const SizedBox(width: 40),
-
-                      // Éléments de droite
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children:
-                              rightElements.map((element) {
+                            ),
+                          ),
+          
+                          // Espace central
+                          const SizedBox(width: 40),
+          
+                          // Éléments de droite
+                          Expanded(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: rightElements.map((element) {
+                                final isCorrect = correctItems.contains(element.id);
+                                final isIncorrect = incorrectItems.contains(element.id);
+                                final isGlowing = glowingItems.contains(element.id);
+                                
                                 return GestureDetector(
                                   onTap: () {
-                                    if (controller.selectedLeftElement.value !=
-                                        null) {
+                                    if (controller.selectedLeftElement.value != null) {
                                       controller.connectToRightElement(element);
                                     }
                                   },
                                   child: ElementAppariementCard(
                                     element: element,
-                                    isCorrect: controller.correctElements
-                                        .contains(element.id),
-                                    isIncorrect: controller.incorrectElements
-                                        .contains(element.id),
-                                    isGlowing: controller.elementsWithGlow
-                                        .contains(element.id),
+                                    isCorrect: isCorrect,
+                                    isIncorrect: isIncorrect,
+                                    isGlowing: isGlowing,
                                     key: ValueKey('right_${element.id}'),
                                   ),
                                 );
                               }).toList(),
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                    );
+                  });
+                },
               ),
             ),
           ],
@@ -618,40 +607,43 @@ class AppariementInteractifScreen
                       itemWidth *
                       0.9; // Légèrement plus petit pour avoir des marges
 
-                  return Obx(
-                    () => GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
-                        childAspectRatio: 1.0,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                      ),
-                      itemCount: allElements.length,
-                      itemBuilder: (context, index) {
-                        final element = allElements[index];
-                        return GestureDetector(
-                          onTap: () => controller.selectElement(element),
-                          child: ElementAppariementCard(
-                            element: element,
-                            isSelected:
-                                controller.firstSelectedElement.value?.id ==
-                                    element.id ||
-                                controller.secondSelectedElement.value?.id ==
-                                    element.id,
-                            isCorrect: controller.correctElements.contains(
-                              element.id,
-                            ),
-                            isIncorrect: controller.incorrectElements.contains(
-                              element.id,
-                            ),
-                            isGlowing: controller.elementsWithGlow.contains(
-                              element.id,
-                            ),
-                            size: itemSize,
-                          ),
-                        );
-                      },
+                  // Create a direct builder without Obx
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      childAspectRatio: 1.0,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
                     ),
+                    itemCount: allElements.length,
+                    itemBuilder: (context, index) {
+                      final element = allElements[index];
+                      
+                      // Use a GetBuilder instead of Obx for better state management
+                      return GetBuilder<AppariementInteractifController>(
+                        id: 'selection_items', // Custom ID for this builder
+                        builder: (_) {
+                          final isSelected = 
+                              controller.firstSelectedElement.value?.id == element.id ||
+                              controller.secondSelectedElement.value?.id == element.id;
+                          final isCorrect = controller.correctElements.contains(element.id);
+                          final isIncorrect = controller.incorrectElements.contains(element.id);
+                          final isGlowing = controller.elementsWithGlow.contains(element.id);
+                            
+                          return GestureDetector(
+                            onTap: () => controller.selectElement(element),
+                            child: ElementAppariementCard(
+                              element: element,
+                              isSelected: isSelected,
+                              isCorrect: isCorrect,
+                              isIncorrect: isIncorrect,
+                              isGlowing: isGlowing,
+                              size: itemSize,
+                            ),
+                          );
+                        },
+                      );
+                    },
                   );
                 },
               ),

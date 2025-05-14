@@ -7,7 +7,7 @@ import 'package:kids_learning_app/utils/constants/colors.dart';
 class ConstructionLesson extends StatelessWidget {
   final int day;
   
-  ConstructionLesson({Key? key, required this.day}) : super(key: key) {
+  ConstructionLesson({super.key, required this.day}) {
     print('ConstructionLesson initialized with day: $day');
   }
   @override
@@ -95,10 +95,10 @@ class ConstructionLesson extends StatelessWidget {
                   onPressed: controller.currentIndex.value > 0 
                       ? controller.previousSentence 
                       : null,
-                  child: Icon(Icons.arrow_back),
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                   ),
+                  child: Icon(Icons.arrow_back),
                 ),
                 if (controller.isLastSentence())
                   ElevatedButton(
@@ -109,20 +109,20 @@ class ConstructionLesson extends StatelessWidget {
                         duration: Duration(milliseconds: 500),
                       );
                     },
-                    child: Text('Exercise', style: TextStyle(fontFamily: 'BricolageGrotesque')),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15), 
                     ),
+                    child: Text('Exercise', style: TextStyle(fontFamily: 'BricolageGrotesque')),
                   )
                 else
                   ElevatedButton(
                     onPressed: !controller.isLastSentence() 
                         ? controller.nextSentence 
                         : null,
-                    child: Icon(Icons.arrow_forward),
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     ),
+                    child: Icon(Icons.arrow_forward),
                   ),
               ],
             )),

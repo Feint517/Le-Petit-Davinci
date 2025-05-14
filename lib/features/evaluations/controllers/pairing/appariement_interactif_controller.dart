@@ -55,7 +55,27 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
     super.onInit();
     
     // Charger les exercices
-    exercices.assignAll(AppariementInteractifModel.getExercicesAppariement());
+    final allExercises = AppariementInteractifModel.getExercicesAppariement();
+    debugPrint('Loaded ${allExercises.length} exercises');
+    
+    // Log exercise details for debugging
+    for (int i = 0; i < allExercises.length; i++) {
+      final exercise = allExercises[i];
+      debugPrint('Exercise $i: ${exercise.titre}');
+      
+      // Log image paths for each pair
+      for (int j = 0; j < exercise.paires.length; j++) {
+        final pair = exercise.paires[j];
+        if (pair.gauche.imagePath != null) {
+          debugPrint('  Pair $j left image: ${pair.gauche.imagePath}');
+        }
+        if (pair.droite.imagePath != null) {
+          debugPrint('  Pair $j right image: ${pair.droite.imagePath}');
+        }
+      }
+    }
+    
+    exercices.assignAll(allExercises);
     
     // Initialiser l'animation controller pour les effets visuels
     animationController = AnimationController(
@@ -174,6 +194,9 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
     
     selectedLeftElement.value = element;
     _mascotController.changeState(MascotState.thinking);
+    
+    // Notify UI of selection change
+    update(['line_connections']);
   }
   
   // Connecter un élément de gauche à un élément de droite
@@ -197,6 +220,9 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
       rightElement: rightElement,
     ));
     
+    // Notify UI of connection change
+    update(['line_connections']);
+    
     // Vérifier si la connexion est correcte
     bool isCorrect = false;
     for (final pair in currentExercice.paires) {
@@ -211,11 +237,13 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
       correctElements.add(rightElement.id);
       playSuccessSound();
       _mascotController.reactToCorrectAnswer();
+      update(['line_connections']); // Update for correct state
     } else {
       incorrectElements.add(leftElement.id);
       incorrectElements.add(rightElement.id);
       playErrorSound();
       _mascotController.reactToIncorrectAnswer();
+      update(['line_connections']); // Update for incorrect state
       
       // Supprimer les éléments incorrects après un court délai
       Future.delayed(const Duration(seconds: 1), () {
@@ -226,6 +254,9 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
         connections.removeWhere(
           (conn) => conn.leftElement.id == leftElement.id && conn.rightElement.id == rightElement.id
         );
+        
+        // Update UI after removing incorrect connection
+        update(['line_connections']);
       });
     }
     
@@ -257,6 +288,7 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
       correctElements.add(targetId);
       playSuccessSound();
       _mascotController.reactToCorrectAnswer();
+      // We don't need update here as reactive state with Obx
     } else {
       incorrectElements.add(sourceId);
       incorrectElements.add(targetId);
@@ -270,6 +302,7 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
         
         // Retirer la valeur incorrecte
         dropTargetValues.remove(targetId);
+        // Reactive state with Obx will handle the UI update
       });
     }
     
@@ -287,9 +320,15 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
       firstSelectedElement.value = element;
       elementsWithGlow.add(element.id);
       _mascotController.changeState(MascotState.thinking);
+      
+      // Update the UI for selection
+      update(['selection_items']);
     } else if (secondSelectedElement.value == null && firstSelectedElement.value!.id != element.id) {
       secondSelectedElement.value = element;
       elementsWithGlow.add(element.id);
+      
+      // Update the UI immediately for selection
+      update(['selection_items']);
       
       // Vérifier si la sélection est correcte
       bool isCorrect = false;
@@ -307,11 +346,13 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
         correctElements.add(element.id);
         playSuccessSound();
         _mascotController.reactToCorrectAnswer();
+        update(['selection_items']); // Update for correct state
       } else {
         incorrectElements.add(firstSelectedElement.value!.id);
         incorrectElements.add(element.id);
         playErrorSound();
         _mascotController.reactToIncorrectAnswer();
+        update(['selection_items']); // Update for incorrect state
       }
       
       // Réinitialiser la sélection après un court délai
@@ -325,6 +366,9 @@ class AppariementInteractifController extends GetxController with GetSingleTicke
         elementsWithGlow.remove(element.id);
         firstSelectedElement.value = null;
         secondSelectedElement.value = null;
+        
+        // Update UI after resetting selection
+        update(['selection_items']);
       });
       
       // Vérifier si l'exercice est terminé

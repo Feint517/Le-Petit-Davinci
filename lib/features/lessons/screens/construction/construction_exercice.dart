@@ -10,7 +10,7 @@ import 'package:kids_learning_app/utils/constants/colors.dart';
 class ConstructionExercice extends StatefulWidget {
   final int day;
 
-  const ConstructionExercice({Key? key, required this.day}) : super(key: key);
+  const ConstructionExercice({super.key, required this.day});
 
   @override
   _ConstructionExerciceState createState() => _ConstructionExerciceState();

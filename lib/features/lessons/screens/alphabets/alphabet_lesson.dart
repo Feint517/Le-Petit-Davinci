@@ -4,10 +4,8 @@ import 'package:get/get.dart';
 import 'package:kids_learning_app/common/widgets/common_header.dart';
 import 'package:kids_learning_app/common/widgets/custom_progress_bar.dart';
 import 'package:kids_learning_app/features/lessons/controllers/alphabetController/alphabet_lesson_controller.dart';
-import 'package:kids_learning_app/features/lessons/models/alphabet_model.dart';
 import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_card.dart';
 import 'package:kids_learning_app/features/lessons/screens/alphabets/alphabet_prononciation.dart';
-import 'package:kids_learning_app/features/lessons/screens/widgets/contenu_precedant_suivant.dart';
 import 'package:kids_learning_app/utils/constants/assets_manager.dart';
 import 'package:kids_learning_app/utils/constants/colors.dart';
 import 'package:lottie/lottie.dart';
@@ -109,8 +107,8 @@ class AlphabetLessonScreen extends StatelessWidget {
                         icon: const Icon(Icons.grid_view, size: 16),
                         label: const Text("Voir tout"),
                         style: ButtonStyle(
-                          foregroundColor: MaterialStateProperty.all(AppColors.purple),
-                          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
+                          foregroundColor: WidgetStateProperty.all(AppColors.purple),
+                          padding: WidgetStateProperty.all(const EdgeInsets.symmetric(
                             horizontal: 12,
                             vertical: 8,
                           )),
@@ -224,8 +222,8 @@ class AlphabetLessonScreen extends StatelessWidget {
                       onPressed: controller.previousLetter,
                       icon: const Icon(Icons.arrow_back_ios, size: 16), 
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(AppColors.purple),
-                        foregroundColor: MaterialStateProperty.all(Colors.white),
+                        backgroundColor: WidgetStateProperty.all(AppColors.purple),
+                        foregroundColor: WidgetStateProperty.all(Colors.white),
                       ), 
                   ),
                   ElevatedButton.icon(
@@ -233,16 +231,16 @@ class AlphabetLessonScreen extends StatelessWidget {
                     icon: const Icon(Icons.grid_view, size: 16),
                     label: const Text("Voir tout"),
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.grey.shade200),
-                      foregroundColor: MaterialStateProperty.all(Colors.black87),
+                      backgroundColor: WidgetStateProperty.all(Colors.grey.shade200),
+                      foregroundColor: WidgetStateProperty.all(Colors.black87),
                     ),
                   ),
                   IconButton(
                     onPressed: controller.nextLetter,
                     icon: const Icon(Icons.arrow_forward_ios, size: 16), 
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(AppColors.orange),
-                      foregroundColor: MaterialStateProperty.all(Colors.white),
+                      backgroundColor: WidgetStateProperty.all(AppColors.orange),
+                      foregroundColor: WidgetStateProperty.all(Colors.white),
                     ),
                   ),
                 ],
@@ -336,9 +334,9 @@ class AlphabetLessonScreen extends StatelessWidget {
             icon: const Icon(Icons.play_arrow),
             label: const Text("Commencer les exercices"),
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(AppColors.accent),
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
+              backgroundColor: WidgetStateProperty.all(AppColors.accent),
+              foregroundColor: WidgetStateProperty.all(Colors.white),
+              padding: WidgetStateProperty.all(const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 12,
               )),
@@ -385,9 +383,9 @@ class AlphabetLessonScreen extends StatelessWidget {
             icon: const Icon(Icons.play_circle_outline),
             label: const Text("Voir l'animation"),
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(AppColors.primaryDeep),
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
+              backgroundColor: WidgetStateProperty.all(AppColors.primaryDeep),
+              foregroundColor: WidgetStateProperty.all(Colors.white),
+              padding: WidgetStateProperty.all(const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 12,
               )),
@@ -442,9 +440,9 @@ class AlphabetLessonScreen extends StatelessWidget {
             icon: const Icon(Icons.play_arrow),
             label: const Text("Regarder la vidéo"),
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.red),
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
+              backgroundColor: WidgetStateProperty.all(Colors.red),
+              foregroundColor: WidgetStateProperty.all(Colors.white),
+              padding: WidgetStateProperty.all(const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 12,
               )),

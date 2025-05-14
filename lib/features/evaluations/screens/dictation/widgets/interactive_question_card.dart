@@ -13,11 +13,11 @@ class PlaceholderButton extends StatelessWidget {
   final int repeatCount;
 
   const PlaceholderButton({
-    Key? key,
+    super.key,
     required this.onTap,
     this.isPlaying = false,
     this.repeatCount = 0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

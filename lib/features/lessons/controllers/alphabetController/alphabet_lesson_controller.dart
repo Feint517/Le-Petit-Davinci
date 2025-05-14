@@ -120,7 +120,7 @@ class AlphabetLessonController extends GetxController with GetTickerProviderStat
       
       // Prononcer le mot d'exemple après la lettre
       await Future.delayed(const Duration(milliseconds: 800));
-      await flutterTts.speak("${letter.exampleWord}");
+      await flutterTts.speak(letter.exampleWord);
       
       // Augmenter les points
       points.value += 1;

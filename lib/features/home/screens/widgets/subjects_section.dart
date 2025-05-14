@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:kids_learning_app/common/widgets/show_all_button.dart';
 import 'package:kids_learning_app/features/home/controllers/home_controller.dart';
 import 'package:kids_learning_app/features/home/screens/widgets/subject_card.dart';
 import 'package:kids_learning_app/utils/constants/sizes.dart';
